@@ -1,0 +1,21 @@
+{
+  "name": "Mercedes Cuesta Dietista",
+  "short_name": "MC Dietista",
+  "description": "Dietista online. Alimentación, hábitos sostenibles y nutrición deportiva.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F4F6F3",
+  "theme_color": "#A8BFB6",
+  "icons": [
+    {
+      "src": "/assets/logo/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/logo/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

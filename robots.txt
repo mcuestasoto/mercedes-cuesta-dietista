@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mercedes-cuesta-dietista.vercel.app/sitemap.xml
