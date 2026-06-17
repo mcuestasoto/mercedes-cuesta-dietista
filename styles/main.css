@@ -9,7 +9,9 @@
   --color-white: #FFFFFF;
   --color-line: rgba(47, 47, 45, 0.13);
 
-  --font-serif: "Avenir Next", "Helvetica Neue", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-label: "League Spartan", "Avenir Next", "Helvetica Neue", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-serif: var(--font-display);
   --font-sans: "Avenir Next", "Helvetica Neue", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
   --radius-sm: 16px;
@@ -113,14 +115,14 @@ a { -webkit-tap-highlight-color: transparent; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 42px;
-  height: 42px;
+  width: 50px;
+  height: 50px;
   flex-shrink: 0;
 }
 
 .nav__logo {
-  width: 42px;
-  height: 42px;
+  width: 50px;
+  height: 50px;
   object-fit: contain;
 }
 
@@ -204,16 +206,24 @@ p { margin-top: 0; }
 
 h1,
 h2 {
-  font-family: var(--font-serif);
   line-height: 1.03;
-  letter-spacing: -0.055em;
   color: var(--color-ink);
 }
 
 h1 {
-  margin-bottom: 10px;
-  font-size: clamp(2.8rem, 6.5vw, 5rem);
-  font-weight: 430;
+  font-family: var(--font-display);
+  letter-spacing: -0.045em;
+}
+
+h2 {
+  font-family: var(--font-sans);
+  letter-spacing: -0.035em;
+}
+
+h1 {
+  margin-bottom: 12px;
+  font-size: clamp(3.05rem, 6.7vw, 5.25rem);
+  font-weight: 500;
   max-width: 820px;
   overflow-wrap: break-word;
 }
@@ -260,26 +270,29 @@ p {
 
 .hero__subtitle {
   margin: 0;
-  color: rgba(47, 47, 45, 0.62);
-  font-family: var(--font-sans);
-  font-size: clamp(1.02rem, 1.55vw, 1.18rem);
+  color: rgba(47, 47, 45, 0.66);
+  font-family: var(--font-label);
+  font-size: clamp(0.86rem, 1.18vw, 1rem);
   font-style: normal;
-  font-weight: 420;
-  letter-spacing: -0.015em;
+  font-weight: 650;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
 .hero__handle {
   display: inline-flex;
   align-items: center;
   min-height: 28px;
-  padding: 0 2px 4px;
+  padding: 0 2px 5px;
   border: 0;
-  border-bottom: 1px solid rgba(167, 192, 184, 0.78);
+  border-bottom: 1.5px solid rgba(167, 192, 184, 0.90);
   background: transparent;
-  color: rgba(47, 47, 45, 0.80);
-  font-size: 0.96rem;
-  font-weight: 530;
-  letter-spacing: 0.01em;
+  color: rgba(47, 47, 45, 0.92);
+  font-family: var(--font-label);
+  font-size: 1rem;
+  font-weight: 750;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
   transition: color 180ms ease, transform 180ms ease, border-color 180ms ease;
 }
 
@@ -301,9 +314,10 @@ p {
   gap: 8px;
   margin: 0;
   color: var(--color-ink);
-  font-size: 0.82rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
+  font-family: var(--font-label);
+  font-size: 0.78rem;
+  font-weight: 720;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
@@ -364,11 +378,12 @@ p {
 .about-card-group > h3 {
   margin-bottom: 18px;
   color: var(--color-ink);
-  font-size: clamp(1.18rem, 1.65vw, 1.32rem);
-  font-weight: 650;
+  font-family: var(--font-label);
+  font-size: clamp(1.08rem, 1.55vw, 1.22rem);
+  font-weight: 720;
   line-height: 1.22;
-  letter-spacing: -0.01em;
-  text-transform: none;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   text-align: center;
 }
 
@@ -599,7 +614,8 @@ p {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0 18px;
+  gap: 18px;
+  padding: 0 22px;
   border: 1px dashed rgba(47, 47, 45, 0.22);
   border-radius: 999px;
   background: rgba(250, 247, 242, 0.92);
@@ -620,6 +636,7 @@ p {
   font-size: 0.92rem;
   color: rgba(47, 47, 45, 0.72);
   font-weight: 560;
+  white-space: nowrap;
 }
 
 .collab__code strong {
@@ -671,9 +688,9 @@ p {
 
 .footer a {
   position: relative;
-  font-weight: 500;
+  font-weight: 400;
   text-decoration: none;
-  transition: font-weight 180ms ease;
+  transition: color 180ms ease;
 }
 
 .footer a::after {
@@ -691,7 +708,7 @@ p {
 
 .footer a:hover,
 .footer a:focus-visible {
-  font-weight: 700;
+  color: var(--color-ink);
 }
 
 .footer a:hover::after,
@@ -792,11 +809,11 @@ p {
 
 
   .nav__brand {
-    width: 38px;
-    height: 38px;
+    width: 42px;
+    height: 42px;
   }
 
-  .nav__logo { width: 38px; height: 38px; }
+  .nav__logo { width: 42px; height: 42px; }
 
   .section { padding: 38px 0; }
 
@@ -807,7 +824,7 @@ p {
 
   .hero__grid { gap: 24px; }
 
-  h1 { font-size: clamp(2.75rem, 12vw, 3.85rem); }
+  h1 { font-size: clamp(3rem, 12vw, 4.05rem); }
   h2 { font-size: clamp(1.85rem, 8vw, 2.55rem); }
 
   .hero__subtitle {
@@ -815,7 +832,8 @@ p {
   }
 
   .hero__handle {
-    font-size: 0.94rem;
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
   }
 
   .hero__tagline {
