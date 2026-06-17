@@ -92,7 +92,7 @@
     <nav class="nav container" aria-label="Navegación principal">
       <a href="#inicio" class="nav__brand" aria-label="Ir al inicio de Mercedes Cuesta">
         <img src="./assets/logo/mc-mark-brand.png" alt="" class="nav__logo" aria-hidden="true" />
-        <span>Mercedes Cuesta</span>
+        <span>Mercedes Cuesta | Dietista</span>
       </a>
 
       <button class="nav__toggle" type="button" aria-label="Abrir menú" aria-controls="menu-principal" aria-expanded="false" data-nav-toggle>
@@ -115,7 +115,7 @@
     <section id="inicio" class="hero section section--first" data-section data-section-name="Inicio">
       <div class="container hero__grid">
         <div class="hero__content reveal">
-          <h1>Mercedes Cuesta</h1>
+          <h1><span class="hero__title-primary">Mercedes Cuesta</span> <span class="hero__title-secondary">| Dietista</span></h1>
           <div class="hero__identity">
             <p class="hero__subtitle">Dietista online</p>
             <a class="hero__handle" href="https://www.instagram.com/mcuestasoto" target="_blank" rel="noopener noreferrer" aria-label="Ver perfil de Instagram de Mercedes Cuesta">@mcuestasoto</a>
@@ -123,7 +123,7 @@
           <p class="hero__text">
             Te ayudo a mejorar tu alimentación, composición corporal y rendimiento desde un enfoque práctico, personalizado y sostenible.
           </p>
-          <p class="hero__tagline">Nutrición deportiva · Hábitos sostenibles</p>
+          <p class="hero__tagline">NUTRICIÓN DEPORTIVA · HÁBITOS SOSTENIBLES</p>
         </div>
 
         <div class="hero__media reveal" aria-label="Fotografía de Mercedes Cuesta">
@@ -143,7 +143,7 @@
             Soy Mercedes Cuesta, Técnico Superior en Dietética. Te ayudo a mejorar tus hábitos, tu alimentación, tu composición corporal y tu rendimiento desde un enfoque personalizado, flexible y sostenible.
           </p>
           <p>
-            Mi trabajo no se centra en mandarte una dieta: revisamos tu contexto, organizamos tu alimentación, trabajamos hábitos, resolvemos dudas y ajustamos el proceso según tu evolución, adherencia y sensaciones.
+            Mi trabajo no se centra solo en mandarte una dieta: revisamos tu contexto, organizamos tu alimentación, trabajamos hábitos, resolvemos dudas y ajustamos el proceso según tu evolución, adherencia, sensaciones y seguimiento.
           </p>
         </div>
 
@@ -246,16 +246,23 @@
         </div>
       </div>
     </section>
-
     <aside class="collab section" aria-labelledby="collab-title">
       <div class="container collab__box reveal">
         <div class="collab__content">
-          <p class="collab__label">Colaboración</p>
-          <h2 id="collab-title">FullGas</h2>
-          <p>Código <strong>MCUESTA</strong> · 10% descuento</p>
+          <div class="collab__header">
+            <img src="./assets/logo/fullgas-logo.svg" alt="" class="collab__logo" aria-hidden="true" />
+            <h2 id="collab-title" class="collab__title">Colaboración FullGas</h2>
+          </div>
+          <p class="collab__text">10% de descuento en toda la web.</p>
+          <button class="collab__code" type="button" data-copy-code="MCUESTA" aria-label="Copiar código MCUESTA">
+            <span class="collab__code-label">Código</span>
+            <strong>MCUESTA</strong>
+            <span class="collab__code-copy">Copiar</span>
+          </button>
+          <p class="collab__feedback" data-copy-feedback aria-live="polite"></p>
         </div>
-        <a class="collab__link" href="https://fullgas.org/es/?fg=79" target="_blank" rel="sponsored noopener noreferrer" aria-label="Ver colaboración FullGas en una nueva pestaña">
-          Ver FullGas
+        <a class="button collab__button" href="https://fullgas.org/es/?fg=79" target="_blank" rel="sponsored noopener noreferrer" aria-label="Abrir FullGas en una nueva pestaña">
+          Ir a FullGas
         </a>
       </div>
     </aside>

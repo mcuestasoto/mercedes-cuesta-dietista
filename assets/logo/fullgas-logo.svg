@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-labelledby="title">
+<title>FullGas FG</title>
+<rect width="120" height="120" rx="22" fill="#f4f1ec"/>
+<g fill="#2f2f2d" transform="translate(18,78) skewX(-8)">
+  <path d="M0-42h24v8H8v10h14v8H8v16H0z"/>
+  <path d="M50-42h24v8H58v8h14q6 0 10 4t4 10v2q0 8-5 13t-14 5H50v-8h18q5 0 7-2t2-6v-1q0-4-2-6t-7-2H50z"/>
+</g>
+</svg>

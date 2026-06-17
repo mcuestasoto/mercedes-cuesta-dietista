@@ -118,3 +118,38 @@ if ('IntersectionObserver' in window) {
 } else {
   revealItems.forEach((item) => item.classList.add('is-visible'));
 }
+
+
+const copyCodeButton = document.querySelector('[data-copy-code]');
+const copyFeedback = document.querySelector('[data-copy-feedback]');
+
+const copyText = async (text) => {
+  if (navigator.clipboard && window.isSecureContext) {
+    await navigator.clipboard.writeText(text);
+    return;
+  }
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  textarea.setAttribute('readonly', '');
+  textarea.style.position = 'absolute';
+  textarea.style.left = '-9999px';
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand('copy');
+  textarea.remove();
+};
+
+if (copyCodeButton) {
+  copyCodeButton.addEventListener('click', async () => {
+    const code = copyCodeButton.getAttribute('data-copy-code');
+    try {
+      await copyText(code);
+      if (copyFeedback) copyFeedback.textContent = 'Código copiado.';
+    } catch (error) {
+      if (copyFeedback) copyFeedback.textContent = `Código: ${code}`;
+    }
+    window.setTimeout(() => {
+      if (copyFeedback) copyFeedback.textContent = '';
+    }, 2200);
+  });
+}
