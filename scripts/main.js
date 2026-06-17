@@ -7,7 +7,13 @@ const revealItems = document.querySelectorAll('.reveal');
 const whatsappLinks = document.querySelectorAll('[data-whatsapp-link]');
 const sectionIndicator = document.querySelector('[data-section-indicator]');
 
-const whatsappMessage = 'Hola Mercedes 🥑✨ Vengo de tu web y quería más info. Gracias 🤍';
+const whatsappEmoji = {
+  avocado: String.fromCodePoint(0x1f951),
+  sparkle: String.fromCodePoint(0x2728),
+  whiteHeart: String.fromCodePoint(0x1f90d),
+};
+
+const whatsappMessage = `Hola Mercedes ${whatsappEmoji.avocado}${whatsappEmoji.sparkle} Vengo de tu web y quería más info. Gracias ${whatsappEmoji.whiteHeart}`;
 const whatsappUrl = `https://wa.me/34614821010?text=${encodeURIComponent(whatsappMessage)}`;
 const indicatorOffset = 140;
 

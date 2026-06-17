@@ -1,6 +1,6 @@
 # Mercedes Cuesta Dietista
 
-Landing personal para presentar mi perfil como dietista online, explicar mi enfoque de trabajo y facilitar el contacto desde una web rápida, responsive y accesible.
+Landing personal para presentar mi perfil como dietista, explicar mi enfoque de trabajo y facilitar el contacto desde una web rápida, responsive y accesible.
 
 ## Objetivo
 
@@ -17,8 +17,9 @@ Crear una web clara y cuidada para comunicar mi trabajo en alimentación, compos
 
 - Diseño responsive mobile-first.
 - Navegación por secciones: Inicio, Sobre mí, Cómo trabajo y Contacto.
-- Botón flotante de WhatsApp con mensaje predefinido.
+- Botón flotante de WhatsApp con mensaje predefinido y emojis generados de forma segura desde JavaScript.
 - Enlace a Instagram y email.
+- Colaboración FullGas en bloque secundario, con enlace marcado como `rel="sponsored"`.
 - Open Graph personalizado para compartir en WhatsApp y redes.
 - Metadatos SEO básicos y datos estructurados Schema.org.
 - Páginas legales: aviso legal, privacidad y cookies.
@@ -79,3 +80,8 @@ Proyecto desplegado en Vercel desde GitHub.
 ## Notas de diseño
 
 La web prioriza una estética limpia y cálida: fondo crema, color principal salvia, texto oscuro suave, microinteracciones discretas y una estructura corta pensada para móvil y escritorio.
+
+
+## WhatsApp
+
+Los enlaces de WhatsApp usan un mensaje predefinido generado con JavaScript y `encodeURIComponent()` para conservar correctamente caracteres especiales y emojis.
