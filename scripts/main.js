@@ -5,7 +5,7 @@ const navLinks = document.querySelectorAll('[data-nav-link]');
 const sections = document.querySelectorAll('[data-section]');
 const revealItems = document.querySelectorAll('.reveal');
 const whatsappLinks = document.querySelectorAll('[data-whatsapp-link]');
-const sectionIndicator = document.querySelector('[data-section-indicator]');
+const navOverlay = document.querySelector('[data-nav-overlay]');
 
 const whatsappEmoji = {
   avocado: String.fromCodePoint(0x1f951),
@@ -15,20 +15,6 @@ const whatsappEmoji = {
 
 const whatsappMessage = `Hola Mercedes ${whatsappEmoji.avocado}${whatsappEmoji.sparkle} Vengo de tu web y quería más info. Gracias ${whatsappEmoji.whiteHeart}`;
 const whatsappUrl = `https://wa.me/34614821010?text=${encodeURIComponent(whatsappMessage)}`;
-const indicatorOffset = 140;
-
-const updateIndicatorVisibility = () => {
-  if (!sectionIndicator) return;
-  const isMobile = window.matchMedia('(max-width: 680px)').matches;
-  sectionIndicator.classList.toggle('is-visible', isMobile && window.scrollY > indicatorOffset);
-};
-
-const updateSectionIndicator = (section) => {
-  if (!sectionIndicator || !section) return;
-  const label = section.getAttribute('data-section-name') || section.querySelector('h1, h2')?.textContent || 'Inicio';
-  sectionIndicator.textContent = label;
-};
-
 whatsappLinks.forEach((link) => {
   link.setAttribute('href', whatsappUrl);
 });
@@ -38,6 +24,10 @@ const closeMenu = () => {
   toggle.setAttribute('aria-expanded', 'false');
   toggle.setAttribute('aria-label', 'Abrir menú');
   menu.classList.remove('is-open');
+  if (navOverlay) {
+    navOverlay.classList.remove('is-visible');
+    navOverlay.setAttribute('hidden', '');
+  }
 };
 
 if (toggle && menu) {
@@ -46,6 +36,15 @@ if (toggle && menu) {
     toggle.setAttribute('aria-expanded', String(!isOpen));
     toggle.setAttribute('aria-label', isOpen ? 'Abrir menú' : 'Cerrar menú');
     menu.classList.toggle('is-open', !isOpen);
+    if (navOverlay) {
+      if (!isOpen) {
+        navOverlay.removeAttribute('hidden');
+      }
+      navOverlay.classList.toggle('is-visible', !isOpen);
+      if (isOpen) {
+        navOverlay.setAttribute('hidden', '');
+      }
+    }
   });
 
   navLinks.forEach((link) => {
@@ -70,25 +69,35 @@ if (toggle && menu) {
       });
 
       history.pushState(null, '', href);
-      updateSectionIndicator(target);
     });
   });
 
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') closeMenu();
   });
+
+  document.addEventListener('click', (event) => {
+    const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+    if (!isOpen) return;
+    const clickedInsideMenu = menu.contains(event.target);
+    const clickedToggle = toggle.contains(event.target);
+    const clickedOverlay = navOverlay && navOverlay.contains(event.target);
+    if (clickedOverlay || (!clickedInsideMenu && !clickedToggle)) closeMenu();
+  });
+
+  if (navOverlay) {
+    navOverlay.addEventListener('click', closeMenu);
+  }
 }
 
 const onScroll = () => {
   if (header) {
     header.classList.toggle('is-scrolled', window.scrollY > 12);
   }
-  updateIndicatorVisibility();
 };
 
 onScroll();
 window.addEventListener('scroll', onScroll, { passive: true });
-window.addEventListener('resize', updateIndicatorVisibility, { passive: true });
 
 if ('IntersectionObserver' in window) {
   const revealObserver = new IntersectionObserver((entries) => {
@@ -106,7 +115,6 @@ if ('IntersectionObserver' in window) {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
       const id = entry.target.getAttribute('id');
-      updateSectionIndicator(entry.target);
       navLinks.forEach((link) => {
         const isActive = link.getAttribute('href') === `#${id}`;
         link.classList.toggle('is-active', isActive);
