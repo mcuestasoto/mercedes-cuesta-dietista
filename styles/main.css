@@ -340,7 +340,7 @@ p {
 }
 
 .about {
-  --section-title-bg: #eef3ee;
+  --section-title-bg: #f0f4ef;
   background: rgba(167, 192, 184, 0.10);
   border-block: 1px solid var(--color-line);
 }
@@ -507,7 +507,7 @@ p {
 .process__list p { margin-bottom: 0; }
 
 .contact {
-  --section-title-bg: var(--color-bg);
+  --section-title-bg: var(--color-white);
 }
 
 .contact__box {
@@ -825,12 +825,26 @@ p {
     z-index: 40;
     width: auto;
     margin: 0 0 22px;
-    padding: 6px 0 8px;
-    background: transparent;
+    padding: 10px 0 12px;
+    background: var(--section-title-bg);
     box-shadow: none;
     border: 0;
     border-radius: 0;
     backdrop-filter: none;
+    isolation: isolate;
+  }
+
+  .about__content h2::before,
+  .process .section-heading::before {
+    content: '';
+    position: absolute;
+    inset: 0 calc(50% - 50vw);
+    z-index: -1;
+    background: var(--section-title-bg);
+  }
+
+  .contact h2 {
+    background: var(--color-white);
   }
 
   .process .section-heading {

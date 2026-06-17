@@ -131,9 +131,9 @@ Proyecto desplegable en Vercel desde GitHub.
 ## Últimos ajustes
 
 - Se mantiene la imagen de apoyo en “Cómo trabajo”.
-- En móvil, los títulos de sección se mantienen visibles al hacer scroll sin añadir franjas, rectángulos ni fondos extra que sobresalgan de las tarjetas.
+- En móvil, los títulos de sección se mantienen visibles al hacer scroll con un fondo del mismo tono de la sección, evitando que se mezclen con el texto inferior.
 - El bloque de código FullGas mantiene el texto en una sola línea: `Copiar código · MCUESTA`, con el código en mayúsculas y seminegrita.
 
 ## WhatsApp
 
-Los enlaces de WhatsApp usan un mensaje predefinido generado con JavaScript y `encodeURIComponent()` para conservar correctamente caracteres especiales y emojis.
+Los enlaces de WhatsApp usan un mensaje predefinido generado con JavaScript y `encodeURIComponent()`. Se utiliza `https://api.whatsapp.com/send` con el teléfono y el texto codificado para conservar mejor caracteres especiales y emojis tanto en móvil como en escritorio.
