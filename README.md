@@ -64,6 +64,7 @@ mercedes-cuesta-dietista/
 - Enlaces y botones con nombres accesibles.
 - Foco visible para navegación con teclado.
 - Contraste cuidado según la paleta de marca.
+- Tipografía minimalista basada en fuentes del sistema para mejorar rendimiento y privacidad.
 - Objetivos táctiles amplios en móvil.
 - Indicador de sección en versión móvil.
 
@@ -74,3 +75,7 @@ La web es estática y no recoge datos mediante formularios propios. No utiliza c
 ## Deploy
 
 Proyecto desplegado en Vercel desde GitHub.
+
+## Notas de diseño
+
+La web prioriza una estética limpia y cálida: fondo crema, color principal salvia, texto oscuro suave, microinteracciones discretas y una estructura corta pensada para móvil y escritorio.

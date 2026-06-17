@@ -9,6 +9,13 @@ const sectionIndicator = document.querySelector('[data-section-indicator]');
 
 const whatsappMessage = 'Hola Mercedes 🥑✨ Vengo de tu web y quería más info. Gracias 🤍';
 const whatsappUrl = `https://wa.me/34614821010?text=${encodeURIComponent(whatsappMessage)}`;
+const indicatorOffset = 140;
+
+const updateIndicatorVisibility = () => {
+  if (!sectionIndicator) return;
+  const isMobile = window.matchMedia('(max-width: 680px)').matches;
+  sectionIndicator.classList.toggle('is-visible', isMobile && window.scrollY > indicatorOffset);
+};
 
 const updateSectionIndicator = (section) => {
   if (!sectionIndicator || !section) return;
@@ -70,10 +77,12 @@ const onScroll = () => {
   if (header) {
     header.classList.toggle('is-scrolled', window.scrollY > 12);
   }
+  updateIndicatorVisibility();
 };
 
 onScroll();
 window.addEventListener('scroll', onScroll, { passive: true });
+window.addEventListener('resize', updateIndicatorVisibility, { passive: true });
 
 if ('IntersectionObserver' in window) {
   const revealObserver = new IntersectionObserver((entries) => {
