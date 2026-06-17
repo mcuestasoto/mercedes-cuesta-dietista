@@ -8,6 +8,10 @@
   --color-muted: rgba(47, 47, 45, 0.68);
   --color-white: #FFFFFF;
   --color-line: rgba(47, 47, 45, 0.13);
+  --color-about-bg: #F2F2EC;
+  --color-process-bg: #FAF7F2;
+  --color-contact-bg: #FAF7F2;
+  --color-contact-card-bg: #FFFFFF;
 
   --font-display: "Avenir Next", "Helvetica Neue", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-label: "Avenir Next", "Helvetica Neue", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -340,8 +344,8 @@ p {
 }
 
 .about {
-  --section-title-bg: #f0f4ef;
-  background: rgba(167, 192, 184, 0.10);
+  --section-title-bg: var(--color-about-bg);
+  background: var(--color-about-bg);
   border-block: 1px solid var(--color-line);
 }
 
@@ -440,8 +444,8 @@ p {
 
 
 .process {
-  --section-title-bg: #fbf8f3;
-  background: rgba(250, 247, 242, 0.72);
+  --section-title-bg: var(--color-process-bg);
+  background: var(--color-process-bg);
   border-bottom: 1px solid var(--color-line);
 }
 
@@ -507,14 +511,15 @@ p {
 .process__list p { margin-bottom: 0; }
 
 .contact {
-  --section-title-bg: var(--color-white);
+  --section-title-bg: var(--color-contact-bg);
+  background: var(--color-contact-bg);
 }
 
 .contact__box {
   padding: clamp(30px, 4vw, 50px);
   border: 1px solid var(--color-line);
   border-radius: var(--radius-lg);
-  background: var(--color-white);
+  background: var(--color-contact-card-bg);
   box-shadow: var(--shadow-soft);
 }
 
@@ -826,12 +831,16 @@ p {
     width: auto;
     margin: 0 0 22px;
     padding: 10px 0 12px;
-    background: var(--section-title-bg);
     box-shadow: none;
     border: 0;
     border-radius: 0;
     backdrop-filter: none;
     isolation: isolate;
+  }
+
+  .about__content h2,
+  .process .section-heading {
+    background: var(--section-title-bg);
   }
 
   .about__content h2::before,
@@ -844,7 +853,15 @@ p {
   }
 
   .contact h2 {
-    background: var(--color-white);
+    background: var(--color-contact-card-bg);
+  }
+
+  .contact h2::before {
+    content: '';
+    position: absolute;
+    inset: 0 -30px;
+    z-index: -1;
+    background: var(--color-contact-card-bg);
   }
 
   .process .section-heading {
@@ -870,7 +887,7 @@ p {
   .section { padding: 38px 0; }
 
   .section--first {
-    padding-top: 8px;
+    padding-top: 24px;
     padding-bottom: 36px;
   }
 

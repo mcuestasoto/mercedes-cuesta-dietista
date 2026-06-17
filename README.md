@@ -137,3 +137,9 @@ Proyecto desplegable en Vercel desde GitHub.
 ## WhatsApp
 
 Los enlaces de WhatsApp usan un mensaje predefinido generado con JavaScript y `encodeURIComponent()`. Se utiliza `https://api.whatsapp.com/send` con el teléfono y el texto codificado para conservar mejor caracteres especiales y emojis tanto en móvil como en escritorio.
+
+
+## Ajustes v20
+
+- Fondos móviles sticky ajustados con el mismo color exacto de cada sección para evitar cortes visuales.
+- Más espacio superior en hero móvil entre el menú y el nombre.
