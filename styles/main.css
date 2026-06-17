@@ -573,19 +573,12 @@ p {
   gap: 14px;
 }
 
-.collab__logo {
-  width: 56px;
-  height: 56px;
-  flex: 0 0 56px;
-  object-fit: contain;
-}
-
 .collab__title {
   margin: 0;
   font-family: var(--font-sans);
-  font-size: clamp(1.1rem, 2vw, 1.28rem);
-  font-weight: 640;
-  letter-spacing: -0.02em;
+  font-size: clamp(1.08rem, 1.8vw, 1.22rem);
+  font-weight: 620;
+  letter-spacing: -0.01em;
 }
 
 .collab__text {
@@ -597,7 +590,7 @@ p {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .collab__code {
@@ -606,7 +599,6 @@ p {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
   padding: 0 18px;
   border: 1px dashed rgba(47, 47, 45, 0.22);
   border-radius: 999px;
@@ -625,13 +617,11 @@ p {
 }
 
 .collab__code span {
-  font-size: 0.9rem;
-  color: rgba(47, 47, 45, 0.72);
+  font-size: 0.92rem;
+  color: rgba(47, 47, 45, 0.82);
+  font-weight: 560;
 }
 
-.collab__code strong {
-  letter-spacing: 0.12em;
-}
 
 .collab__feedback {
   min-height: 1.2em;
