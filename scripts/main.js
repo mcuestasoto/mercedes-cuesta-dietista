@@ -5,9 +5,16 @@ const navLinks = document.querySelectorAll('[data-nav-link]');
 const sections = document.querySelectorAll('[data-section]');
 const revealItems = document.querySelectorAll('.reveal');
 const whatsappLinks = document.querySelectorAll('[data-whatsapp-link]');
+const sectionIndicator = document.querySelector('[data-section-indicator]');
 
 const whatsappMessage = 'Hola Mercedes 🥑✨ Vengo de tu web y quería más info. Gracias 🤍';
 const whatsappUrl = `https://wa.me/34614821010?text=${encodeURIComponent(whatsappMessage)}`;
+
+const updateSectionIndicator = (section) => {
+  if (!sectionIndicator || !section) return;
+  const label = section.getAttribute('data-section-name') || section.querySelector('h1, h2')?.textContent || 'Inicio';
+  sectionIndicator.textContent = label;
+};
 
 whatsappLinks.forEach((link) => {
   link.setAttribute('href', whatsappUrl);
@@ -28,7 +35,31 @@ if (toggle && menu) {
     menu.classList.toggle('is-open', !isOpen);
   });
 
-  navLinks.forEach((link) => link.addEventListener('click', closeMenu));
+  navLinks.forEach((link) => {
+    link.addEventListener('click', (event) => {
+      const href = link.getAttribute('href');
+      const target = href && href.startsWith('#') ? document.querySelector(href) : null;
+      if (!target) {
+        closeMenu();
+        return;
+      }
+
+      event.preventDefault();
+      closeMenu();
+
+      const headerHeight = header ? header.offsetHeight : 0;
+      const top = Math.max(0, target.getBoundingClientRect().top + window.scrollY - headerHeight - 2);
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      window.scrollTo({
+        top,
+        behavior: prefersReducedMotion ? 'auto' : 'smooth',
+      });
+
+      history.pushState(null, '', href);
+      updateSectionIndicator(target);
+    });
+  });
 
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') closeMenu();
@@ -60,6 +91,7 @@ if ('IntersectionObserver' in window) {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
       const id = entry.target.getAttribute('id');
+      updateSectionIndicator(entry.target);
       navLinks.forEach((link) => {
         const isActive = link.getAttribute('href') === `#${id}`;
         link.classList.toggle('is-active', isActive);

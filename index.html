@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
   <title>Mercedes Cuesta | Dietista online</title>
-  <meta name="description" content="Mercedes Cuesta, dietista online. Alimentación, composición corporal, rendimiento y salud con un enfoque personalizado, práctico y sostenible." />
+  <meta name="description" content="Mercedes Cuesta, dietista online. Alimentación, composición corporal y rendimiento con un enfoque práctico, personalizado y sostenible." />
   <meta name="author" content="Mercedes Cuesta" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://mercedes-cuesta-dietista.vercel.app/" />
@@ -14,7 +14,7 @@
   <meta property="og:locale" content="es_ES" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Mercedes Cuesta | Dietista online" />
-  <meta property="og:description" content="Alimentación, composición corporal, rendimiento y salud con un enfoque personalizado, práctico y sostenible." />
+  <meta property="og:description" content="Alimentación, composición corporal y rendimiento." />
   <meta property="og:url" content="https://mercedes-cuesta-dietista.vercel.app/" />
   <meta property="og:site_name" content="Mercedes Cuesta" />
   <meta property="og:image" content="https://mercedes-cuesta-dietista.vercel.app/assets/images/og-image.png" />
@@ -22,18 +22,63 @@
   <meta property="og:image:type" content="image/png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Mercedes Cuesta, dietista online" />
+  <meta property="og:image:alt" content="Logo MC de Mercedes Cuesta" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Mercedes Cuesta | Dietista online" />
-  <meta name="twitter:description" content="Alimentación, composición corporal, rendimiento y salud con un enfoque personalizado, práctico y sostenible." />
+  <meta name="twitter:description" content="Alimentación, composición corporal y rendimiento." />
   <meta name="twitter:image" content="https://mercedes-cuesta-dietista.vercel.app/assets/images/og-image.png" />
 
   <link rel="icon" href="./assets/logo/favicon.ico" sizes="any" />
   <link rel="icon" href="./assets/logo/favicon.png" type="image/png" />
   <link rel="apple-touch-icon" href="./assets/logo/apple-touch-icon.png" />
   <link rel="manifest" href="./site.webmanifest" />
-  <meta name="theme-color" content="#FAF7F2" />
+  <meta name="theme-color" content="#A7C0B8" />
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://mercedes-cuesta-dietista.vercel.app/#website",
+      "url": "https://mercedes-cuesta-dietista.vercel.app/",
+      "name": "Mercedes Cuesta | Dietista online",
+      "description": "Alimentación, composición corporal y rendimiento.",
+      "inLanguage": "es-ES"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://mercedes-cuesta-dietista.vercel.app/#mercedes-cuesta",
+      "name": "Mercedes Cuesta",
+      "jobTitle": "Dietista",
+      "url": "https://mercedes-cuesta-dietista.vercel.app/",
+      "sameAs": [
+        "https://www.instagram.com/mcuestasoto"
+      ],
+      "knowsAbout": [
+        "Dietética",
+        "Alimentación",
+        "Composición corporal",
+        "Nutrición deportiva",
+        "Hábitos sostenibles",
+        "Educación nutricional",
+        "Antropometría"
+      ],
+      "hasCredential": [
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "Técnico Superior en Dietética"
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "Antropometrista ISAK nivel 1"
+        }
+      ]
+    }
+  ]
+}
+  </script>
 
   <link rel="preload" as="image" href="./assets/images/mercedes-hero.webp" />
   <link rel="stylesheet" href="./styles/main.css" />
@@ -64,14 +109,19 @@
     </nav>
   </header>
 
+  <div class="mobile-section-indicator" data-section-indicator aria-hidden="true">Inicio</div>
+
   <main id="contenido-principal">
-    <section id="inicio" class="hero section section--first" data-section>
+    <section id="inicio" class="hero section section--first" data-section data-section-name="Inicio">
       <div class="container hero__grid">
         <div class="hero__content reveal">
           <h1>Mercedes Cuesta</h1>
-          <p class="hero__subtitle">Dietista online</p>
+          <div class="hero__identity">
+            <p class="hero__subtitle">Dietista online</p>
+            <a class="hero__handle" href="https://www.instagram.com/mcuestasoto" target="_blank" rel="noopener noreferrer" aria-label="Ver perfil de Instagram de Mercedes Cuesta">@mcuestasoto</a>
+          </div>
           <p class="hero__text">
-            Te ayudo a mejorar tu alimentación, composición corporal, rendimiento y salud con un enfoque personalizado y sostenible.
+            Te ayudo a mejorar tu alimentación, composición corporal y rendimiento desde un enfoque práctico, personalizado y sostenible.
           </p>
           <p class="hero__tagline">Nutrición deportiva · Hábitos sostenibles</p>
         </div>
@@ -85,12 +135,12 @@
       </div>
     </section>
 
-    <section id="sobre-mi" class="section about" aria-labelledby="about-title" data-section>
+    <section id="sobre-mi" class="section about" aria-labelledby="about-title" data-section data-section-name="Sobre mí">
       <div class="container about__layout">
         <div class="about__content reveal">
           <h2 id="about-title">Sobre mí</h2>
           <p>
-            Soy Mercedes Cuesta. Tengo formación como Técnico Superior en Dietética y formación complementaria en antropometría ISAK nivel 1. Acompaño procesos de alimentación, composición corporal y rendimiento desde un enfoque práctico, personalizado y sostenible.
+            Soy Mercedes Cuesta, Técnico Superior en Dietética. Acompaño procesos de alimentación, composición corporal y rendimiento desde un enfoque práctico, personalizado y sostenible.
           </p>
           <p>
             Mi trabajo no se queda en una pauta de comidas: revisamos tu contexto, organizamos tu alimentación, trabajamos hábitos, resolvemos dudas y ajustamos el proceso según tu evolución, adherencia y sensaciones.
@@ -103,11 +153,11 @@
             <div class="about-card-list about-card-list--education">
               <article class="focus-card focus-card--education">
                 <h4>Técnico Superior en Dietética</h4>
-                <p>Titulación oficial de Formación Profesional en la rama sanitaria.</p>
+                <p>Titulación oficial de Formación Profesional sanitaria centrada en dietética, alimentación y educación nutricional.</p>
               </article>
               <article class="focus-card focus-card--education">
                 <h4>Antropometrista ISAK nivel 1</h4>
-                <p>Valoración de composición corporal y evolución mediante protocolo antropométrico cuando procede.</p>
+                <p>Formación en mediciones antropométricas básicas —como pliegues y perímetros— para valorar composición corporal y evolución cuando procede.</p>
               </article>
             </div>
           </section>
@@ -117,19 +167,19 @@
             <div class="about-card-list about-card-list--approach">
               <article class="focus-card focus-card--approach">
                 <h4>Planificación personalizada</h4>
-                <p>Adaptada a tu rutina, preferencias, objetivo y actividad física.</p>
+                <p>Organización adaptada a tu rutina, preferencias, objetivo y actividad física.</p>
               </article>
               <article class="focus-card focus-card--approach">
                 <h4>Hábitos sostenibles</h4>
-                <p>Herramientas prácticas para mejorar sin depender de hacerlo perfecto.</p>
+                <p>Cambios realistas que puedas mantener sin depender de hacerlo perfecto.</p>
               </article>
               <article class="focus-card focus-card--approach">
                 <h4>Nutrición deportiva</h4>
-                <p>Composición corporal, rendimiento y organización alrededor del entrenamiento.</p>
+                <p>Alimentación orientada a composición corporal, rendimiento y entrenamiento.</p>
               </article>
               <article class="focus-card focus-card--approach">
                 <h4>Educación nutricional</h4>
-                <p>Resolver dudas, entender el proceso y ganar autonomía.</p>
+                <p>Entender el proceso, resolver dudas y ganar autonomía con tu alimentación.</p>
               </article>
             </div>
           </section>
@@ -137,7 +187,7 @@
       </div>
     </section>
 
-    <section id="como-trabajo" class="section process" aria-labelledby="process-title" data-section>
+    <section id="como-trabajo" class="section process" aria-labelledby="process-title" data-section data-section-name="Cómo trabajo">
       <div class="container process__layout">
         <div class="section-heading reveal">
           <h2 id="process-title">Cómo trabajo</h2>
@@ -148,35 +198,35 @@
             <span>01</span>
             <div>
               <h3>Primer contacto</h3>
-              <p>Me escribes para pedirme información y contarme brevemente qué buscas mejorar.</p>
+              <p>Me cuentas tus objetivos y qué necesitas mejorar. Valoramos si puedo ayudarte y cuál sería el enfoque más adecuado.</p>
             </div>
           </li>
           <li>
             <span>02</span>
             <div>
               <h3>Valoración inicial</h3>
-              <p>Revisamos tu objetivo, rutina, hábitos, preferencias, actividad física y entrenamiento.</p>
+              <p>Revisamos tu contexto, rutina, hábitos, preferencias, horarios, actividad física y entrenamiento.</p>
             </div>
           </li>
           <li>
             <span>03</span>
             <div>
               <h3>Planificación nutricional y hábitos</h3>
-              <p>Organizamos una propuesta flexible y trabajamos educación nutricional, adherencia y herramientas prácticas para tu día a día.</p>
+              <p>Organizamos una propuesta práctica y flexible. Además de la pauta, trabajamos educación nutricional, organización y hábitos.</p>
             </div>
           </li>
           <li>
             <span>04</span>
             <div>
               <h3>Seguimiento y ajustes</h3>
-              <p>Realizamos seguimiento, resolvemos dudas y ajustamos según evolución, adherencia y sensaciones.</p>
+              <p>Durante el seguimiento resolvemos dudas y ajustamos según evolución, adherencia y sensaciones.</p>
             </div>
           </li>
         </ol>
       </div>
     </section>
 
-    <section id="contacto" class="section contact" aria-labelledby="contact-title" data-section>
+    <section id="contacto" class="section contact" aria-labelledby="contact-title" data-section data-section-name="Contacto">
       <div class="container contact__box reveal">
         <h2 id="contact-title">Contacto</h2>
 

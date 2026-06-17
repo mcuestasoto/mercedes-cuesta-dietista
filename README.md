@@ -1,31 +1,76 @@
-# Mercedes Cuesta · Dietista online
+# Mercedes Cuesta Dietista
 
-Landing estática para Mercedes Cuesta.
+Landing personal para presentar mi perfil como dietista online, explicar mi enfoque de trabajo y facilitar el contacto desde una web rápida, responsive y accesible.
 
-## Estructura
+## Objetivo
 
-- Inicio
-- Sobre mí
-- Cómo trabajo
-- Contacto
+Crear una web clara y cuidada para comunicar mi trabajo en alimentación, composición corporal, rendimiento y hábitos sostenibles, manteniendo una estética coherente con mi marca personal de dietética.
 
-## Tecnologías
+## Stack
 
-HTML, CSS y JavaScript vanilla.
+- HTML5
+- CSS3
+- JavaScript vanilla
+- Deploy en Vercel
 
-## Deploy
+## Características
 
-Proyecto preparado para desplegar en Vercel.
+- Diseño responsive mobile-first.
+- Navegación por secciones: Inicio, Sobre mí, Cómo trabajo y Contacto.
+- Botón flotante de WhatsApp con mensaje predefinido.
+- Enlace a Instagram y email.
+- Open Graph personalizado para compartir en WhatsApp y redes.
+- Metadatos SEO básicos y datos estructurados Schema.org.
+- Páginas legales: aviso legal, privacidad y cookies.
+- Sin Google Analytics, Meta Pixel, formularios propios ni scripts externos.
+- Cabeceras de seguridad configuradas en Vercel.
+- Animaciones suaves con soporte para `prefers-reduced-motion`.
 
 ## Paleta de marca
 
-Colores principales:
+- `#FAF7F2` — fondo principal.
+- `#A7C0B8` — color principal salvia.
+- `#2F2F2D` — texto principal.
+- `#EFE4D4` — detalle secundario.
+- `#C9825C` — acento puntual.
 
-- `#A7C0B8` · salvia principal
-- `#FAF7F2` · fondo crema
-- `#2F2F2D` · texto principal
+## Estructura
 
-Colores secundarios/accesorios:
+```txt
+mercedes-cuesta-dietista/
+├── index.html
+├── styles/
+│   └── main.css
+├── scripts/
+│   └── main.js
+├── assets/
+│   ├── images/
+│   └── logo/
+├── pages/
+│   ├── aviso-legal.html
+│   ├── privacidad.html
+│   └── cookies.html
+├── robots.txt
+├── sitemap.xml
+├── site.webmanifest
+├── vercel.json
+└── README.md
+```
 
-- `#EFE4D4` · arena suave para detalles puntuales
-- `#C9825C` · acento cálido para hover, líneas y detalles pequeños
+## Accesibilidad y usabilidad
+
+- HTML semántico.
+- Un único `h1`.
+- Enlaces y botones con nombres accesibles.
+- Foco visible para navegación con teclado.
+- Contraste cuidado según la paleta de marca.
+- Objetivos táctiles amplios en móvil.
+- Indicador de sección en versión móvil.
+
+## Seguridad y privacidad
+
+La web es estática y no recoge datos mediante formularios propios. No utiliza cookies analíticas ni publicitarias. Los enlaces externos a WhatsApp, Instagram y email abren servicios de terceros con sus propias políticas.
+
+## Deploy
+
+Proyecto desplegado en Vercel desde GitHub.
