@@ -130,8 +130,9 @@ Proyecto desplegable en Vercel desde GitHub.
 
 ## Últimos ajustes
 
-- Se ha recuperado la imagen de apoyo en “Cómo trabajo”.
-- En móvil, los títulos sticky ocupan todo el ancho de pantalla y mantienen el fondo del mismo color que su sección para no mezclarse visualmente con el contenido al hacer scroll.
+- Se mantiene la imagen de apoyo en “Cómo trabajo”.
+- En móvil, los títulos de sección se mantienen visibles al hacer scroll sin añadir franjas, rectángulos ni fondos extra que sobresalgan de las tarjetas.
+- El bloque de código FullGas mantiene el texto en una sola línea: `Copiar código · MCUESTA`, con el código en mayúsculas y seminegrita.
 
 ## WhatsApp
 
