@@ -1,8 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-labelledby="title">
-<title>FullGas FG</title>
-<rect width="120" height="120" rx="22" fill="#f4f1ec"/>
-<g fill="#2f2f2d" transform="translate(18,78) skewX(-8)">
-  <path d="M0-42h24v8H8v10h14v8H8v16H0z"/>
-  <path d="M50-42h24v8H58v8h14q6 0 10 4t4 10v2q0 8-5 13t-14 5H50v-8h18q5 0 7-2t2-6v-1q0-4-2-6t-7-2H50z"/>
-</g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 140" role="img" aria-labelledby="title desc">
+  <title id="title">Logo FullGas</title>
+  <desc id="desc">Iniciales FG en negro sobre círculo blanco</desc>
+  <rect width="140" height="140" fill="transparent"/>
+  <circle cx="70" cy="70" r="58" fill="#ffffff" stroke="#ece7e0" stroke-width="1.5"/>
+  <g fill="#151515" transform="translate(34,92) scale(1.05) skewX(-4)">
+    <path d="M0-42h33c1.7 0 3 1.4 2.8 3.1l-1.1 8.9c-.2 1.4-1.4 2.5-2.8 2.5H11.5l-1 7.8H29c1.8 0 3.1 1.6 2.8 3.4l-1 8.4c-.2 1.4-1.4 2.5-2.8 2.5H7.9L4.7 16.5c-.2 1.5-1.4 2.5-2.8 2.5H-9.5c-1.8 0-3.2-1.6-2.8-3.4L-4.1-39.6C-3.9-41-2.7-42 0-42Z"/>
+    <path d="M62-42h30.5c1.8 0 3.2 1.6 2.8 3.4L93.9-27c-.2 1.4-1.4 2.4-2.8 2.4H73c-8.7 0-14.4 4.2-15.8 15.1l-.5 4.2C55.3 5.8 60.3 11 69 11h8.6l.8-6.1H65.7c-1.8 0-3.2-1.6-2.8-3.4l1.1-8.7c.2-1.4 1.4-2.5 2.8-2.5h24.5c1.8 0 3.2 1.6 2.8 3.4l-2.9 22.9c-.2 1.4-1.4 2.5-2.8 2.5H66.7c-20 0-30.1-11-27.8-29.3C41.3-29.8 50.7-42 62-42Z"/>
+  </g>
 </svg>
