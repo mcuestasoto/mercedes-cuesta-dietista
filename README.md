@@ -17,7 +17,6 @@ HTML, CSS y JavaScript vanilla.
 
 Proyecto preparado para desplegar en Vercel.
 
-
 ## Paleta
 
 - `#A7C0B8` salvia

@@ -4,6 +4,14 @@ const menu = document.querySelector('[data-nav-menu]');
 const navLinks = document.querySelectorAll('[data-nav-link]');
 const sections = document.querySelectorAll('[data-section]');
 const revealItems = document.querySelectorAll('.reveal');
+const whatsappLinks = document.querySelectorAll('[data-whatsapp-link]');
+
+const whatsappMessage = 'Hola Mercedes 🥑✨ Vengo de tu web y quería más info. Gracias 🤍';
+const whatsappUrl = `https://wa.me/34614821010?text=${encodeURIComponent(whatsappMessage)}`;
+
+whatsappLinks.forEach((link) => {
+  link.setAttribute('href', whatsappUrl);
+});
 
 const closeMenu = () => {
   if (!toggle || !menu) return;
@@ -44,7 +52,7 @@ if ('IntersectionObserver' in window) {
         revealObserver.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.16 });
+  }, { threshold: 0.14 });
 
   revealItems.forEach((item) => revealObserver.observe(item));
 
@@ -57,7 +65,7 @@ if ('IntersectionObserver' in window) {
         link.classList.toggle('is-active', isActive);
       });
     });
-  }, { rootMargin: '-35% 0px -55% 0px', threshold: 0.01 });
+  }, { rootMargin: '-28% 0px -62% 0px', threshold: 0.01 });
 
   sections.forEach((section) => activeObserver.observe(section));
 } else {
