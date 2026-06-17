@@ -33,6 +33,8 @@ mercedes-cuesta-dietista/
 │   ├── images/
 │   │   ├── mercedes-hero.jpg
 │   │   ├── mercedes-hero.webp
+│   │   ├── mercedes-ipad.jpg
+│   │   ├── mercedes-ipad.webp
 │   │   └── og-image.png
 │   └── logo/
 │       ├── apple-touch-icon.png
@@ -55,6 +57,9 @@ mercedes-cuesta-dietista/
 
 ## Limpieza de archivos
 
+Incluye la imagen principal del hero, la imagen de apoyo en la sección “Cómo trabajo”, el Open Graph y los iconos/logo necesarios para favicon y manifest.
+
+
 El proyecto mantiene únicamente los archivos necesarios para producción. Se han eliminado variantes antiguas de logos, imágenes no usadas, versiones alternativas de Open Graph y recursos que no estaban referenciados.
 
 ## SEO incluido
@@ -65,7 +70,7 @@ El proyecto mantiene únicamente los archivos necesarios para producción. Se ha
 - Canonical absoluto apuntando a la home.
 - `robots.txt` permitiendo rastreo e incluyendo sitemap.
 - `sitemap.xml` con la URL indexable principal y `lastmod` actualizado.
-- Datos estructurados JSON-LD con `WebSite`, `WebPage`, `Person`, `ProfessionalService`, `FAQPage` y `BreadcrumbList`.
+- Datos estructurados JSON-LD con `WebSite`, `WebPage`, `Person`, `ProfessionalService` y `BreadcrumbList`.
 - Contenido visible con términos relevantes sin keyword stuffing: dietista online, Sevilla, Tomares, España, alimentación, hábitos, composición corporal, rendimiento, nutrición deportiva, educación nutricional y antropometría.
 - Páginas legales con `noindex, follow` para que no compitan con la home en resultados.
 - Enlace `rel="me"` hacia Instagram para reforzar conexión de marca.
@@ -122,6 +127,11 @@ Pasos recomendados tras publicar:
 ## Deploy
 
 Proyecto desplegable en Vercel desde GitHub.
+
+## Últimos ajustes
+
+- Se ha recuperado la imagen de apoyo en “Cómo trabajo”.
+- En móvil, los títulos sticky mantienen un fondo del mismo color que su sección para que no se mezclen visualmente con el contenido al hacer scroll.
 
 ## WhatsApp
 
