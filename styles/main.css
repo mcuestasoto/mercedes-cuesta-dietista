@@ -294,9 +294,9 @@ p {
   background: transparent;
   color: var(--color-ink);
   font-family: var(--font-sans);
-  font-size: clamp(0.88rem, 1vw, 0.98rem);
-  font-weight: 600;
-  letter-spacing: 0.06em;
+  font-size: clamp(1.02rem, 1.35vw, 1.16rem);
+  font-weight: 400;
+  letter-spacing: 0;
   text-transform: none;
   transition: color 180ms ease, transform 180ms ease, border-color 180ms ease;
 }
@@ -586,13 +586,6 @@ p {
 }
 
 
-.contact__intro {
-  max-width: 620px;
-  margin: -6px 0 0;
-  color: var(--color-muted);
-  font-size: 1.02rem;
-}
-
 
 .collab {
   padding-top: 0;
@@ -673,10 +666,11 @@ p {
 }
 
 .collab__code strong {
+  font-family: inherit;
   font-size: 0.92rem;
   color: var(--color-ink);
   font-weight: 760;
-  letter-spacing: 0.08em;
+  letter-spacing: 0;
 }
 
 
@@ -827,13 +821,13 @@ p {
   .process .section-heading,
   .contact h2 {
     position: sticky;
-    top: calc(var(--header-height) + 10px);
+    top: var(--header-height);
     z-index: 40;
-    width: fit-content;
-    margin: 0 0 18px;
-    padding: 0;
+    width: 100vw;
+    margin: 0 0 18px calc(50% - 50vw);
+    padding: 10px 12px 12px;
     background: var(--section-title-bg);
-    box-shadow: 0 -10px 0 12px var(--section-title-bg), 0 10px 0 12px var(--section-title-bg);
+    box-shadow: none;
     border: 0;
     border-radius: 0;
     backdrop-filter: none;
@@ -848,7 +842,11 @@ p {
   }
 
   .process .section-heading h2 {
-    margin-bottom: 0;
+    position: static;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    background: transparent;
   }
 
 
@@ -883,8 +881,8 @@ p {
   }
 
   .hero__handle {
-    font-size: 0.96rem;
-    letter-spacing: 0.015em;
+    font-size: clamp(1.02rem, 1.35vw, 1.16rem);
+    letter-spacing: 0;
   }
 
   .hero__tagline {

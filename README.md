@@ -64,9 +64,9 @@ El proyecto mantiene únicamente los archivos necesarios para producción. Se ha
 
 ## SEO incluido
 
-- `title` optimizado para búsqueda: `Mercedes Cuesta | Dietista online en Sevilla y Tomares`.
+- `title` principal limpio: `Mercedes Cuesta | Dietista`.
 - Open Graph y Twitter Card con el texto deseado para compartir: `Mercedes Cuesta | Dietista` y `Alimentación, hábitos, composición corporal y rendimiento ✨`.
-- Meta description orientada a búsqueda local y online.
+- Meta description orientada a búsqueda local y online sin recargar el título.
 - Canonical absoluto apuntando a la home.
 - `robots.txt` permitiendo rastreo e incluyendo sitemap.
 - `sitemap.xml` con la URL indexable principal y `lastmod` actualizado.
@@ -131,7 +131,7 @@ Proyecto desplegable en Vercel desde GitHub.
 ## Últimos ajustes
 
 - Se ha recuperado la imagen de apoyo en “Cómo trabajo”.
-- En móvil, los títulos sticky mantienen un fondo del mismo color que su sección para que no se mezclen visualmente con el contenido al hacer scroll.
+- En móvil, los títulos sticky ocupan todo el ancho de pantalla y mantienen el fondo del mismo color que su sección para no mezclarse visualmente con el contenido al hacer scroll.
 
 ## WhatsApp
 
