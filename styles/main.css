@@ -306,40 +306,85 @@ p {
 
 .about__content p:last-child { margin-bottom: 0; }
 
-.about__cards {
+.about__details {
   display: grid;
+  gap: 18px;
+}
+
+.about-card-group {
+  padding: 18px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  background: rgba(250, 247, 242, 0.72);
+  box-shadow: var(--shadow-card);
+}
+
+.about-card-group--education {
+  background: rgba(167, 192, 184, 0.28);
+}
+
+.about-card-group--approach {
+  background: rgba(250, 247, 242, 0.82);
+}
+
+.about-card-group > h3 {
+  margin-bottom: 14px;
+  color: var(--color-ink);
+  font-size: 0.86rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.about-card-list {
+  display: grid;
+  gap: 12px;
+}
+
+.about-card-list--education {
+  grid-template-columns: 1fr;
+}
+
+.about-card-list--approach {
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
 }
 
 .focus-card {
   min-height: 100%;
-  padding: 20px;
+  padding: 18px;
   border: 1px solid var(--color-line);
   border-radius: var(--radius-md);
-  background: var(--color-white);
   box-shadow: var(--shadow-card);
-  transition: transform 180ms ease, box-shadow 180ms ease;
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.focus-card--education {
+  background: var(--color-bg);
+  border-color: rgba(47, 47, 45, 0.12);
+}
+
+.focus-card--approach {
+  background: var(--color-white);
+  border-color: rgba(167, 192, 184, 0.58);
 }
 
 .focus-card:hover {
   transform: translateY(-2px);
+  border-color: var(--color-primary);
   box-shadow: 0 12px 28px rgba(47, 47, 45, 0.10);
 }
 
-.focus-card--featured { background: var(--color-bg); }
-
-.focus-card__label {
-  display: inline-flex;
-  margin-bottom: 10px;
-  color: var(--color-accent);
-  font-size: 0.72rem;
-  font-weight: 900;
-  letter-spacing: 0.11em;
-  text-transform: uppercase;
+.focus-card h4 {
+  margin: 0 0 8px;
+  color: var(--color-ink);
+  font-size: clamp(1.02rem, 1.45vw, 1.16rem);
+  line-height: 1.22;
 }
 
-.focus-card p:not(.focus-card__label) { margin: 0; font-size: 0.96rem; }
+.focus-card p {
+  margin: 0;
+  font-size: 0.96rem;
+}
 
 .process {
   background: var(--color-bg-soft);
@@ -585,7 +630,9 @@ p {
     border-radius: 24px;
   }
 
-  .about__cards { grid-template-columns: 1fr; }
+  .about-card-list--approach { grid-template-columns: 1fr; }
+
+  .about-card-group { padding: 16px; }
 
   .hero__text,
   .about__content p,
