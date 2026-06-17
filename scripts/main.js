@@ -5,7 +5,6 @@ const navLinks = document.querySelectorAll('[data-nav-link]');
 const sections = document.querySelectorAll('[data-section]');
 const revealItems = document.querySelectorAll('.reveal');
 const whatsappLinks = document.querySelectorAll('[data-whatsapp-link]');
-const navOverlay = document.querySelector('[data-nav-overlay]');
 
 const whatsappEmoji = {
   avocado: String.fromCodePoint(0x1f951),
@@ -24,10 +23,6 @@ const closeMenu = () => {
   toggle.setAttribute('aria-expanded', 'false');
   toggle.setAttribute('aria-label', 'Abrir menú');
   menu.classList.remove('is-open');
-  if (navOverlay) {
-    navOverlay.classList.remove('is-visible');
-    navOverlay.setAttribute('hidden', '');
-  }
 };
 
 if (toggle && menu) {
@@ -36,15 +31,6 @@ if (toggle && menu) {
     toggle.setAttribute('aria-expanded', String(!isOpen));
     toggle.setAttribute('aria-label', isOpen ? 'Abrir menú' : 'Cerrar menú');
     menu.classList.toggle('is-open', !isOpen);
-    if (navOverlay) {
-      if (!isOpen) {
-        navOverlay.removeAttribute('hidden');
-      }
-      navOverlay.classList.toggle('is-visible', !isOpen);
-      if (isOpen) {
-        navOverlay.setAttribute('hidden', '');
-      }
-    }
   });
 
   navLinks.forEach((link) => {
@@ -81,13 +67,8 @@ if (toggle && menu) {
     if (!isOpen) return;
     const clickedInsideMenu = menu.contains(event.target);
     const clickedToggle = toggle.contains(event.target);
-    const clickedOverlay = navOverlay && navOverlay.contains(event.target);
-    if (clickedOverlay || (!clickedInsideMenu && !clickedToggle)) closeMenu();
+    if (!clickedInsideMenu && !clickedToggle) closeMenu();
   });
-
-  if (navOverlay) {
-    navOverlay.addEventListener('click', closeMenu);
-  }
 }
 
 const onScroll = () => {
@@ -126,7 +107,6 @@ if ('IntersectionObserver' in window) {
 } else {
   revealItems.forEach((item) => item.classList.add('is-visible'));
 }
-
 
 const copyCodeButton = document.querySelector('[data-copy-code]');
 const copyFeedback = document.querySelector('[data-copy-feedback]');
