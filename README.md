@@ -1,6 +1,6 @@
 # Mercedes Cuesta · Dietista online
 
-Landing estática para Mercedes Cuesta, dietista online.
+Landing estática para Mercedes Cuesta.
 
 ## Estructura
 
@@ -17,10 +17,15 @@ HTML, CSS y JavaScript vanilla.
 
 Proyecto preparado para desplegar en Vercel.
 
-## Paleta
+## Paleta de marca
 
-- `#A7C0B8` salvia
-- `#FAF7F2` fondo crema
-- `#EFE4D4` arena
-- `#2F2F2D` texto principal
-- `#C9825C` acento
+Colores principales:
+
+- `#A7C0B8` · salvia principal
+- `#FAF7F2` · fondo crema
+- `#2F2F2D` · texto principal
+
+Colores secundarios/accesorios:
+
+- `#EFE4D4` · arena suave para detalles puntuales
+- `#C9825C` · acento cálido para hover, líneas y detalles pequeños
