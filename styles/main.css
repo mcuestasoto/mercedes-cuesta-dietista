@@ -1385,3 +1385,77 @@ p {
     gap: 12px;
   }
 }
+
+
+/* Ajustes finales: ancho del hero, claim móvil y pasos */
+.hero__content {
+  --hero-title-width: clamp(520px, 64vw, 680px);
+  width: min(100%, var(--hero-title-width)) !important;
+  max-width: var(--hero-title-width) !important;
+}
+
+.hero h1,
+.hero__identity,
+.hero__text,
+.hero__tagline {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+.hero__text {
+  text-align: justify !important;
+  text-align-last: left !important;
+}
+
+.hero__tagline {
+  white-space: nowrap !important;
+  overflow-wrap: normal !important;
+  word-break: normal !important;
+  font-size: clamp(0.82rem, 1vw, 0.98rem) !important;
+  letter-spacing: clamp(0.025em, 0.18vw, 0.12em) !important;
+  line-height: 1.35 !important;
+}
+
+.process__item-heading {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 14px !important;
+  width: 100% !important;
+  text-align: center !important;
+}
+
+.process__item-heading h3 {
+  margin: 0 !important;
+  line-height: 1.2 !important;
+  text-align: center !important;
+}
+
+.process__item-heading span {
+  flex: 0 0 auto !important;
+  margin: 0 !important;
+}
+
+.process__list > li > p {
+  width: 100% !important;
+  margin: 0 !important;
+  text-align: justify !important;
+  text-align-last: left !important;
+}
+
+@media (max-width: 680px) {
+  .hero__content {
+    --hero-title-width: 100%;
+  }
+
+  .hero__tagline {
+    font-size: clamp(0.67rem, 2.75vw, 0.82rem) !important;
+    letter-spacing: 0.005em !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero__tagline {
+    font-size: clamp(0.61rem, 2.55vw, 0.74rem) !important;
+  }
+}
