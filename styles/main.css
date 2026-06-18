@@ -1430,7 +1430,7 @@ p {
   white-space: nowrap !important;
   overflow-wrap: normal !important;
   word-break: normal !important;
-  font-size: clamp(0.82rem, 1vw, 0.98rem) !important;
+  font-size: clamp(0.9rem, 1.08vw, 1.06rem) !important;
   letter-spacing: clamp(0.025em, 0.18vw, 0.12em) !important;
   line-height: 1.35 !important;
   text-align: left !important;
@@ -1472,7 +1472,7 @@ p {
 
   .hero__tagline {
     white-space: normal !important;
-    font-size: clamp(0.67rem, 2.75vw, 0.82rem) !important;
+    font-size: clamp(0.78rem, 3.05vw, 0.94rem) !important;
     letter-spacing: 0.005em !important;
   }
 }
