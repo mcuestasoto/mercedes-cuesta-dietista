@@ -1206,3 +1206,95 @@ p {
     min-height: auto;
   }
 }
+
+
+/* Ajustes finales solicitados: ancho del hero, tarjetas de enfoque y pasos */
+:root {
+  --hero-copy-width: clamp(320px, 39vw, 520px);
+}
+
+.hero__content,
+.hero h1,
+.hero__identity,
+.hero__text,
+.hero__tagline {
+  width: min(100%, var(--hero-copy-width));
+  max-width: var(--hero-copy-width);
+}
+
+.hero__text {
+  text-align: justify;
+  text-align-last: left;
+}
+
+.hero__tagline {
+  white-space: nowrap;
+  text-align: left;
+  text-align-last: left;
+}
+
+.focus-card--approach {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.focus-card--approach h4 {
+  min-height: 2.75em;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.focus-card--approach p {
+  text-align: justify;
+  text-align-last: left;
+  hyphens: auto;
+}
+
+.process__list li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.process__list li > div {
+  width: 100%;
+}
+
+.process__list h3 {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.process__list p {
+  text-align: justify;
+  text-align-last: left;
+}
+
+@media (max-width: 680px) {
+  :root {
+    --hero-copy-width: 100%;
+  }
+
+  .hero__content,
+  .hero h1,
+  .hero__identity,
+  .hero__text,
+  .hero__tagline {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero__tagline {
+    white-space: nowrap;
+    font-size: clamp(0.5rem, 2.35vw, 0.66rem);
+    letter-spacing: 0.01em;
+  }
+
+  .focus-card--approach h4 {
+    min-height: auto;
+  }
+}

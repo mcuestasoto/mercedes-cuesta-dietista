@@ -47,3 +47,10 @@ mercedes-cuesta-dietista/
 Web estática sin formularios, sin analítica, sin cookies publicitarias y sin pasarela de pago.
 
 Último ajuste: revisión de jerarquía visual, alineación de textos, tarjetas de enfoque y bloque hero.
+
+
+## Ajustes finales de alineación
+
+- Hero con ancho de bloque unificado.
+- Tarjetas de enfoque con títulos arriba y textos justificados.
+- Pasos de «Cómo trabajo» con número y título centrados.
