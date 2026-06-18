@@ -328,7 +328,7 @@ p {
 .legal-page li {
   text-align: justify;
   text-align-last: left;
-  hyphens: auto;
+  hyphens: none;
 }
 
 .hero__tagline {
@@ -1136,7 +1136,7 @@ p {
 .legal-page li {
   text-align: justify;
   text-align-last: left;
-  hyphens: auto;
+  hyphens: none;
 }
 
 .collab__text,
@@ -1249,7 +1249,7 @@ p {
 .focus-card--approach p {
   text-align: justify;
   text-align-last: left;
-  hyphens: auto;
+  hyphens: none;
 }
 
 .process__list li {
@@ -1406,7 +1406,7 @@ p {
 }
 
 .hero__text {
-  text-align: left !important;
+  text-align: justify !important;
   text-align-last: left !important;
   hyphens: none !important;
   overflow-wrap: normal !important;
@@ -1523,4 +1523,8 @@ p {
     white-space: normal !important;
     font-size: clamp(0.61rem, 2.55vw, 0.74rem) !important;
   }
+}
+
+body :where(p, li, a, button, span, strong) {
+  hyphens: none;
 }
