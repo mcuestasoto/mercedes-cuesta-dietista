@@ -133,7 +133,7 @@ const showCopyFeedback = (message) => {
     copyFeedback.classList.remove('is-visible');
     copyFeedbackClearTimeout = window.setTimeout(() => {
       copyFeedback.textContent = '';
-    }, 280);
+    }, 190);
   }, 2200);
 };
 

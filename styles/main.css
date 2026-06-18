@@ -136,7 +136,7 @@ a { -webkit-tap-highlight-color: transparent; }
   gap: 22px;
   color: rgba(47, 47, 45, 0.78);
   font-family: var(--font-label);
-  font-size: 1.02rem;
+  font-size: clamp(1.04rem, 1.15vw, 1.12rem);
   font-weight: 560;
 }
 
@@ -700,13 +700,16 @@ p {
 
 
 .collab__feedback {
-  min-height: 1.2em;
+  height: 1.2em;
+  line-height: 1.2;
   margin: -2px 0 0;
   font-size: 0.88rem;
   color: rgba(47, 47, 45, 0.70);
   opacity: 0;
-  transform: translateY(-3px);
-  transition: opacity 260ms ease, transform 260ms ease;
+  overflow: hidden;
+  white-space: nowrap;
+  transform: translateY(-2px);
+  transition: opacity 170ms cubic-bezier(0.22, 1, 0.36, 1), transform 170ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .collab__feedback.is-visible {
@@ -821,7 +824,7 @@ p {
     padding: 13px 14px;
     border-radius: 16px;
     text-align: right;
-    font-size: 1.05rem;
+    font-size: 1.12rem;
     transition: background 180ms ease, color 180ms ease;
   }
 

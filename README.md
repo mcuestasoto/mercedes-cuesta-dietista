@@ -1,28 +1,19 @@
-# Mercedes Cuesta · Dietista
+# Mercedes Cuesta · Dietista online
 
-Landing page estática para Mercedes Cuesta, dietista online.
+Landing web personal para Mercedes Cuesta, Dietista online.
 
 ## Estructura
 
 ```txt
 mercedes-cuesta-dietista/
 ├── index.html
-├── styles/main.css
-├── scripts/main.js
+├── styles/
+│   └── main.css
+├── scripts/
+│   └── main.js
 ├── assets/
 │   ├── images/
-│   │   ├── mercedes-hero.jpg
-│   │   ├── mercedes-hero.webp
-│   │   ├── mercedes-ipad.jpg
-│   │   ├── mercedes-ipad.webp
-│   │   └── og-image.png
 │   └── logo/
-│       ├── mc-mark-brand.png
-│       ├── favicon.ico
-│       ├── favicon.png
-│       ├── apple-touch-icon.png
-│       ├── icon-192.png
-│       └── icon-512.png
 ├── pages/
 │   ├── aviso-legal.html
 │   ├── privacidad.html
@@ -31,34 +22,28 @@ mercedes-cuesta-dietista/
 ├── sitemap.xml
 ├── site.webmanifest
 ├── vercel.json
-├── README.md
-└── .gitignore
+└── README.md
 ```
 
-## Diseño
+## Secciones
 
-- Paleta principal: crema, verde salvia y texto oscuro.
-- Logo original `MC` en el header.
-- Tipografía de identidad y labels: **Josefin Sans**.
-- Tipografía de texto: **DM Sans**.
-- Sección “Sobre mí” con presentación, formación y enfoque.
-- Sección “Cómo trabajo” con proceso de acompañamiento.
-- Web responsive con menú móvil desplegable.
+- Inicio
+- Sobre mí
+- Formación
+- Enfoque
+- Cómo trabajo
+- Contacto
+- Colaboración FullGas
 
-## Funcionalidad
+## Tecnologías
 
-- Enlaces a WhatsApp, Instagram y email.
-- Botón de copia del código FullGas.
-- Páginas legales básicas.
-- Sin formularios, analítica, píxeles publicitarios ni cookies de seguimiento.
+- HTML
+- CSS
+- JavaScript
+- Vercel
 
-## Despliegue
+## Notas
 
-Proyecto preparado para desplegar en Vercel como web estática.
+Web estática sin formularios, sin analítica, sin cookies publicitarias y sin pasarela de pago.
 
-## Últimos ajustes
-
-- Textos finales del hero, “Sobre mí”, “Formación”, “Enfoque” y “Cómo trabajo” actualizados.
-- Claim del hero adaptado para desktop y móvil.
-- Bloques “Formación” y “Enfoque” mantenidos dentro de “Sobre mí”.
-- Estructura limpia y preparada para Vercel.
+- Ajuste final: menú principal con mayor tamaño de lectura y feedback de copiado de código FullGas con altura estable y transición suave.
