@@ -56,10 +56,9 @@ mercedes-cuesta-dietista/
 
 Proyecto preparado para desplegar en Vercel como web estática.
 
-
 ## Últimos ajustes
 
-- Texto de “Sobre mí” actualizado para explicar quién es Mercedes y su enfoque profesional.
+- Textos finales del hero, “Sobre mí”, “Formación”, “Enfoque” y “Cómo trabajo” actualizados.
+- Claim del hero adaptado para desktop y móvil.
 - Bloques “Formación” y “Enfoque” mantenidos dentro de “Sobre mí”.
-- Títulos “Formación” y “Enfoque” ajustados con la misma tipografía y tamaño que los títulos internos de las tarjetas.
-- Tarjeta de formación alineada visualmente con el inicio del texto bajo “Sobre mí” en escritorio.
+- Estructura limpia y preparada para Vercel.

@@ -962,14 +962,14 @@ p {
     display: block;
     width: 100%;
     max-width: 100%;
-    white-space: nowrap;
-    font-size: clamp(0.63rem, 2.35vw, 0.78rem);
-    line-height: 1.35;
+    white-space: normal;
+    font-size: clamp(0.7rem, 2.7vw, 0.84rem);
+    line-height: 1.5;
     letter-spacing: 0.055em;
   }
 
   .hero__tagline-break {
-    display: inline;
+    display: block;
   }
 
   .hero__tagline::before { margin-top: 0.38rem; flex: 0 0 auto; }
