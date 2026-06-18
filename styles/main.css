@@ -1093,3 +1093,97 @@ p {
   }
 
 }
+
+
+/* Ajustes visuales finales */
+.hero__content {
+  width: min(100%, 600px);
+}
+
+.hero h1,
+.hero__identity,
+.hero__text,
+.hero__tagline {
+  width: 100%;
+  max-width: 600px;
+}
+
+.hero__tagline {
+  justify-content: flex-start;
+}
+
+.about__content {
+  align-self: center;
+}
+
+.about-card-group--education {
+  align-self: center;
+}
+
+.focus-card--approach {
+  min-height: 196px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.focus-card--approach h4 {
+  min-height: 2.75em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.focus-card--approach p {
+  max-width: 95%;
+  text-align: center;
+  text-align-last: center;
+}
+
+.process__list li {
+  align-items: start;
+}
+
+.process__list span {
+  margin-top: -7px;
+}
+
+@media (max-width: 680px) {
+  .hero__content,
+  .hero h1,
+  .hero__identity,
+  .hero__text,
+  .hero__tagline {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero__identity {
+    align-items: flex-start;
+  }
+
+  .hero__tagline {
+    text-align: left;
+  }
+
+  .about__content,
+  .about-card-group--education {
+    align-self: auto;
+  }
+
+  .focus-card--approach {
+    min-height: 170px;
+  }
+
+  .focus-card--approach h4 {
+    min-height: auto;
+  }
+
+  .process__list span {
+    margin-top: -6px;
+  }
+}
