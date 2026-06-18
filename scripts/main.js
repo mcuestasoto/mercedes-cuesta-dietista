@@ -108,9 +108,11 @@ if ('IntersectionObserver' in window) {
 }
 
 const copyCodeButton = document.querySelector('[data-copy-code]');
+const copyCodeLabel = copyCodeButton ? copyCodeButton.querySelector('[data-copy-label]') : null;
 const copyFeedback = document.querySelector('[data-copy-feedback]');
 let copyFeedbackTimeout;
 let copyFeedbackClearTimeout;
+let copyButtonTimeout;
 
 const copyText = async (text) => {
   if (navigator.clipboard && window.isSecureContext) {
@@ -142,14 +144,32 @@ const showCopyFeedback = (message) => {
   }, 2200);
 };
 
+const showCopyButtonState = (message) => {
+  if (!copyCodeButton || !copyCodeLabel) return;
+  window.clearTimeout(copyButtonTimeout);
+  copyCodeButton.classList.add('is-copied');
+  copyCodeButton.setAttribute('aria-label', message);
+  copyCodeLabel.textContent = message;
+  copyButtonTimeout = window.setTimeout(() => {
+    const code = copyCodeButton.getAttribute('data-copy-code');
+    const codeText = document.createElement('strong');
+    codeText.textContent = code;
+    copyCodeButton.classList.remove('is-copied');
+    copyCodeButton.setAttribute('aria-label', `Copiar código ${code}`);
+    copyCodeLabel.replaceChildren(document.createTextNode('Copiar código · '), codeText);
+  }, 2200);
+};
+
 if (copyCodeButton) {
   copyCodeButton.addEventListener('click', async () => {
     const code = copyCodeButton.getAttribute('data-copy-code');
     try {
       await copyText(code);
       showCopyFeedback('Código copiado.');
+      showCopyButtonState('Código copiado');
     } catch (error) {
       showCopyFeedback(`Código: ${code}`);
+      showCopyButtonState(`Código: ${code}`);
     }
   });
 }
