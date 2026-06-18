@@ -1425,16 +1425,20 @@ p {
   word-break: normal !important;
 }
 
+.hero__subtitle,
 .hero__tagline {
   display: block !important;
   white-space: nowrap !important;
   overflow-wrap: normal !important;
   word-break: normal !important;
+  font-family: var(--font-label) !important;
   font-size: clamp(0.9rem, 1.08vw, 1.06rem) !important;
+  font-weight: 650 !important;
   letter-spacing: clamp(0.025em, 0.18vw, 0.12em) !important;
   line-height: 1.35 !important;
   text-align: left !important;
   text-align-last: left !important;
+  text-transform: uppercase !important;
 }
 
 .process__item-heading {
@@ -1470,6 +1474,7 @@ p {
     max-width: var(--hero-title-width, 100%) !important;
   }
 
+  .hero__subtitle,
   .hero__tagline {
     white-space: normal !important;
     font-size: clamp(0.78rem, 3.05vw, 0.94rem) !important;
@@ -1548,7 +1553,7 @@ p {
   }
 
   .hero__subtitle {
-    font-size: clamp(0.78rem, 3.45vw, 0.86rem) !important;
+    font-size: clamp(0.78rem, 3.05vw, 0.94rem) !important;
   }
 
   .hero__handle {
