@@ -1,17 +1,12 @@
 # Mercedes Cuesta | Dietista
 
-Landing personal de Mercedes Cuesta para presentar su perfil como dietista online, explicar su enfoque de trabajo y facilitar el contacto desde una web rápida, clara, responsive, accesible y preparada para indexación en Google.
+Landing personal de Mercedes Cuesta para presentar su perfil como dietista online, explicar su enfoque de trabajo y facilitar el contacto desde una web estática, rápida, clara y responsive.
 
 ## Objetivo
 
-Comunicar de forma sencilla el trabajo en alimentación, hábitos, composición corporal y rendimiento, con especial foco SEO en búsquedas de marca y búsquedas locales/intencionales como:
+Comunicar de forma sencilla el trabajo en alimentación, hábitos, composición corporal y rendimiento, y facilitar el contacto por WhatsApp, Instagram o email.
 
-- Mercedes Cuesta dietista
-- Mercedes Cuesta dietista online
-- dietista online Sevilla
-- dietista online Tomares
-- alimentación, hábitos, composición corporal y rendimiento
-- nutrición deportiva y hábitos sostenibles
+La web está pensada como página principal para compartir en Instagram y otros perfiles públicos. No incluye reservas, pagos, formularios propios, analítica ni campañas publicitarias.
 
 ## Stack
 
@@ -55,25 +50,33 @@ mercedes-cuesta-dietista/
 └── README.md
 ```
 
-## Limpieza de archivos
+## Archivos incluidos
 
-Incluye la imagen principal del hero, la imagen de apoyo en la sección “Cómo trabajo”, el Open Graph y los iconos/logo necesarios para favicon y manifest.
+El proyecto mantiene solo los archivos necesarios para producción:
 
+- `index.html`: página principal.
+- `styles/main.css`: estilos de la web.
+- `scripts/main.js`: menú móvil, animaciones suaves, enlace de WhatsApp y copiado del código FullGas.
+- `assets/images/mercedes-hero.*`: imagen principal del hero.
+- `assets/images/mercedes-ipad.*`: imagen de apoyo en “Cómo trabajo”.
+- `assets/images/og-image.png`: imagen para compartir la web en WhatsApp, redes y enlaces.
+- `assets/logo/*`: favicon, iconos del manifest y monograma MC del header.
+- `pages/*`: páginas legales.
+- `robots.txt` y `sitemap.xml`: archivos técnicos básicos para rastreo.
+- `site.webmanifest`: iconos y datos mínimos para navegador/móvil.
+- `vercel.json`: cabeceras de seguridad.
 
-El proyecto mantiene únicamente los archivos necesarios para producción. Se han eliminado variantes antiguas de logos, imágenes no usadas, versiones alternativas de Open Graph y recursos que no estaban referenciados.
+No incluye `node_modules`, dependencias, build tools, formularios, bases de datos, analítica, píxeles publicitarios ni scripts de terceros.
 
-## SEO incluido
+## Metadatos básicos
 
-- `title` principal limpio: `Mercedes Cuesta | Dietista`.
-- Open Graph y Twitter Card con el texto deseado para compartir: `Mercedes Cuesta | Dietista` y `Alimentación, hábitos, composición corporal y rendimiento ✨`.
-- Meta description orientada a búsqueda local y online sin recargar el título.
-- Canonical absoluto apuntando a la home.
-- `robots.txt` permitiendo rastreo e incluyendo sitemap.
-- `sitemap.xml` con la URL indexable principal y `lastmod` actualizado.
-- Datos estructurados JSON-LD con `WebSite`, `WebPage`, `Person`, `ProfessionalService` y `BreadcrumbList`.
-- Contenido visible con términos relevantes sin keyword stuffing: dietista online, Sevilla, Tomares, España, alimentación, hábitos, composición corporal, rendimiento, nutrición deportiva, educación nutricional y antropometría.
-- Páginas legales con `noindex, follow` para que no compitan con la home en resultados.
-- Enlace `rel="me"` hacia Instagram para reforzar conexión de marca.
+La web mantiene metadatos básicos para que se vea correctamente al compartir el enlace:
+
+- Título: `Mercedes Cuesta | Dietista`.
+- Descripción para enlaces: `Alimentación, hábitos, composición corporal y rendimiento ✨`.
+- Open Graph y Twitter Card.
+- Canonical de la URL de Vercel.
+- Datos estructurados mínimos de marca personal y servicio.
 
 ## Accesibilidad y usabilidad
 
@@ -88,9 +91,11 @@ El proyecto mantiene únicamente los archivos necesarios para producción. Se ha
 
 ## Seguridad y privacidad
 
-La web es estática y no recoge datos mediante formularios propios. No utiliza Google Analytics, Meta Pixel, cookies analíticas ni cookies publicitarias. Los enlaces externos a WhatsApp, Instagram, email y FullGas abren servicios de terceros con sus propias políticas.
+La web es estática y no recoge datos mediante formularios propios. No utiliza Google Analytics, Meta Pixel, cookies analíticas ni cookies publicitarias.
 
-Las cabeceras de seguridad están configuradas en `vercel.json`, incluyendo:
+Los enlaces externos a WhatsApp, Instagram, email y FullGas abren servicios de terceros con sus propias políticas.
+
+Las cabeceras de seguridad están configuradas en `vercel.json`:
 
 - `Strict-Transport-Security`
 - `Content-Security-Policy`
@@ -112,34 +117,30 @@ Incluye páginas independientes de:
 
 La web no incluye contratación directa, pasarela de pago, precios públicos, formularios propios ni captación directa de datos desde la página. Si en el futuro se añade formulario, analítica, píxeles publicitarios, reserva online o pasarela de pago, habrá que actualizar privacidad, cookies, aviso legal y consentimiento.
 
-## Indexación en Google
+## WhatsApp
 
-Pasos recomendados tras publicar:
-
-1. Publicar la versión final en Vercel.
-2. Añadir la URL de la web en la bio de Instagram.
-3. Añadir la URL en LinkedIn, GitHub y otros perfiles públicos.
-4. Crear y verificar la propiedad en Google Search Console.
-5. Enviar el sitemap: `https://mercedes-cuesta-dietista.vercel.app/sitemap.xml`.
-6. Usar la herramienta de inspección de URL para solicitar indexación de la home.
-7. Comprobar indexación con: `site:mercedes-cuesta-dietista.vercel.app`.
+Los enlaces de WhatsApp usan un mensaje predefinido generado con JavaScript y `encodeURIComponent()`. Se utiliza `https://api.whatsapp.com/send` con el teléfono y el texto codificado para conservar mejor caracteres especiales y emojis tanto en móvil como en escritorio.
 
 ## Deploy
 
 Proyecto desplegable en Vercel desde GitHub.
 
-## Últimos ajustes
 
-- Se mantiene la imagen de apoyo en “Cómo trabajo”.
-- En móvil, los títulos de sección se mantienen visibles al hacer scroll con un fondo del mismo tono de la sección, evitando que se mezclen con el texto inferior.
-- El bloque de código FullGas mantiene el texto en una sola línea: `Copiar código · MCUESTA`, con el código en mayúsculas y seminegrita.
+## Ajustes visuales
 
-## WhatsApp
-
-Los enlaces de WhatsApp usan un mensaje predefinido generado con JavaScript y `encodeURIComponent()`. Se utiliza `https://api.whatsapp.com/send` con el teléfono y el texto codificado para conservar mejor caracteres especiales y emojis tanto en móvil como en escritorio.
+- Header con monograma MC en el color principal de marca.
+- Menú ligeramente más alto para dar más aire al logo.
 
 
-## Ajustes v20
+## Ajustes finales de interacción
 
-- Fondos móviles sticky ajustados con el mismo color exacto de cada sección para evitar cortes visuales.
-- Más espacio superior en hero móvil entre el menú y el nombre.
+- Menú móvil desplegable desde la parte superior derecha, con cierre al pulsar fuera o al seleccionar una sección.
+- Mensaje de “Código copiado” con aparición y desaparición suave.
+- Textos principales justificados para una lectura más editorial.
+- Claim del hero ajustado para mantenerse en una línea en móvil.
+
+## Últimos ajustes de diseño
+
+- Header con monograma MC como único elemento de marca a la izquierda.
+- Logo MC en color texto principal para mejorar contraste sobre fondo crema.
+- Menú móvil desplegable superior y ligero.

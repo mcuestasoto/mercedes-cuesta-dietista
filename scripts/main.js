@@ -104,6 +104,8 @@ if ('IntersectionObserver' in window) {
 
 const copyCodeButton = document.querySelector('[data-copy-code]');
 const copyFeedback = document.querySelector('[data-copy-feedback]');
+let copyFeedbackTimeout;
+let copyFeedbackClearTimeout;
 
 const copyText = async (text) => {
   if (navigator.clipboard && window.isSecureContext) {
@@ -121,17 +123,28 @@ const copyText = async (text) => {
   textarea.remove();
 };
 
+const showCopyFeedback = (message) => {
+  if (!copyFeedback) return;
+  window.clearTimeout(copyFeedbackTimeout);
+  window.clearTimeout(copyFeedbackClearTimeout);
+  copyFeedback.textContent = message;
+  window.requestAnimationFrame(() => copyFeedback.classList.add('is-visible'));
+  copyFeedbackTimeout = window.setTimeout(() => {
+    copyFeedback.classList.remove('is-visible');
+    copyFeedbackClearTimeout = window.setTimeout(() => {
+      copyFeedback.textContent = '';
+    }, 280);
+  }, 2200);
+};
+
 if (copyCodeButton) {
   copyCodeButton.addEventListener('click', async () => {
     const code = copyCodeButton.getAttribute('data-copy-code');
     try {
       await copyText(code);
-      if (copyFeedback) copyFeedback.textContent = 'Código copiado.';
+      showCopyFeedback('Código copiado.');
     } catch (error) {
-      if (copyFeedback) copyFeedback.textContent = `Código: ${code}`;
+      showCopyFeedback(`Código: ${code}`);
     }
-    window.setTimeout(() => {
-      if (copyFeedback) copyFeedback.textContent = '';
-    }, 2200);
   });
 }
