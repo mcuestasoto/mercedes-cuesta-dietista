@@ -387,6 +387,7 @@ p {
 }
 
 .about-card-group--education {
+  margin-top: clamp(52px, 4.6vw, 66px);
   background: rgba(167, 192, 184, 0.28);
 }
 
@@ -396,7 +397,7 @@ p {
 }
 
 .about-card-group > h3 {
-  margin-bottom: 18px;
+  margin: 0 0 14px;
   color: var(--color-ink);
   font-family: var(--font-sans);
   font-size: clamp(1.02rem, 1.45vw, 1.16rem);
@@ -448,7 +449,9 @@ p {
 .focus-card h4 {
   margin: 0 0 8px;
   color: var(--color-ink);
+  font-family: var(--font-sans);
   font-size: clamp(1.02rem, 1.45vw, 1.16rem);
+  font-weight: 700;
   line-height: 1.22;
 }
 
@@ -980,6 +983,8 @@ p {
   .about-card-list--approach { grid-template-columns: 1fr; }
 
   .about-card-group { padding: 18px; }
+
+  .about-card-group--education { margin-top: 0; }
 
   .hero__text,
   .about__content p,
