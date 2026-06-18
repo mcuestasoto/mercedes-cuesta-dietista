@@ -1511,7 +1511,7 @@ p {
   .collab__text,
   .legal-page p,
   .legal-page li {
-    text-align: left !important;
+    text-align: justify !important;
     text-align-last: left !important;
     word-spacing: normal !important;
   }
