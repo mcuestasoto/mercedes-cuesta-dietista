@@ -93,6 +93,11 @@ if ('IntersectionObserver' in window) {
       navLinks.forEach((link) => {
         const isActive = link.getAttribute('href') === `#${id}`;
         link.classList.toggle('is-active', isActive);
+        if (isActive) {
+          link.setAttribute('aria-current', 'page');
+        } else {
+          link.removeAttribute('aria-current');
+        }
       });
     });
   }, { rootMargin: '-28% 0px -62% 0px', threshold: 0.01 });
@@ -166,8 +171,12 @@ const syncHeroTitleWidth = () => {
   heroTitle.style.setProperty('width', previousWidth, previousWidthPriority);
   heroTitle.style.setProperty('max-width', previousMaxWidth, previousMaxWidthPriority);
 
-  const heroColumn = heroContent.parentElement;
-  const availableWidth = heroColumn ? heroColumn.getBoundingClientRect().width : Math.max(0, window.innerWidth - 32);
+  const heroGrid = heroContent.parentElement;
+  const gridColumns = heroGrid ? window.getComputedStyle(heroGrid).gridTemplateColumns.split(' ') : [];
+  const firstColumnWidth = Number.parseFloat(gridColumns[0]);
+  const availableWidth = Number.isFinite(firstColumnWidth) && firstColumnWidth > 0
+    ? firstColumnWidth
+    : Math.max(0, window.innerWidth - 32);
   const finalWidth = Math.min(titleWidth, availableWidth);
   heroContent.style.setProperty('--hero-title-width', `${finalWidth}px`);
 };
