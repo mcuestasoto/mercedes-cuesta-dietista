@@ -971,10 +971,6 @@ p {
     letter-spacing: 0.055em;
   }
 
-  .hero__tagline-break {
-    display: block;
-  }
-
   .hero__tagline::before { margin-top: 0.38rem; flex: 0 0 auto; }
 
   .hero__image {
@@ -1086,10 +1082,6 @@ p {
   .collab__box {
     align-items: stretch;
     flex-direction: column;
-  }
-
-  .collab__link {
-    width: 100%;
   }
 
 }
