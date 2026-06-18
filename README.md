@@ -139,8 +139,14 @@ Proyecto desplegable en Vercel desde GitHub.
 - Textos principales justificados para una lectura más editorial.
 - Claim del hero ajustado para mantenerse en una línea en móvil.
 
-## Últimos ajustes de diseño
 
-- Header con monograma MC como único elemento de marca a la izquierda.
-- Logo MC en color texto principal para mejorar contraste sobre fondo crema.
-- Menú móvil desplegable superior y ligero.
+## Nota
+
+Se ha actualizado el header para usar el logo original `MC` proporcionado por Mercedes.
+
+
+## Último ajuste
+
+- Logo del header actualizado con el archivo original proporcionado.
+- Menú móvil desplegable pegado al header.
+- Jerarquía tipográfica: mayúsculas solo para identidad/claims del hero; títulos de sección y tarjetas en formato natural.
