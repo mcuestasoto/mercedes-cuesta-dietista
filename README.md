@@ -41,6 +41,8 @@ mercedes-cuesta-dietista/
 - Logo original `MC` en el header.
 - Tipografía de identidad y labels: **Josefin Sans**.
 - Tipografía de texto: **DM Sans**.
+- Sección “Sobre mí” con presentación, formación y enfoque.
+- Sección “Cómo trabajo” con proceso de acompañamiento.
 - Web responsive con menú móvil desplegable.
 
 ## Funcionalidad
