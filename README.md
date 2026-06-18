@@ -54,3 +54,10 @@ Web estática sin formularios, sin analítica, sin cookies publicitarias y sin p
 - Hero con ancho de bloque unificado.
 - Tarjetas de enfoque con títulos arriba y textos justificados.
 - Pasos de «Cómo trabajo» con número y título centrados.
+
+
+## Últimos ajustes
+
+- Hero ajustado para que nombre, subtítulo, Instagram, texto principal y claim compartan el mismo ancho visual.
+- Pasos de “Cómo trabajo” con número y título alineados en horizontal.
+- Textos revisados en “Enfoque”.

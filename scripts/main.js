@@ -148,3 +148,29 @@ if (copyCodeButton) {
     }
   });
 }
+
+
+const syncHeroTitleWidth = () => {
+  const heroContent = document.querySelector('.hero__content');
+  const heroTitle = document.querySelector('.hero h1');
+  if (!heroContent || !heroTitle) return;
+
+  const previousWidth = heroTitle.style.width;
+  const previousMaxWidth = heroTitle.style.maxWidth;
+  heroTitle.style.width = 'max-content';
+  heroTitle.style.maxWidth = 'none';
+
+  const titleWidth = Math.ceil(heroTitle.getBoundingClientRect().width);
+  heroTitle.style.width = previousWidth;
+  heroTitle.style.maxWidth = previousMaxWidth;
+
+  const availableWidth = Math.max(0, window.innerWidth - 32);
+  const finalWidth = Math.min(titleWidth, availableWidth);
+  heroContent.style.setProperty('--hero-title-width', `${finalWidth}px`);
+};
+
+syncHeroTitleWidth();
+window.addEventListener('resize', syncHeroTitleWidth, { passive: true });
+if (document.fonts && document.fonts.ready) {
+  document.fonts.ready.then(syncHeroTitleWidth);
+}
