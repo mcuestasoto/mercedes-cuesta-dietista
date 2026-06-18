@@ -46,10 +46,4 @@ mercedes-cuesta-dietista/
 
 Web estática sin formularios, sin analítica, sin cookies publicitarias y sin pasarela de pago.
 
-- Ajuste final: menú principal con mayor tamaño de lectura y feedback de copiado de código FullGas con altura estable y transición suave.
-
-
-## Últimos ajustes
-
-- Ajustes visuales finales de hero, tarjetas de enfoque, alineación de Sobre mí y pasos de Cómo trabajo.
-- Estructura HTML de la sección Cómo trabajo revisada.
+Último ajuste: revisión de jerarquía visual, alineación de textos, tarjetas de enfoque y bloque hero.
