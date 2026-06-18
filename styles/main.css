@@ -1389,12 +1389,15 @@ p {
 
 /* Ajustes finales: ancho del hero, claim móvil y pasos */
 .hero__content {
-  --hero-title-width: clamp(520px, 64vw, 680px);
-  width: min(100%, var(--hero-title-width)) !important;
-  max-width: var(--hero-title-width) !important;
+  width: var(--hero-title-width, 100%) !important;
+  max-width: var(--hero-title-width, 100%) !important;
 }
 
-.hero h1,
+.hero h1 {
+  width: 100% !important;
+  max-width: none !important;
+}
+
 .hero__identity,
 .hero__text,
 .hero__tagline {
@@ -1403,32 +1406,38 @@ p {
 }
 
 .hero__text {
-  text-align: justify !important;
+  text-align: left !important;
   text-align-last: left !important;
+  hyphens: none !important;
+  overflow-wrap: normal !important;
+  word-break: normal !important;
 }
 
 .hero__tagline {
+  display: block !important;
   white-space: nowrap !important;
   overflow-wrap: normal !important;
   word-break: normal !important;
   font-size: clamp(0.82rem, 1vw, 0.98rem) !important;
   letter-spacing: clamp(0.025em, 0.18vw, 0.12em) !important;
   line-height: 1.35 !important;
+  text-align: left !important;
+  text-align-last: left !important;
 }
 
 .process__item-heading {
   display: inline-flex !important;
   align-items: center !important;
-  justify-content: center !important;
+  justify-content: flex-start !important;
   gap: 14px !important;
   width: 100% !important;
-  text-align: center !important;
+  text-align: left !important;
 }
 
 .process__item-heading h3 {
   margin: 0 !important;
   line-height: 1.2 !important;
-  text-align: center !important;
+  text-align: left !important;
 }
 
 .process__item-heading span {
@@ -1445,17 +1454,73 @@ p {
 
 @media (max-width: 680px) {
   .hero__content {
-    --hero-title-width: 100%;
+    width: var(--hero-title-width, 100%) !important;
+    max-width: var(--hero-title-width, 100%) !important;
   }
 
   .hero__tagline {
+    white-space: normal !important;
     font-size: clamp(0.67rem, 2.75vw, 0.82rem) !important;
     letter-spacing: 0.005em !important;
   }
 }
 
-@media (max-width: 380px) {
+@media (max-width: 1100px) {
+  .hero h1 {
+    font-size: clamp(2.75rem, 7.6vw, 4.15rem) !important;
+    letter-spacing: clamp(0.018em, 0.5vw, 0.045em) !important;
+    white-space: nowrap !important;
+  }
+
+  .hero__text {
+    font-size: clamp(1.02rem, 2.65vw, 1.32rem) !important;
+    line-height: 1.55 !important;
+  }
+
   .hero__tagline {
+    max-width: 100% !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .hero h1 {
+    font-size: clamp(2.1rem, 8.2vw, 3.2rem) !important;
+    letter-spacing: clamp(0.016em, 0.45vw, 0.032em) !important;
+  }
+
+  .hero__text {
+    font-size: clamp(1rem, 4.2vw, 1.18rem) !important;
+    line-height: 1.55 !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .hero h1 {
+    font-size: clamp(1.82rem, 8.1vw, 2.25rem) !important;
+    letter-spacing: 0.018em !important;
+  }
+
+  .hero__subtitle {
+    font-size: clamp(0.78rem, 3.45vw, 0.86rem) !important;
+  }
+
+  .hero__handle {
+    font-size: clamp(0.98rem, 4.3vw, 1.08rem) !important;
+  }
+
+  .hero__text {
+    font-size: clamp(0.98rem, 4.4vw, 1.08rem) !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero h1 {
+    font-size: clamp(1.58rem, 7.6vw, 1.95rem) !important;
+    letter-spacing: 0.012em !important;
+  }
+
+  .hero__tagline {
+    white-space: normal !important;
     font-size: clamp(0.61rem, 2.55vw, 0.74rem) !important;
   }
 }

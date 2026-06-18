@@ -157,14 +157,17 @@ const syncHeroTitleWidth = () => {
 
   const previousWidth = heroTitle.style.width;
   const previousMaxWidth = heroTitle.style.maxWidth;
-  heroTitle.style.width = 'max-content';
-  heroTitle.style.maxWidth = 'none';
+  const previousWidthPriority = heroTitle.style.getPropertyPriority('width');
+  const previousMaxWidthPriority = heroTitle.style.getPropertyPriority('max-width');
+  heroTitle.style.setProperty('width', 'max-content', 'important');
+  heroTitle.style.setProperty('max-width', 'none', 'important');
 
   const titleWidth = Math.ceil(heroTitle.getBoundingClientRect().width);
-  heroTitle.style.width = previousWidth;
-  heroTitle.style.maxWidth = previousMaxWidth;
+  heroTitle.style.setProperty('width', previousWidth, previousWidthPriority);
+  heroTitle.style.setProperty('max-width', previousMaxWidth, previousMaxWidthPriority);
 
-  const availableWidth = Math.max(0, window.innerWidth - 32);
+  const heroColumn = heroContent.parentElement;
+  const availableWidth = heroColumn ? heroColumn.getBoundingClientRect().width : Math.max(0, window.innerWidth - 32);
   const finalWidth = Math.min(titleWidth, availableWidth);
   heroContent.style.setProperty('--hero-title-width', `${finalWidth}px`);
 };

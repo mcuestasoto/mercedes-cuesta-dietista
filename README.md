@@ -46,23 +46,9 @@ mercedes-cuesta-dietista/
 
 Web estática sin formularios, sin analítica, sin cookies publicitarias y sin pasarela de pago.
 
-Último ajuste: revisión de jerarquía visual, alineación de textos, tarjetas de enfoque y bloque hero.
-
-
-## Ajustes finales de alineación
-
-- Hero con ancho de bloque unificado.
-- Tarjetas de enfoque con títulos arriba y textos justificados.
-- Pasos de «Cómo trabajo» con número y título centrados.
-
-
 ## Últimos ajustes
 
 - Hero ajustado para que nombre, subtítulo, Instagram, texto principal y claim compartan el mismo ancho visual.
-- Pasos de “Cómo trabajo” con número y título alineados en horizontal.
+- Claim del hero alineado a la izquierda, sin justificar hasta el borde derecho.
+- Pasos de “Cómo trabajo” con número y título alineados a la izquierda.
 - Textos revisados en “Enfoque”.
-
-
-## Ajuste final de legibilidad
-
-Se ha ajustado el ancho visual del hero, el tamaño del claim en móvil y la alineación de la numeración en “Cómo trabajo”.
