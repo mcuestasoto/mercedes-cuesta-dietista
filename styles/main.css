@@ -2193,14 +2193,23 @@ h3,
   width: 100%;
   max-width: 100%;
   font-size: clamp(0.82rem, 2.85vw, 0.98rem);
-  letter-spacing: 0.035em;
+  letter-spacing: 0;
   line-height: 1.35;
   text-align: left;
   text-align-last: left;
   text-justify: auto;
   white-space: normal;
+  text-wrap: auto;
   overflow-wrap: normal;
   word-break: normal;
+}
+
+@media (max-width: 760px) {
+  .hero .hero__tagline {
+    font-size: clamp(0.82rem, 3vw, 0.94rem);
+    letter-spacing: 0;
+    white-space: normal;
+  }
 }
 
 /* Ajuste final del titulo principal en movil */
@@ -2216,5 +2225,25 @@ h3,
   .hero h1 {
     font-size: clamp(1.72rem, 7.2vw, 2rem);
     letter-spacing: 0.014em;
+  }
+}
+
+/* Ajuste final del subtitulo del hero */
+.hero__subtitle {
+  font-size: clamp(1.38rem, 2vw, 1.8rem);
+  letter-spacing: 0.065em;
+  font-weight: 500;
+}
+
+@media (max-width: 760px) {
+  .hero__subtitle {
+    font-size: clamp(1.22rem, 4.8vw, 1.45rem);
+    letter-spacing: 0.045em;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+  .hero__subtitle {
+    font-size: 1rem;
   }
 }
