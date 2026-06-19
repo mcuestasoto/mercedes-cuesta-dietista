@@ -2202,3 +2202,19 @@ h3,
   overflow-wrap: normal;
   word-break: normal;
 }
+
+/* Ajuste final del titulo principal en movil */
+@media (max-width: 760px) {
+  .hero h1 {
+    font-size: clamp(1.85rem, 7.6vw, 2.55rem);
+    letter-spacing: 0.02em;
+    line-height: 1.08;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero h1 {
+    font-size: clamp(1.72rem, 7.2vw, 2rem);
+    letter-spacing: 0.014em;
+  }
+}
