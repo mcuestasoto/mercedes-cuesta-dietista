@@ -49,6 +49,7 @@ Web estática sin formularios, sin analítica, sin cookies publicitarias y sin p
 ## Últimos ajustes
 
 - Hero ajustado para que nombre, subtítulo, Instagram, texto principal y claim compartan el mismo ancho visual.
-- Claim del hero alineado a la izquierda, sin justificar hasta el borde derecho.
+- Claim del hero actualizado a “ALIMENTACIÓN · HÁBITOS · RENDIMIENTO · COMPOSICIÓN CORPORAL”.
+- CSS final consolidado para eliminar reglas duplicadas y reducir overrides innecesarios.
 - Pasos de “Cómo trabajo” con número y título alineados a la izquierda.
 - Textos revisados en “Enfoque”.

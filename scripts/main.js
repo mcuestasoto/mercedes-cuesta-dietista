@@ -180,6 +180,11 @@ const syncHeroTitleWidth = () => {
   const heroTitle = document.querySelector('.hero h1');
   if (!heroContent || !heroTitle) return;
 
+  if (window.matchMedia('(max-width: 1120px)').matches) {
+    heroContent.style.setProperty('--hero-title-width', '100%');
+    return;
+  }
+
   const previousWidth = heroTitle.style.width;
   const previousMaxWidth = heroTitle.style.maxWidth;
   const previousWidthPriority = heroTitle.style.getPropertyPriority('width');
