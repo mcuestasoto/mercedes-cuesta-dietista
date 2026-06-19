@@ -27,6 +27,9 @@
   --container: 1120px;
   --header-height: 82px;
   --anchor-offset: 84px;
+  --text-reading-size: 1.04rem;
+  --text-secondary-size: 0.96rem;
+  --text-small-size: 0.94rem;
 }
 
 * { box-sizing: border-box; }
@@ -330,6 +333,8 @@ p {
   text-align: justify;
   text-align-last: left;
   hyphens: none;
+  overflow-wrap: normal;
+  word-break: normal;
 }
 
 .hero__tagline {
@@ -750,7 +755,7 @@ p {
 
 .footer p {
   margin: 0;
-  font-size: 0.94rem;
+  font-size: var(--text-small-size);
 }
 
 .footer ul {
@@ -760,7 +765,7 @@ p {
   margin: 0;
   padding: 0;
   list-style: none;
-  font-size: 0.94rem;
+  font-size: var(--text-small-size);
 }
 
 .footer a {
@@ -1162,6 +1167,8 @@ p {
   text-align: justify;
   text-align-last: left;
   hyphens: none;
+  overflow-wrap: normal;
+  word-break: normal;
 }
 
 .collab__text,
@@ -1275,6 +1282,8 @@ p {
   text-align: justify;
   text-align-last: left;
   hyphens: none;
+  overflow-wrap: normal;
+  word-break: normal;
 }
 
 .process__list li {
@@ -1436,6 +1445,7 @@ p {
   hyphens: none !important;
   overflow-wrap: normal !important;
   word-break: normal !important;
+  text-justify: inter-word !important;
 }
 
 .hero__subtitle,
@@ -1460,6 +1470,7 @@ p {
 
 .hero__tagline {
   margin-bottom: clamp(12px, 1.7vw, 18px) !important;
+  font-size: clamp(0.94rem, 1.06vw, 1.08rem) !important;
 }
 
 .hero__handle {
@@ -1507,6 +1518,10 @@ p {
     white-space: normal !important;
     font-size: clamp(0.92rem, 3.45vw, 1.06rem) !important;
     letter-spacing: 0.005em !important;
+  }
+
+  .hero__tagline {
+    font-size: clamp(0.82rem, 3.05vw, 0.96rem) !important;
   }
 }
 
@@ -1603,6 +1618,50 @@ p {
     white-space: normal !important;
     font-size: clamp(0.61rem, 2.55vw, 0.74rem) !important;
   }
+}
+
+.hero__text,
+.about__content p,
+.process__list p,
+.collab__text {
+  color: var(--color-muted) !important;
+  font-family: var(--font-sans) !important;
+  font-size: var(--text-reading-size) !important;
+  font-weight: 400 !important;
+  line-height: 1.6 !important;
+  letter-spacing: 0 !important;
+  text-align: justify !important;
+  text-align-last: left !important;
+  hyphens: none !important;
+  overflow-wrap: normal !important;
+  word-break: normal !important;
+  text-justify: inter-word !important;
+  word-spacing: normal !important;
+}
+
+.focus-card p,
+.legal-page p,
+.legal-page li {
+  color: var(--color-muted) !important;
+  font-family: var(--font-sans) !important;
+  font-size: var(--text-secondary-size) !important;
+  font-weight: 400 !important;
+  line-height: 1.6 !important;
+  letter-spacing: 0 !important;
+  text-align: justify !important;
+  text-align-last: left !important;
+  hyphens: none !important;
+  overflow-wrap: normal !important;
+  word-break: normal !important;
+  text-justify: inter-word !important;
+  word-spacing: normal !important;
+}
+
+.legal-page p,
+.legal-page li,
+.footer p,
+.footer ul {
+  font-size: var(--text-small-size) !important;
 }
 
 body :where(p, li, a, button, span, strong) {
