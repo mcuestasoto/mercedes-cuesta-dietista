@@ -448,15 +448,26 @@ button:focus-visible {
   color: var(--ink);
   border: 1px solid var(--ink);
   cursor: pointer;
-  transition: background 200ms ease, border-color 200ms ease, color 200ms ease;
+  transition: background 150ms ease, border-color 150ms ease, color 150ms ease, transform 100ms ease;
   flex: 0 0 auto;
 }
 
-.button:hover,
-.button:focus-visible {
+/* Hover: entra un tinte de fondo suave — invita a pulsar. */
+.button:hover {
   background: var(--card);
   border-color: var(--accent);
   color: var(--accent-text);
+}
+
+/* Focus (teclado): solo el anillo heredado de la regla global de abajo,
+   sin tinte de fondo — así no se confunde con un hover. */
+
+/* Pulsado: relleno sólido de acento, distinto de hover y de focus. */
+.button:active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+  transform: scale(0.98);
 }
 
 .button--primary {
@@ -767,13 +778,13 @@ button:focus-visible {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background 200ms ease, border-color 200ms ease, color 200ms ease;
+  transition: background 150ms ease, border-color 150ms ease, color 150ms ease, transform 100ms ease;
   color: var(--ink);
   border: 1px solid var(--ink);
 }
 
-.collab__code:hover,
-.collab__code:focus-visible { background: var(--card); border-color: var(--accent); color: var(--accent-text); }
+.collab__code:hover { background: var(--card); border-color: var(--accent); color: var(--accent-text); }
+.collab__code:active { background: var(--accent); border-color: var(--accent); color: var(--bg); transform: scale(0.98); }
 .collab__code.is-copied { color: var(--accent-text); border-color: var(--accent); }
 
 /* WhatsApp FAB */
