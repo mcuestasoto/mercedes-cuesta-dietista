@@ -5,8 +5,6 @@
   --line: #D9D4C7;
   --accent: #8B9A76;
   --accent-text: #697557;
-  --tst: #F3EFE7;
-  --tstline: #C9C3B4;
   --card: #F3EFE7;
   --hdr-bg: rgba(244, 241, 234, 0.78);
   --footer-bg: #1E1E1B;
@@ -32,8 +30,6 @@
     --muted: #B4AFA3;
     --line: #33332E;
     --accent-text: #8B9A76;
-    --tst: #24241F;
-    --tstline: #3A3A33;
     --card: #24241F;
     --hdr-bg: rgba(24, 24, 21, 0.78);
   }
@@ -583,7 +579,7 @@ button:focus-visible {
 
 .testimonial-card {
   flex: 0 0 100%;
-  background: var(--tst);
+  background: var(--card);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 28px;
