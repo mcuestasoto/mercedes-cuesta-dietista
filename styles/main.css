@@ -255,23 +255,10 @@ button:focus-visible {
 
 .nav__mobile-menu a.is-active { color: var(--accent-text); }
 
-.nav__mobile-cta {
+.nav__mobile-menu a.nav__mobile-cta {
   margin-top: 12px;
-  padding: 14px 32px;
   font-size: 15px;
   font-weight: 500;
-  border-radius: var(--radius);
-  background: var(--ink);
-  color: var(--bg);
-  border: 1px solid var(--ink);
-  transition: background 200ms ease, border-color 200ms ease, color 200ms ease;
-}
-
-.nav__mobile-cta:hover,
-.nav__mobile-cta:focus-visible {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: var(--bg);
 }
 
 @media (max-width: 940px) {
@@ -488,26 +475,24 @@ button:focus-visible {
   color: var(--accent-text);
 }
 
-/* Enlace simple: sin caja, para acciones de salida (redes, webs externas) */
-.link-external {
-  display: inline-flex;
-  align-items: center;
-  font-weight: 400;
-  font-size: 15px;
+/* Botón fantasma: misma forma que los otros dos, sin relleno ni borde,
+   para acciones de salida (redes, webs externas) que no compiten con
+   las llamadas a la acción reales. */
+.button--ghost {
+  background: transparent;
   color: var(--ink);
-  text-decoration: underline;
-  text-decoration-color: var(--line);
-  text-underline-offset: 3px;
-  transition: color 200ms ease, text-decoration-color 200ms ease;
+  border-color: transparent;
+  font-weight: 400;
 }
 
-.link-external:hover,
-.link-external:focus-visible {
+.button--ghost:hover,
+.button--ghost:focus-visible {
+  background: var(--card);
+  border-color: var(--card);
   color: var(--accent-text);
-  text-decoration-color: var(--accent-text);
 }
 
-.link-external__arrow { font-size: 13px; }
+.button__ext-arrow { font-size: 13px; }
 
 /* Card grids */
 .card-block {
