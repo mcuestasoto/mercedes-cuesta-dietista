@@ -46,7 +46,7 @@ allNavLinks.forEach((link) => {
 });
 
 /* Active section highlighting */
-const spySections = ['sobre-mi', 'programa', 'como-trabajo', 'testimonios', 'faq', 'contacto']
+const spySections = ['como-trabajo', 'programa', 'sobre-mi', 'testimonios', 'faq', 'contacto']
   .map((id) => document.getElementById(id))
   .filter(Boolean);
 
@@ -157,7 +157,7 @@ if (viewport && track) {
     for (let i = 0; i <= maxSlide; i += 1) {
       const dot = document.createElement('button');
       dot.type = 'button';
-      dot.setAttribute('aria-label', `Ver testimonio ${i + 1}`);
+      dot.setAttribute('aria-label', `Ver opinión ${i + 1}`);
       dot.innerHTML = '<span></span>';
       dot.addEventListener('click', () => {
         slide = i;

@@ -288,8 +288,6 @@ button:focus-visible {
   scroll-margin-top: var(--header-height);
 }
 
-#como-trabajo { scroll-margin-top: var(--header-height); }
-
 .section:not(.hero) > .container {
   display: flex;
   flex-direction: column;
