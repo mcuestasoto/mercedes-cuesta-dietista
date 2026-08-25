@@ -697,6 +697,8 @@ button:focus-visible {
 .faq-item { border-top: 1px solid var(--line); }
 .faq-item:last-child { border-bottom: 1px solid var(--line); }
 
+.faq-item__heading { margin: 0; font: inherit; }
+
 .faq-item__question {
   width: 100%;
   background: transparent;
