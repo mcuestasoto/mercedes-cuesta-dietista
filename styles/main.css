@@ -182,71 +182,59 @@ button:focus-visible {
 
 .nav__toggle:hover { color: var(--accent-text); }
 
-.nav__toggle-bars {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+/* Icono único que pasa de ≡ a X: mismo botón, mismo tamaño y grosor
+   de línea, mismo sitio exacto — solo cambia el ángulo de las barras. */
+.nav__toggle-icon {
+  position: relative;
   width: 22px;
+  height: 16px;
 }
 
-.nav__toggle-bars span {
+.nav__toggle-bar {
+  position: absolute;
+  left: 0;
+  top: 50%;
   width: 100%;
   height: 1px;
   background: currentColor;
-  display: block;
+  transition: transform 200ms ease, margin-top 200ms ease;
 }
 
+.nav__toggle-bar:first-child { margin-top: -6px; }
+.nav__toggle-bar:last-child { margin-top: 6px; }
+
+.nav__toggle.is-open .nav__toggle-bar:first-child {
+  margin-top: 0;
+  transform: rotate(45deg);
+}
+
+.nav__toggle.is-open .nav__toggle-bar:last-child {
+  margin-top: 0;
+  transform: rotate(-45deg);
+}
+
+/* Menú móvil: se despliega justo debajo del header (que se queda
+   visible y con el mismo icono, ya convertido en X, para cerrar) en
+   vez de cubrir toda la pantalla — así la marca sigue siendo pulsable. */
 .nav__mobile-menu {
   position: fixed;
-  inset: 0;
+  top: var(--header-height);
+  left: 0;
+  right: 0;
+  max-height: calc(100vh - var(--header-height));
+  overflow-y: auto;
   background: var(--bg);
-  z-index: 100;
+  border-top: 1px solid var(--line);
+  box-shadow: 0 16px 24px -8px rgba(30, 30, 27, 0.16);
+  z-index: 45;
   display: none;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   gap: 24px;
+  padding: 40px 28px;
 }
 
 .nav__mobile-menu.is-open { display: flex; }
-
-.nav__mobile-close {
-  position: fixed;
-  top: 16px;
-  right: 28px;
-  width: 38px;
-  height: 23px;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: transparent;
-  border: none;
-  color: var(--ink);
-  cursor: pointer;
-  transition: color 200ms ease;
-}
-
-.nav__mobile-close:hover { color: var(--accent-text); }
-
-.nav__mobile-close-icon {
-  position: relative;
-  display: block;
-  width: 22px;
-  height: 22px;
-}
-
-.nav__mobile-close-icon span {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background: currentColor;
-}
-
-.nav__mobile-close-icon span:first-child { transform: rotate(45deg); }
-.nav__mobile-close-icon span:last-child { transform: rotate(-45deg); }
 
 .nav__mobile-menu a {
   font-size: 20px;
@@ -788,6 +776,9 @@ button:focus-visible {
   transition: background 150ms ease, border-color 150ms ease, color 150ms ease;
   color: var(--ink);
   border: 1px solid var(--ink);
+  /* Ancho fijo (cabe "Copiar código · MCUESTA"), para que al cambiar
+     a "Código copiado" no encoja y mueva el resto del contenido. */
+  min-width: 230px;
 }
 
 .collab__code:hover,
@@ -800,8 +791,8 @@ button:focus-visible {
   right: 20px;
   bottom: 20px;
   z-index: 60;
-  width: 46px;
-  height: 46px;
+  width: 53px;
+  height: 53px;
   border-radius: var(--radius);
   background: var(--card);
   border: 1.5px solid var(--accent);
@@ -825,11 +816,6 @@ button:focus-visible {
 }
 
 .whatsapp-fab svg { width: 22px; height: 22px; fill: currentColor; }
-
-@media (max-width: 640px) {
-  .whatsapp-fab { width: 56px; height: 56px; }
-  .whatsapp-fab svg { width: 26px; height: 26px; }
-}
 
 /* Footer */
 .footer {
