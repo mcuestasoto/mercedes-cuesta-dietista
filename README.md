@@ -2,6 +2,8 @@
 
 Landing web personal para Mercedes Cuesta, Dietista online.
 
+**Demo:** https://mercedes-cuesta-dietista.vercel.app
+
 ## Estructura
 
 ```txt
@@ -40,18 +42,22 @@ mercedes-cuesta-dietista/
 
 ## Tecnologías
 
-- HTML
-- CSS
-- JavaScript
-- Vercel
+HTML, CSS y JavaScript sin dependencias ni paso de build. Desplegado en Vercel.
+
+## Desarrollo local
+
+No requiere instalación. Basta con abrir `index.html` en el navegador, o servir la carpeta con cualquier servidor estático, por ejemplo:
+
+```sh
+python3 -m http.server 8000
+```
 
 ## Notas
 
-Web estática sin formularios, sin analítica, sin cookies publicitarias y sin pasarela de pago.
+- Web estática sin formularios, sin analítica y sin pasarela de pago.
+- No usa cookies propias; las excepciones (proveedor de alojamiento) están detalladas en [`pages/cookies.html`](pages/cookies.html).
+- Cabeceras de seguridad (CSP, HSTS, etc.) configuradas en `vercel.json`.
 
-## Últimos ajustes
+## Licencia
 
-- Rediseño completo de la identidad visual: tipografía Montserrat, paleta verde oliva y modo oscuro automático (`prefers-color-scheme`).
-- Secciones nuevas: “Programa” (pasos numerados), “Testimonios” (carrusel) y “Preguntas frecuentes” (acordeón).
-- Página 404 personalizada.
-- Botón de WhatsApp flotante, visible al hacer scroll.
+Todos los derechos reservados. El contenido, las imágenes y el código de este sitio pertenecen a su titular; no está autorizada su reproducción, distribución o modificación sin permiso expreso (ver [`pages/aviso-legal.html`](pages/aviso-legal.html)).
