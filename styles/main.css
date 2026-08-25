@@ -410,9 +410,9 @@ button:focus-visible {
 }
 
 .hero__actions {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 1fr;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
   gap: 22px;
   margin-top: 16px;
 }
@@ -437,7 +437,8 @@ button:focus-visible {
   .hero__content { align-items: stretch; max-width: 100%; }
   .hero__topics li { font-size: 12px; letter-spacing: 0.06em; }
   .hero__topics-dot { padding: 0 4px; }
-  .hero__actions { width: 100%; gap: 12px; }
+  .hero__actions { width: 100%; gap: 16px; }
+  .hero__actions .button { width: 100%; }
   .hero__media { flex: 1 1 100%; max-width: 390px; margin: 0 auto; }
 }
 
@@ -477,7 +478,7 @@ button:focus-visible {
 .button--secondary {
   background: transparent;
   color: var(--ink);
-  border-color: var(--line);
+  border-color: var(--ink);
   font-weight: 400;
 }
 
@@ -486,6 +487,27 @@ button:focus-visible {
   border-color: var(--accent);
   color: var(--accent-text);
 }
+
+/* Enlace simple: sin caja, para acciones de salida (redes, webs externas) */
+.link-external {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 400;
+  font-size: 15px;
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+  text-underline-offset: 3px;
+  transition: color 200ms ease, text-decoration-color 200ms ease;
+}
+
+.link-external:hover,
+.link-external:focus-visible {
+  color: var(--accent-text);
+  text-decoration-color: var(--accent-text);
+}
+
+.link-external__arrow { font-size: 13px; }
 
 /* Card grids */
 .card-block {
@@ -754,19 +776,17 @@ button:focus-visible {
 
 /* Contact */
 .contact__actions {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 1fr;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
   align-self: flex-start;
-  gap: 12px;
+  gap: 16px;
   margin-top: 4px;
 }
 
 @media (max-width: 560px) {
-  .contact__actions {
-    grid-auto-flow: row;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+  .contact__actions { width: 100%; }
+  .contact__actions .button { width: 100%; }
 }
 
 .collab {
