@@ -112,6 +112,7 @@ button:focus-visible {
 .nav {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 24px;
   min-height: 72px;
 }
@@ -470,9 +471,25 @@ button:focus-visible {
   transform: scale(0.98);
 }
 
+/* El principal necesitaba más que un borde de color para destacar
+   (una sola pista de tono es difícil de notar y puede ser invisible
+   para daltonismo); añade un fondo tintado suave como segunda pista. */
 .button--primary {
   font-weight: 500;
   border-color: var(--accent);
+  background: rgba(139, 154, 118, 0.12);
+}
+
+.button--primary:hover {
+  background: rgba(139, 154, 118, 0.28);
+  border-color: var(--accent);
+  color: var(--accent-text);
+}
+
+.button--primary:active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
 }
 
 /* Card grids */
@@ -847,11 +864,12 @@ button:focus-visible {
 }
 
 .footer__logo {
-  height: 90px;
+  height: 40px;
   flex: 0 0 auto;
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  opacity: 0.85;
 }
 
 .footer__logo img {
@@ -872,7 +890,7 @@ button:focus-visible {
 @media (max-width: 480px) {
   .footer__top { flex-wrap: wrap; gap: 12px; }
   .footer__links { gap: 12px; }
-  .footer__logo { height: 62px; }
+  .footer__logo { height: 32px; }
 }
 
 .footer__links a,
