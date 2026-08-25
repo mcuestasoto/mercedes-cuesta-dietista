@@ -762,9 +762,13 @@ button:focus-visible {
   font-family: var(--font-sans);
   font-weight: 400;
   font-size: 15px;
+  line-height: 1.5;
   background: transparent;
   padding: 14px 24px;
   border-radius: var(--radius);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   transition: border-color 200ms ease, color 200ms ease;
   color: var(--ink);
