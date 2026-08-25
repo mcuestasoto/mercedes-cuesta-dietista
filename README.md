@@ -49,7 +49,7 @@ Web estática sin formularios, sin analítica, sin cookies publicitarias y sin p
 
 ## Últimos ajustes
 
-- Rediseño completo a partir del export de Claude Design: tipografía Montserrat, paleta verde oliva y soporte de modo oscuro (`prefers-color-scheme`).
+- Rediseño completo: tipografía Montserrat, paleta verde oliva y soporte de modo oscuro (`prefers-color-scheme`).
 - Nuevas secciones “Programa” (pasos numerados), “Testimonios” (carrusel accesible) y “Preguntas frecuentes” (acordeón).
 - Página 404 personalizada en la raíz del sitio.
 - Botón flotante de WhatsApp que aparece al hacer scroll.
