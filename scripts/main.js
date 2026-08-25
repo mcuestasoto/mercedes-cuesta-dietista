@@ -1,9 +1,3 @@
-const whatsappMessage = 'Hola Mercedes 🙂 he visto tu web y me gustaría saber más sobre el Programa';
-const whatsappUrl = `https://api.whatsapp.com/send?phone=34614821010&text=${encodeURIComponent(whatsappMessage)}`;
-document.querySelectorAll('[data-whatsapp-link]').forEach((link) => {
-  link.setAttribute('href', whatsappUrl);
-});
-
 /* Header height, kept in sync so sticky-scroll offsets stay accurate on wrap */
 const header = document.querySelector('[data-header]');
 const syncHeaderHeight = () => {
