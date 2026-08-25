@@ -6,7 +6,7 @@
   --accent: #8B9A76;
   --accent-text: #697557;
   --card: #F3EFE7;
-  --hdr-bg: rgba(244, 241, 234, 0.78);
+  --hdr-bg: #F1ECE0;
   --footer-bg: #1E1E1B;
   --footer-ink: #D9D4C7;
   --footer-line: #3A3A35;
@@ -14,7 +14,7 @@
   --secpad: 64px;
   --container: 1140px;
   --radius: 4px;
-  --header-height: 66px;
+  --header-height: 72px;
 
   --font-sans: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
 }
@@ -31,7 +31,7 @@
     --line: #33332E;
     --accent-text: #8B9A76;
     --card: #24241F;
-    --hdr-bg: rgba(24, 24, 21, 0.78);
+    --hdr-bg: #232320;
   }
 }
 
@@ -99,22 +99,21 @@ button:focus-visible {
 .skip-link:focus { transform: translateY(0); }
 
 /* Header */
-.site-header {
+.site-header,
+.simple-header {
   background: var(--hdr-bg);
-  backdrop-filter: saturate(140%) blur(10px);
-  -webkit-backdrop-filter: saturate(140%) blur(10px);
   position: sticky;
   top: 0;
   z-index: 50;
   border-bottom: 1px solid var(--line);
-  padding: 16px 28px;
+  padding: 0 28px;
 }
 
 .nav {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 24px;
+  min-height: 72px;
 }
 
 .nav__brand {
@@ -146,7 +145,7 @@ button:focus-visible {
   align-items: center;
   gap: 14px;
   list-style: none;
-  margin: 0;
+  margin: 0 0 0 auto;
   padding: 0;
 }
 
@@ -158,6 +157,13 @@ button:focus-visible {
 }
 
 .nav__menu a.is-active { color: var(--accent-text); }
+
+.nav__cta {
+  margin-left: 20px;
+  padding: 10px 20px;
+  font-size: 14px;
+  flex-shrink: 0;
+}
 
 .nav__toggle {
   display: none;
@@ -249,8 +255,28 @@ button:focus-visible {
 
 .nav__mobile-menu a.is-active { color: var(--accent-text); }
 
+.nav__mobile-cta {
+  margin-top: 12px;
+  padding: 14px 32px;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: var(--radius);
+  background: var(--ink);
+  color: var(--bg);
+  border: 1px solid var(--ink);
+  transition: background 200ms ease, border-color 200ms ease, color 200ms ease;
+}
+
+.nav__mobile-cta:hover,
+.nav__mobile-cta:focus-visible {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+}
+
 @media (max-width: 940px) {
   .nav__menu { display: none; }
+  .site-header .nav__cta { display: none; }
   .nav__toggle { display: flex; }
 }
 
@@ -261,6 +287,8 @@ button:focus-visible {
   padding: var(--secpad) 28px;
   scroll-margin-top: var(--header-height);
 }
+
+#como-trabajo { scroll-margin-top: var(--header-height); }
 
 .section:not(.hero) > .container {
   display: flex;
@@ -903,17 +931,6 @@ button:focus-visible {
 }
 
 /* Legal / simple content pages */
-.simple-header {
-  background: var(--hdr-bg);
-  backdrop-filter: saturate(140%) blur(10px);
-  -webkit-backdrop-filter: saturate(140%) blur(10px);
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  border-bottom: 1px solid var(--line);
-  padding: 16px 28px;
-}
-
 .simple-header .nav { justify-content: space-between; }
 
 .simple-nav {
