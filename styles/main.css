@@ -298,8 +298,6 @@ button:focus-visible {
   font-size: 17px;
   line-height: 1.7;
   margin: 0;
-  text-align: justify;
-  text-align-last: left;
   text-wrap: pretty;
 }
 
@@ -347,8 +345,6 @@ button:focus-visible {
   font-size: 17px;
   line-height: 1.7;
   margin: 0;
-  text-align: justify;
-  text-align-last: left;
   text-wrap: pretty;
 }
 
@@ -516,8 +512,6 @@ button:focus-visible {
   color: var(--muted);
   line-height: 1.75;
   margin: 0;
-  text-align: justify;
-  text-align-last: left;
   text-wrap: pretty;
 }
 
@@ -555,8 +549,6 @@ button:focus-visible {
   color: var(--muted);
   line-height: 1.75;
   margin: 0;
-  text-align: justify;
-  text-align-last: left;
   text-wrap: pretty;
 }
 
@@ -605,8 +597,6 @@ button:focus-visible {
   font-size: 17px;
   line-height: 1.7;
   margin: 0;
-  text-align: justify;
-  text-align-last: left;
   text-wrap: pretty;
 }
 
@@ -730,8 +720,6 @@ button:focus-visible {
   color: var(--muted);
   line-height: 1.75;
   margin: 0 0 20px;
-  text-align: justify;
-  text-align-last: left;
   text-wrap: pretty;
   display: none;
 }
@@ -982,8 +970,6 @@ button:focus-visible {
   color: var(--ink);
   line-height: 1.7;
   margin: 0;
-  text-align: justify;
-  text-align-last: left;
   text-wrap: pretty;
 }
 
@@ -1035,8 +1021,6 @@ button:focus-visible {
   margin: 0;
   width: 100%;
   max-width: 480px;
-  text-align: justify;
-  text-align-last: left;
   text-wrap: pretty;
 }
 
