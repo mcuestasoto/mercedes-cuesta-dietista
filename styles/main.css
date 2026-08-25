@@ -367,18 +367,25 @@ button:focus-visible {
 }
 
 .hero__topics li {
+  display: flex;
+  align-items: baseline;
+  flex: 1 1 auto;
   font-weight: 500;
   font-size: 13px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--muted);
-  white-space: nowrap;
 }
 
-.hero__topics li:not(:last-child)::after {
-  content: '·';
-  display: inline-block;
-  margin: 0 12px;
+.hero__topics li:last-child { flex: 0 0 auto; }
+
+.hero__topics-word { flex: 0 0 auto; white-space: nowrap; }
+
+.hero__topics-dot {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  padding: 0 6px;
   color: var(--line);
 }
 
@@ -409,7 +416,7 @@ button:focus-visible {
 @media (max-width: 940px) {
   .hero__content { align-items: stretch; max-width: 100%; }
   .hero__topics li { font-size: 12px; letter-spacing: 0.06em; }
-  .hero__topics li:not(:last-child)::after { margin: 0 8px; }
+  .hero__topics-dot { padding: 0 4px; }
   .hero__actions { width: 100%; gap: 12px; }
   .hero__media { flex: 1 1 100%; max-width: 390px; margin: 0 auto; }
 }
