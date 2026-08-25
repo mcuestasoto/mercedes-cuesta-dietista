@@ -7,6 +7,7 @@ Landing web personal para Mercedes Cuesta, Dietista online.
 ```txt
 mercedes-cuesta-dietista/
 ├── index.html
+├── 404.html
 ├── styles/
 │   └── main.css
 ├── scripts/
@@ -31,7 +32,9 @@ mercedes-cuesta-dietista/
 - Sobre mí
 - Formación
 - Enfoque
-- Cómo trabajo
+- Programa
+- Testimonios
+- Preguntas frecuentes
 - Contacto
 - Colaboración FullGas
 
@@ -48,8 +51,7 @@ Web estática sin formularios, sin analítica, sin cookies publicitarias y sin p
 
 ## Últimos ajustes
 
-- Hero ajustado para que nombre, subtítulo, Instagram, texto principal y claim compartan el mismo ancho visual.
-- Claim del hero actualizado a “ALIMENTACIÓN · HÁBITOS · RENDIMIENTO · COMPOSICIÓN CORPORAL”.
-- CSS final consolidado para eliminar reglas duplicadas y reducir overrides innecesarios.
-- Pasos de “Cómo trabajo” con número y título alineados a la izquierda.
-- Textos revisados en “Enfoque”.
+- Rediseño completo de la identidad visual: tipografía Montserrat, paleta verde oliva y modo oscuro automático (`prefers-color-scheme`).
+- Secciones nuevas: “Programa” (pasos numerados), “Testimonios” (carrusel) y “Preguntas frecuentes” (acordeón).
+- Página 404 personalizada.
+- Botón de WhatsApp flotante, visible al hacer scroll.

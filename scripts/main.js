@@ -1,175 +1,249 @@
-const header = document.querySelector('[data-header]');
-const toggle = document.querySelector('[data-nav-toggle]');
-const menu = document.querySelector('[data-nav-menu]');
-const navLinks = document.querySelectorAll('[data-nav-link]');
-const sections = document.querySelectorAll('[data-section]');
-const revealItems = document.querySelectorAll('.reveal');
-const whatsappLinks = document.querySelectorAll('[data-whatsapp-link]');
-
-const whatsappMessage = 'Hola Mercedes 🥑✨ Vengo de tu web y quería más info. Gracias 🤍';
+const whatsappMessage = 'Hola Mercedes 🙂 he visto tu web y me gustaría saber más sobre el Programa';
 const whatsappUrl = `https://api.whatsapp.com/send?phone=34614821010&text=${encodeURIComponent(whatsappMessage)}`;
-whatsappLinks.forEach((link) => {
+document.querySelectorAll('[data-whatsapp-link]').forEach((link) => {
   link.setAttribute('href', whatsappUrl);
 });
 
-const closeMenu = () => {
-  if (!toggle || !menu) return;
-  toggle.setAttribute('aria-expanded', 'false');
-  toggle.setAttribute('aria-label', 'Abrir menú');
-  menu.classList.remove('is-open');
+/* Header height, kept in sync so sticky-scroll offsets stay accurate on wrap */
+const header = document.querySelector('[data-header]');
+const syncHeaderHeight = () => {
+  if (!header) return;
+  document.documentElement.style.setProperty('--header-height', `${header.getBoundingClientRect().height}px`);
+};
+syncHeaderHeight();
+window.addEventListener('resize', syncHeaderHeight);
+if ('ResizeObserver' in window && header) {
+  new ResizeObserver(syncHeaderHeight).observe(header);
+}
+
+/* Mobile menu */
+const toggle = document.querySelector('[data-nav-toggle]');
+const mobileMenu = document.querySelector('[data-mobile-menu]');
+const mobileClose = document.querySelector('[data-mobile-close]');
+const allNavLinks = document.querySelectorAll('[data-nav-link]');
+
+const openMenu = () => {
+  if (!toggle || !mobileMenu) return;
+  mobileMenu.classList.add('is-open');
+  toggle.setAttribute('aria-expanded', 'true');
+  toggle.setAttribute('aria-label', 'Cerrar menú');
 };
 
-if (toggle && menu) {
+const closeMenu = () => {
+  if (!toggle || !mobileMenu) return;
+  mobileMenu.classList.remove('is-open');
+  toggle.setAttribute('aria-expanded', 'false');
+  toggle.setAttribute('aria-label', 'Abrir menú');
+};
+
+if (toggle && mobileMenu) {
   toggle.addEventListener('click', () => {
-    const isOpen = toggle.getAttribute('aria-expanded') === 'true';
-    toggle.setAttribute('aria-expanded', String(!isOpen));
-    toggle.setAttribute('aria-label', isOpen ? 'Abrir menú' : 'Cerrar menú');
-    menu.classList.toggle('is-open', !isOpen);
+    if (mobileMenu.classList.contains('is-open')) closeMenu();
+    else openMenu();
   });
-
-  navLinks.forEach((link) => {
-    link.addEventListener('click', (event) => {
-      const href = link.getAttribute('href');
-      const target = href && href.startsWith('#') ? document.querySelector(href) : null;
-      if (!target) {
-        closeMenu();
-        return;
-      }
-
-      event.preventDefault();
-      closeMenu();
-
-      const headerHeight = header ? header.offsetHeight : 0;
-      const top = Math.max(0, target.getBoundingClientRect().top + window.scrollY - headerHeight - 2);
-      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-      window.scrollTo({
-        top,
-        behavior: prefersReducedMotion ? 'auto' : 'smooth',
-      });
-
-      history.pushState(null, '', href);
-    });
-  });
-
+  if (mobileClose) mobileClose.addEventListener('click', closeMenu);
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') closeMenu();
   });
+}
 
-  document.addEventListener('click', (event) => {
-    const isOpen = toggle.getAttribute('aria-expanded') === 'true';
-    if (!isOpen) return;
-    const clickedInsideMenu = menu.contains(event.target);
-    const clickedToggle = toggle.contains(event.target);
-    if (!clickedInsideMenu && !clickedToggle) closeMenu();
+allNavLinks.forEach((link) => {
+  link.addEventListener('click', () => closeMenu());
+});
+
+/* Active section highlighting */
+const spySections = ['sobre-mi', 'programa', 'testimonios', 'faq', 'contacto']
+  .map((id) => document.getElementById(id))
+  .filter(Boolean);
+
+if (spySections.length) {
+  const updateActiveSection = () => {
+    const line = window.innerHeight * 0.3;
+    let current = '';
+    spySections.forEach((section) => {
+      if (section.getBoundingClientRect().top <= line) current = section.id;
+    });
+    allNavLinks.forEach((link) => {
+      const isActive = link.getAttribute('href') === `#${current}`;
+      link.classList.toggle('is-active', isActive);
+      if (isActive) link.setAttribute('aria-current', 'true');
+      else link.removeAttribute('aria-current');
+    });
+  };
+  updateActiveSection();
+  window.addEventListener('scroll', updateActiveSection, { passive: true });
+  window.addEventListener('resize', updateActiveSection);
+}
+
+/* FAQ accordion */
+document.querySelectorAll('[data-faq-item]').forEach((item) => {
+  const question = item.querySelector('[data-faq-question]');
+  if (!question) return;
+  question.addEventListener('click', () => {
+    const isOpen = item.classList.toggle('is-open');
+    question.setAttribute('aria-expanded', String(isOpen));
   });
+});
+
+/* WhatsApp floating button visibility */
+const fab = document.querySelector('[data-whatsapp-fab]');
+if (fab) {
+  const onScroll = () => {
+    fab.classList.toggle('is-visible', window.scrollY > window.innerHeight * 0.75);
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
 }
 
-const onScroll = () => {
-  if (header) {
-    header.classList.toggle('is-scrolled', window.scrollY > 12);
-  }
-};
+/* Copy promo code */
+const copyButton = document.querySelector('[data-copy-code]');
+if (copyButton) {
+  const copyLabel = copyButton.querySelector('[data-copy-label]');
+  const defaultLabel = copyLabel ? copyLabel.textContent : '';
+  let copyTimeout;
 
-onScroll();
-window.addEventListener('scroll', onScroll, { passive: true });
+  const copyText = async (text) => {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(text);
+      return;
+    }
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.setAttribute('readonly', '');
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    textarea.remove();
+  };
 
-if ('IntersectionObserver' in window) {
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.14 });
-
-  revealItems.forEach((item) => revealObserver.observe(item));
-
-  const activeObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      const id = entry.target.getAttribute('id');
-      navLinks.forEach((link) => {
-        const isActive = link.getAttribute('href') === `#${id}`;
-        link.classList.toggle('is-active', isActive);
-        if (isActive) {
-          link.setAttribute('aria-current', 'page');
-        } else {
-          link.removeAttribute('aria-current');
-        }
-      });
-    });
-  }, { rootMargin: '-28% 0px -62% 0px', threshold: 0.01 });
-
-  sections.forEach((section) => activeObserver.observe(section));
-} else {
-  revealItems.forEach((item) => item.classList.add('is-visible'));
-}
-
-const copyCodeButton = document.querySelector('[data-copy-code]');
-const copyCodeLabel = copyCodeButton ? copyCodeButton.querySelector('[data-copy-label]') : null;
-const copyFeedback = document.querySelector('[data-copy-feedback]');
-let copyFeedbackTimeout;
-let copyFeedbackClearTimeout;
-let copyButtonTimeout;
-
-const copyText = async (text) => {
-  if (navigator.clipboard && window.isSecureContext) {
-    await navigator.clipboard.writeText(text);
-    return;
-  }
-  const textarea = document.createElement('textarea');
-  textarea.value = text;
-  textarea.setAttribute('readonly', '');
-  textarea.style.position = 'absolute';
-  textarea.style.left = '-9999px';
-  document.body.appendChild(textarea);
-  textarea.select();
-  document.execCommand('copy');
-  textarea.remove();
-};
-
-const showCopyFeedback = (message) => {
-  if (!copyFeedback) return;
-  window.clearTimeout(copyFeedbackTimeout);
-  window.clearTimeout(copyFeedbackClearTimeout);
-  copyFeedback.textContent = message;
-  window.requestAnimationFrame(() => copyFeedback.classList.add('is-visible'));
-  copyFeedbackTimeout = window.setTimeout(() => {
-    copyFeedback.classList.remove('is-visible');
-    copyFeedbackClearTimeout = window.setTimeout(() => {
-      copyFeedback.textContent = '';
-    }, 190);
-  }, 2200);
-};
-
-const showCopyButtonState = (message) => {
-  if (!copyCodeButton || !copyCodeLabel) return;
-  window.clearTimeout(copyButtonTimeout);
-  copyCodeButton.classList.add('is-copied');
-  copyCodeButton.setAttribute('aria-label', message);
-  copyCodeLabel.textContent = message;
-  copyButtonTimeout = window.setTimeout(() => {
-    const code = copyCodeButton.getAttribute('data-copy-code');
-    const codeText = document.createElement('strong');
-    codeText.textContent = code;
-    copyCodeButton.classList.remove('is-copied');
-    copyCodeButton.setAttribute('aria-label', `Copiar código ${code}`);
-    copyCodeLabel.replaceChildren(document.createTextNode('Copiar código · '), codeText);
-  }, 2200);
-};
-
-if (copyCodeButton) {
-  copyCodeButton.addEventListener('click', async () => {
-    const code = copyCodeButton.getAttribute('data-copy-code');
+  copyButton.addEventListener('click', async () => {
+    const code = copyButton.getAttribute('data-copy-code');
     try {
       await copyText(code);
-      showCopyFeedback('Código copiado.');
-      showCopyButtonState('Código copiado');
     } catch (error) {
-      showCopyFeedback(`Código: ${code}`);
-      showCopyButtonState(`Código: ${code}`);
+      /* clipboard unavailable; label still confirms the code below */
     }
+    copyButton.classList.add('is-copied');
+    if (copyLabel) copyLabel.textContent = 'Código copiado';
+    window.clearTimeout(copyTimeout);
+    copyTimeout = window.setTimeout(() => {
+      copyButton.classList.remove('is-copied');
+      if (copyLabel) copyLabel.textContent = defaultLabel;
+    }, 2200);
   });
+}
+
+/* Testimonial carousel */
+const viewport = document.querySelector('[data-carousel-viewport]');
+const track = document.querySelector('[data-carousel-track]');
+if (viewport && track) {
+  const cards = Array.from(track.children);
+  const dotsContainer = document.querySelector('[data-carousel-dots]');
+  const prevButton = document.querySelector('[data-carousel-prev]');
+  const nextButton = document.querySelector('[data-carousel-next]');
+  const gap = 16;
+  let slide = 0;
+  let visible = 1;
+  let maxSlide = 0;
+
+  const measure = () => {
+    const cardWidth = cards[0].getBoundingClientRect().width;
+    if (!cardWidth) return;
+    visible = Math.max(1, Math.round((viewport.clientWidth + gap) / (cardWidth + gap)));
+    maxSlide = Math.max(0, cards.length - visible);
+    slide = Math.min(slide, maxSlide);
+    render();
+  };
+
+  const buildDots = () => {
+    if (!dotsContainer) return;
+    dotsContainer.innerHTML = '';
+    for (let i = 0; i <= maxSlide; i += 1) {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.setAttribute('aria-label', `Ver testimonio ${i + 1}`);
+      dot.innerHTML = '<span></span>';
+      dot.addEventListener('click', () => {
+        slide = i;
+        render();
+      });
+      dotsContainer.appendChild(dot);
+    }
+  };
+
+  let lastMaxSlide = -1;
+  const render = () => {
+    const cardWidth = cards[0].getBoundingClientRect().width;
+    track.style.transform = `translateX(-${slide * (cardWidth + gap)}px)`;
+    if (maxSlide !== lastMaxSlide) {
+      buildDots();
+      lastMaxSlide = maxSlide;
+    }
+    if (dotsContainer) {
+      Array.from(dotsContainer.children).forEach((dot, i) => {
+        const isCurrent = i === slide;
+        dot.classList.toggle('is-current', isCurrent);
+        dot.setAttribute('aria-current', isCurrent ? 'true' : 'false');
+      });
+    }
+    if (prevButton) prevButton.disabled = slide === 0;
+    if (nextButton) nextButton.disabled = slide >= maxSlide;
+  };
+
+  const goTo = (index) => {
+    slide = Math.max(0, Math.min(maxSlide, index));
+    render();
+  };
+
+  if (prevButton) prevButton.addEventListener('click', () => goTo(slide - 1));
+  if (nextButton) nextButton.addEventListener('click', () => goTo(slide + 1));
+
+  viewport.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowRight') { event.preventDefault(); goTo(slide + 1); }
+    else if (event.key === 'ArrowLeft') { event.preventDefault(); goTo(slide - 1); }
+  });
+
+  let touchStartX = null;
+  viewport.addEventListener('touchstart', (event) => {
+    touchStartX = event.touches[0].clientX;
+  }, { passive: true });
+  viewport.addEventListener('touchend', (event) => {
+    if (touchStartX == null) return;
+    const dx = event.changedTouches[0].clientX - touchStartX;
+    touchStartX = null;
+    if (dx < -24) goTo(slide + 1);
+    else if (dx > 24) goTo(slide - 1);
+  });
+
+  /* One trackpad swipe = one card. Ignores the inertia tail of wheel
+     events after a swipe instead of using a fixed delay. */
+  let wheelLastAx = null;
+  let wheelLastAt = 0;
+  let wheelPeakAx = 0;
+  let wheelFired = false;
+  let wheelFiredAt = 0;
+  viewport.addEventListener('wheel', (event) => {
+    if (Math.abs(event.deltaX) <= Math.abs(event.deltaY) * 1.2) return;
+    event.preventDefault();
+    const now = Date.now();
+    const ax = Math.abs(event.deltaX);
+    if (ax < 2) { wheelLastAx = ax; wheelLastAt = now; return; }
+    if (now - wheelLastAt > 100) { wheelFired = false; wheelPeakAx = 0; }
+    wheelPeakAx = Math.max(wheelPeakAx, ax);
+    const decayed = ax < wheelPeakAx * 0.35;
+    const reaccelerated = wheelLastAx != null && ax > wheelLastAx * 1.8 + 3;
+    if (!wheelFired || (decayed && reaccelerated && now - wheelFiredAt > 250)) {
+      wheelFired = true;
+      wheelFiredAt = now;
+      wheelPeakAx = ax;
+      if (event.deltaX > 0) goTo(slide + 1); else goTo(slide - 1);
+    }
+    wheelLastAx = ax;
+    wheelLastAt = now;
+  }, { passive: false });
+
+  measure();
+  window.addEventListener('resize', measure);
 }
