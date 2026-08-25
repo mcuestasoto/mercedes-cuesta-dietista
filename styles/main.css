@@ -449,12 +449,15 @@ button:focus-visible {
   color: var(--ink);
   border: 1px solid var(--ink);
   cursor: pointer;
-  transition: background 150ms ease, border-color 150ms ease, color 150ms ease, transform 100ms ease;
+  transition: background 150ms ease, border-color 150ms ease, color 150ms ease;
   flex: 0 0 auto;
 }
 
-/* Hover: entra un tinte de fondo suave — invita a pulsar. */
-.button:hover {
+/* Hover: entra un tinte de fondo suave — invita a pulsar. Al hacer
+   clic no pasa nada más: el ratón sigue encima, así que se ve el
+   mismo hover, sin relleno sólido ni ningún otro efecto añadido. */
+.button:hover,
+.button:active {
   background: var(--card);
   border-color: var(--accent);
   color: var(--accent-text);
@@ -462,14 +465,6 @@ button:focus-visible {
 
 /* Focus (teclado): solo el anillo heredado de la regla global de abajo,
    sin tinte de fondo — así no se confunde con un hover. */
-
-/* Pulsado: relleno sólido de acento, distinto de hover y de focus. */
-.button:active {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: var(--bg);
-  transform: scale(0.98);
-}
 
 /* El principal necesitaba más que un borde de color para destacar
    (una sola pista de tono es difícil de notar y puede ser invisible
@@ -480,16 +475,11 @@ button:focus-visible {
   background: rgba(139, 154, 118, 0.12);
 }
 
-.button--primary:hover {
+.button--primary:hover,
+.button--primary:active {
   background: rgba(139, 154, 118, 0.28);
   border-color: var(--accent);
   color: var(--accent-text);
-}
-
-.button--primary:active {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: var(--bg);
 }
 
 /* Card grids */
@@ -795,13 +785,13 @@ button:focus-visible {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background 150ms ease, border-color 150ms ease, color 150ms ease, transform 100ms ease;
+  transition: background 150ms ease, border-color 150ms ease, color 150ms ease;
   color: var(--ink);
   border: 1px solid var(--ink);
 }
 
-.collab__code:hover { background: var(--card); border-color: var(--accent); color: var(--accent-text); }
-.collab__code:active { background: var(--accent); border-color: var(--accent); color: var(--bg); transform: scale(0.98); }
+.collab__code:hover,
+.collab__code:active { background: var(--card); border-color: var(--accent); color: var(--accent-text); }
 .collab__code.is-copied { color: var(--accent-text); border-color: var(--accent); }
 
 /* WhatsApp FAB */
@@ -813,16 +803,16 @@ button:focus-visible {
   width: 46px;
   height: 46px;
   border-radius: var(--radius);
-  background: var(--ink);
+  background: var(--card);
   border: 1.5px solid var(--accent);
   box-shadow: 0 4px 16px rgba(30, 30, 27, 0.28);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--bg);
+  color: var(--ink);
   opacity: 0;
   pointer-events: none;
-  transition: opacity 200ms ease, background 200ms ease, border-color 200ms ease;
+  transition: opacity 200ms ease, background 200ms ease, border-color 200ms ease, color 200ms ease;
 }
 
 .whatsapp-fab.is-visible { opacity: 1; pointer-events: auto; }
@@ -830,8 +820,7 @@ button:focus-visible {
 @media (hover: hover) and (pointer: fine) {
   .whatsapp-fab:hover,
   .whatsapp-fab:focus-visible {
-    background: var(--accent);
-    color: var(--bg);
+    color: var(--accent-text);
   }
 }
 
