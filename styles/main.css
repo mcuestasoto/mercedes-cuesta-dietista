@@ -799,7 +799,6 @@ button:focus-visible {
   .whatsapp-fab:hover,
   .whatsapp-fab:focus-visible {
     background: var(--accent);
-    border-color: var(--accent);
     color: var(--bg);
   }
 }
