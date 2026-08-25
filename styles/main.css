@@ -356,10 +356,8 @@ button:focus-visible {
 
 .hero__topics {
   display: flex;
-  flex-wrap: nowrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px 18px;
+  flex-wrap: wrap;
+  align-items: baseline;
   width: 100%;
   padding-top: 16px;
   border-top: 1px solid var(--line);
@@ -375,6 +373,13 @@ button:focus-visible {
   text-transform: uppercase;
   color: var(--muted);
   white-space: nowrap;
+}
+
+.hero__topics li:not(:first-child)::before {
+  content: '·';
+  display: inline-block;
+  margin: 0 12px;
+  color: var(--line);
 }
 
 .hero__actions {
@@ -403,8 +408,8 @@ button:focus-visible {
 
 @media (max-width: 940px) {
   .hero__content { align-items: stretch; max-width: 100%; }
-  .hero__topics { flex-wrap: wrap; gap: 8px 14px; }
   .hero__topics li { font-size: 12px; letter-spacing: 0.06em; }
+  .hero__topics li:not(:first-child)::before { margin: 0 8px; }
   .hero__actions { width: 100%; gap: 12px; }
   .hero__media { flex: 1 1 100%; max-width: 390px; margin: 0 auto; }
 }
