@@ -659,13 +659,15 @@ button:focus-visible {
 
 .carousel-dots span {
   width: 100%;
-  height: 1px;
+  height: 2px;
   background: var(--muted);
   display: block;
   transition: background 200ms ease;
 }
 
-.carousel-dots button.is-current span { background: var(--accent-text); }
+.carousel-dots button:hover span { background: var(--accent-text); }
+.carousel-dots button.is-current span { background: var(--ink); }
+.carousel-dots button.is-current:hover span { background: var(--accent-text); }
 
 .carousel-arrows { display: flex; align-items: center; gap: 6px; }
 
