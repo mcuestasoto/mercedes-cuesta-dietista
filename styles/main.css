@@ -654,15 +654,14 @@ button:focus-visible {
 }
 
 .carousel-dots span {
-  width: 14px;
-  height: 3px;
+  width: 12px;
+  height: 1px;
   background: var(--ink);
   display: block;
-  border-radius: 2px;
   transition: background 200ms ease, width 200ms ease;
 }
 
-.carousel-dots button.is-current span { width: 26px; }
+.carousel-dots button.is-current span { width: 20px; }
 .carousel-dots button:hover span { background: var(--accent-text); }
 
 .carousel-arrows { display: flex; align-items: center; gap: 6px; }
