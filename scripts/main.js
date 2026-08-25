@@ -52,21 +52,27 @@ allNavLinks.forEach((link) => {
 });
 
 /* Active section highlighting */
-const sections = document.querySelectorAll('[data-section]');
-if ('IntersectionObserver' in window && sections.length) {
-  const spy = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      const id = entry.target.getAttribute('id');
-      allNavLinks.forEach((link) => {
-        const isActive = link.getAttribute('href') === `#${id}`;
-        link.classList.toggle('is-active', isActive);
-        if (isActive) link.setAttribute('aria-current', 'true');
-        else link.removeAttribute('aria-current');
-      });
+const spySections = ['sobre-mi', 'programa', 'testimonios', 'faq', 'contacto']
+  .map((id) => document.getElementById(id))
+  .filter(Boolean);
+
+if (spySections.length) {
+  const updateActiveSection = () => {
+    const line = window.innerHeight * 0.3;
+    let current = '';
+    spySections.forEach((section) => {
+      if (section.getBoundingClientRect().top <= line) current = section.id;
     });
-  }, { rootMargin: '-28% 0px -62% 0px', threshold: 0.01 });
-  sections.forEach((section) => spy.observe(section));
+    allNavLinks.forEach((link) => {
+      const isActive = link.getAttribute('href') === `#${current}`;
+      link.classList.toggle('is-active', isActive);
+      if (isActive) link.setAttribute('aria-current', 'true');
+      else link.removeAttribute('aria-current');
+    });
+  };
+  updateActiveSection();
+  window.addEventListener('scroll', updateActiveSection, { passive: true });
+  window.addEventListener('resize', updateActiveSection);
 }
 
 /* FAQ accordion */
@@ -211,10 +217,8 @@ if (viewport && track) {
     else if (dx > 24) goTo(slide - 1);
   });
 
-  /* Trackpad/wheel horizontal swipe: fires once per physical gesture, with
-     no artificial delay between separate swipes. A gesture ends once its
-     wheel events go quiet for >100ms; a reacceleration inside that window
-     (trackpad inertia) is ignored so one swipe never advances two cards. */
+  /* One trackpad swipe = one card. Ignores the inertia tail of wheel
+     events after a swipe instead of using a fixed delay. */
   let wheelLastAx = null;
   let wheelLastAt = 0;
   let wheelPeakAx = 0;

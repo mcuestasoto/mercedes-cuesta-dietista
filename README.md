@@ -29,7 +29,9 @@ mercedes-cuesta-dietista/
 ## Secciones
 
 - Inicio
-- Sobre mí (Formación, Enfoque)
+- Sobre mí
+- Formación
+- Enfoque
 - Programa
 - Testimonios
 - Preguntas frecuentes
@@ -49,7 +51,7 @@ Web estática sin formularios, sin analítica, sin cookies publicitarias y sin p
 
 ## Últimos ajustes
 
-- Rediseño completo: tipografía Montserrat, paleta verde oliva y soporte de modo oscuro (`prefers-color-scheme`).
-- Nuevas secciones “Programa” (pasos numerados), “Testimonios” (carrusel accesible) y “Preguntas frecuentes” (acordeón).
-- Página 404 personalizada en la raíz del sitio.
-- Botón flotante de WhatsApp que aparece al hacer scroll.
+- Rediseño completo de la identidad visual: tipografía Montserrat, paleta verde oliva y modo oscuro automático (`prefers-color-scheme`).
+- Secciones nuevas: “Programa” (pasos numerados), “Testimonios” (carrusel) y “Preguntas frecuentes” (acordeón).
+- Página 404 personalizada.
+- Botón de WhatsApp flotante, visible al hacer scroll.
