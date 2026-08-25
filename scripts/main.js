@@ -46,7 +46,7 @@ allNavLinks.forEach((link) => {
 });
 
 /* Active section highlighting */
-const spySections = ['como-trabajo', 'programa', 'sobre-mi', 'testimonios', 'faq', 'contacto']
+const spySections = ['sobre-mi', 'como-trabajo', 'programa', 'testimonios', 'faq', 'contacto']
   .map((id) => document.getElementById(id))
   .filter(Boolean);
 

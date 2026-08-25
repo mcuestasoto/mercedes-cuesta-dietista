@@ -429,9 +429,12 @@ button:focus-visible {
   .hero__media { flex: 1 1 100%; max-width: 390px; margin: 0 auto; }
 }
 
-/* Buttons */
+/* Buttons: un único estilo (contorno, sin relleno) para que todos se
+   lean como la misma familia. El único que debe destacar (Quiero
+   empezar) lo hace con un borde de color, no con un relleno sólido
+   (un botón lleno en reposo se confunde con un estado de hover). */
 .button {
-  font-weight: 500;
+  font-weight: 400;
   font-size: 15px;
   padding: 14px 24px;
   border-radius: var(--radius);
@@ -441,54 +444,24 @@ button:focus-visible {
   justify-content: center;
   gap: 10px;
   text-align: center;
-  border: 1px solid transparent;
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--ink);
   cursor: pointer;
   transition: background 200ms ease, border-color 200ms ease, color 200ms ease;
   flex: 0 0 auto;
 }
 
+.button:hover,
+.button:focus-visible {
+  background: var(--card);
+  border-color: var(--accent);
+  color: var(--accent-text);
+}
+
 .button--primary {
-  background: var(--ink);
-  color: var(--bg);
-  border-color: var(--ink);
-}
-
-.button--primary:hover,
-.button--primary:focus-visible {
-  background: var(--accent);
+  font-weight: 500;
   border-color: var(--accent);
-  color: var(--bg);
-}
-
-.button--secondary {
-  background: transparent;
-  color: var(--ink);
-  border-color: var(--ink);
-  font-weight: 400;
-}
-
-.button--secondary:hover,
-.button--secondary:focus-visible {
-  background: var(--card);
-  border-color: var(--accent);
-  color: var(--accent-text);
-}
-
-/* Botón fantasma: misma forma que los otros dos, sin relleno ni borde,
-   para acciones de salida (redes, webs externas) que no compiten con
-   las llamadas a la acción reales. */
-.button--ghost {
-  background: transparent;
-  color: var(--ink);
-  border-color: transparent;
-  font-weight: 400;
-}
-
-.button--ghost:hover,
-.button--ghost:focus-visible {
-  background: var(--card);
-  border-color: var(--card);
-  color: var(--accent-text);
 }
 
 /* Card grids */
@@ -813,7 +786,7 @@ button:focus-visible {
   height: 46px;
   border-radius: var(--radius);
   background: var(--ink);
-  border: 1.5px solid var(--line);
+  border: 1.5px solid var(--accent);
   box-shadow: 0 4px 16px rgba(30, 30, 27, 0.28);
   display: flex;
   align-items: center;
