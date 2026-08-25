@@ -568,7 +568,7 @@ button:focus-visible {
 .carousel-viewport {
   overflow: hidden;
   max-width: var(--container);
-  margin: 0 auto;
+  margin: 32px auto 0;
   width: 100%;
   outline-offset: 6px;
   touch-action: pan-y;
@@ -631,7 +631,7 @@ button:focus-visible {
 
 .carousel-controls {
   max-width: var(--container);
-  margin: 0 auto;
+  margin: 32px auto 0;
   width: 100%;
   display: flex;
   align-items: center;
