@@ -211,14 +211,33 @@ if (viewport && track) {
     else if (dx > 24) goTo(slide - 1);
   });
 
-  let wheelCooldown = false;
+  /* Trackpad/wheel horizontal swipe: fires once per physical gesture, with
+     no artificial delay between separate swipes. A gesture ends once its
+     wheel events go quiet for >100ms; a reacceleration inside that window
+     (trackpad inertia) is ignored so one swipe never advances two cards. */
+  let wheelLastAx = null;
+  let wheelLastAt = 0;
+  let wheelPeakAx = 0;
+  let wheelFired = false;
+  let wheelFiredAt = 0;
   viewport.addEventListener('wheel', (event) => {
     if (Math.abs(event.deltaX) <= Math.abs(event.deltaY) * 1.2) return;
     event.preventDefault();
-    if (wheelCooldown) return;
-    wheelCooldown = true;
-    if (event.deltaX > 0) goTo(slide + 1); else goTo(slide - 1);
-    window.setTimeout(() => { wheelCooldown = false; }, 300);
+    const now = Date.now();
+    const ax = Math.abs(event.deltaX);
+    if (ax < 2) { wheelLastAx = ax; wheelLastAt = now; return; }
+    if (now - wheelLastAt > 100) { wheelFired = false; wheelPeakAx = 0; }
+    wheelPeakAx = Math.max(wheelPeakAx, ax);
+    const decayed = ax < wheelPeakAx * 0.35;
+    const reaccelerated = wheelLastAx != null && ax > wheelLastAx * 1.8 + 3;
+    if (!wheelFired || (decayed && reaccelerated && now - wheelFiredAt > 250)) {
+      wheelFired = true;
+      wheelFiredAt = now;
+      wheelPeakAx = ax;
+      if (event.deltaX > 0) goTo(slide + 1); else goTo(slide - 1);
+    }
+    wheelLastAx = ax;
+    wheelLastAt = now;
   }, { passive: false });
 
   measure();
