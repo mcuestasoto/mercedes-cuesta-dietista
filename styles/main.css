@@ -790,13 +790,9 @@ button:focus-visible {
 
 .whatsapp-fab.is-visible { opacity: 1; pointer-events: auto; }
 
-.whatsapp-fab:focus-visible {
-  background: var(--accent);
-  border-color: var(--accent);
-}
-
 @media (hover: hover) and (pointer: fine) {
-  .whatsapp-fab:hover {
+  .whatsapp-fab:hover,
+  .whatsapp-fab:focus-visible {
     background: var(--accent);
     border-color: var(--accent);
   }
