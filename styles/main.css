@@ -329,6 +329,39 @@ button:focus-visible {
 
 .prose p.lede { font-weight: 500; }
 
+/* Sobre mí: la intro y Formación se colocan en dos columnas cuando hay
+   sitio (rellena el hueco a la derecha del texto con contenido real,
+   no decorativo); por debajo de 1025px se apilan como cualquier otra
+   sección, sin tocar el resto del layout. */
+#sobre-mi .about-split {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+@media (min-width: 1025px) {
+  #sobre-mi .about-split {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 48px;
+  }
+
+  #sobre-mi .about-split .prose {
+    flex: 0 0 var(--prose-width);
+  }
+
+  #sobre-mi .about-split .card-block {
+    flex: 1;
+    min-width: 0;
+    border-top: none;
+    padding-top: 0;
+  }
+
+  #sobre-mi .about-split .card-block .card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Hero */
 .hero .container {
   display: flex;
