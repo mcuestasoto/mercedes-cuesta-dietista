@@ -309,7 +309,6 @@ button:focus-visible {
   flex-direction: column;
   gap: 18px;
   max-width: var(--prose-width);
-  margin: 0 auto;
 }
 
 .prose p {
@@ -327,13 +326,6 @@ button:focus-visible {
   text-wrap: pretty;
   max-width: var(--prose-width);
   margin: 0;
-}
-
-/* Centers the block itself (not the text) when it leads a section on its
-   own, above full-width content. Left as default (margin:0) when it sits
-   right above a left-aligned action row, so both stay flush together. */
-.text-body--lead {
-  margin: 0 auto;
 }
 
 .prose p.lede { font-weight: 500; }
@@ -1076,12 +1068,10 @@ button:focus-visible {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   gap: 16px;
   width: 100%;
   max-width: 480px;
-  margin: 0 auto;
-  text-align: center;
 }
 
 .error-page__block .error-eyebrow {
