@@ -794,7 +794,12 @@ button:focus-visible {
   width: 53px;
   height: 53px;
   border-radius: var(--radius);
-  background: var(--card);
+  /* Mismo tinte que .button--primary, pero opaco (color-mix, no
+     rgba): como flota sobre fotos, no puede dejar pasar lo que hay
+     detrás o el icono se vuelve ilegible. Con el mismo bg y el mismo
+     porcentaje de acento, se ve exactamente igual sobre el fondo de
+     la página, y se mantiene legible sobre cualquier imagen. */
+  background: color-mix(in srgb, var(--accent) 12%, var(--bg));
   border: 1.5px solid var(--accent);
   box-shadow: 0 4px 16px rgba(30, 30, 27, 0.28);
   display: flex;
@@ -811,6 +816,7 @@ button:focus-visible {
 @media (hover: hover) and (pointer: fine) {
   .whatsapp-fab:hover,
   .whatsapp-fab:focus-visible {
+    background: color-mix(in srgb, var(--accent) 28%, var(--bg));
     color: var(--accent-text);
   }
 }
