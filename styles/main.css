@@ -441,34 +441,18 @@ button:focus-visible {
   flex: 0 0 auto;
 }
 
-/* Hover: entra un tinte de fondo suave — invita a pulsar. Al hacer
-   clic no pasa nada más: el ratón sigue encima, así que se ve el
-   mismo hover, sin relleno sólido ni ningún otro efecto añadido. */
+/* Hover: mismo botón, sin cambiar borde ni color de texto — solo un
+   tinte neutro (negro traslúcido en claro, blanco traslúcido en
+   oscuro, vía --ink) que confirma que se puede pulsar. Al hacer clic
+   no pasa nada más: mismo tinte, sin relleno sólido ni otro efecto. */
 .button:hover,
 .button:active {
-  background: var(--card);
-  border-color: var(--accent);
-  color: var(--accent-text);
+  background: color-mix(in srgb, var(--ink) 8%, transparent);
+  color: var(--ink);
 }
 
 /* Focus (teclado): solo el anillo heredado de la regla global de abajo,
    sin tinte de fondo — así no se confunde con un hover. */
-
-/* El principal necesitaba más que un borde de color para destacar
-   (una sola pista de tono es difícil de notar y puede ser invisible
-   para daltonismo); añade un fondo tintado suave como segunda pista. */
-.button--primary {
-  font-weight: 500;
-  border-color: var(--accent);
-  background: rgba(139, 154, 118, 0.12);
-}
-
-.button--primary:hover,
-.button--primary:active {
-  background: rgba(139, 154, 118, 0.28);
-  border-color: var(--accent);
-  color: var(--accent-text);
-}
 
 /* Card grids */
 .card-block {
@@ -782,7 +766,7 @@ button:focus-visible {
 }
 
 .collab__code:hover,
-.collab__code:active { background: var(--card); border-color: var(--accent); color: var(--accent-text); }
+.collab__code:active { background: color-mix(in srgb, var(--ink) 8%, transparent); }
 .collab__code.is-copied { color: var(--accent-text); border-color: var(--accent); }
 
 /* WhatsApp FAB */
@@ -794,13 +778,14 @@ button:focus-visible {
   width: 53px;
   height: 53px;
   border-radius: var(--radius);
-  /* Mismo tinte que .button--primary, pero opaco (color-mix, no
-     rgba): como flota sobre fotos, no puede dejar pasar lo que hay
-     detrás o el icono se vuelve ilegible. Con el mismo bg y el mismo
-     porcentaje de acento, se ve exactamente igual sobre el fondo de
-     la página, y se mantiene legible sobre cualquier imagen. */
-  background: color-mix(in srgb, var(--accent) 12%, var(--bg));
-  border: 1.5px solid var(--accent);
+  /* Mismo diseño exacto que el resto de botones (fondo transparente,
+     borde y texto var(--ink)). Como flota sobre fotos, "transparente"
+     no puede ser literal (el icono se vuelve ilegible sobre fondos
+     oscuros, comprobado) — usa var(--bg) sólido, que es exactamente
+     el color que se ve "a través" de un botón normal en el resto de
+     la página, así que el efecto visual es el mismo. */
+  background: var(--bg);
+  border: 1px solid var(--ink);
   box-shadow: 0 4px 16px rgba(30, 30, 27, 0.28);
   display: flex;
   align-items: center;
@@ -808,7 +793,7 @@ button:focus-visible {
   color: var(--ink);
   opacity: 0;
   pointer-events: none;
-  transition: opacity 200ms ease, background 200ms ease, border-color 200ms ease, color 200ms ease;
+  transition: opacity 200ms ease, background 200ms ease, color 200ms ease;
 }
 
 .whatsapp-fab.is-visible { opacity: 1; pointer-events: auto; }
@@ -816,8 +801,8 @@ button:focus-visible {
 @media (hover: hover) and (pointer: fine) {
   .whatsapp-fab:hover,
   .whatsapp-fab:focus-visible {
-    background: color-mix(in srgb, var(--accent) 28%, var(--bg));
-    color: var(--accent-text);
+    background: color-mix(in srgb, var(--ink) 8%, var(--bg));
+    color: var(--ink);
   }
 }
 
