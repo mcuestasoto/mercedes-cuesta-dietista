@@ -308,16 +308,31 @@ button:focus-visible {
   flex-direction: column;
   gap: 18px;
   max-width: var(--prose-width);
+  margin: 0 auto;
 }
 
-.prose p,
-.text-body {
+.prose p {
   font-weight: 400;
   font-size: 17px;
   line-height: 1.65;
   margin: 0;
   text-wrap: pretty;
+}
+
+.text-body {
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1.65;
+  text-wrap: pretty;
   max-width: var(--prose-width);
+  margin: 0;
+}
+
+/* Centers the block itself (not the text) when it leads a section on its
+   own, above full-width content. Left as default (margin:0) when it sits
+   right above a left-aligned action row, so both stay flush together. */
+.text-body--lead {
+  margin: 0 auto;
 }
 
 .prose p.lede { font-weight: 500; }
