@@ -355,6 +355,8 @@ button:focus-visible {
   margin-top: 4px;
 }
 
+.hero__topics--mobile { display: none; }
+
 .hero__topics-label {
   font-weight: 500;
   font-size: 13px;
@@ -362,31 +364,36 @@ button:focus-visible {
   margin: 0 0 10px;
 }
 
-.hero__topics-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  border-top: 1px solid var(--line);
-  border-left: 1px solid var(--line);
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.hero__topics-grid li {
-  display: flex;
-  align-items: center;
-  padding: 14px 16px;
-  border-right: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
+.hero__topics-text {
   font-weight: 500;
   font-size: 13px;
-  letter-spacing: 0.04em;
-  line-height: 1.4;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.9;
   color: var(--muted);
+  margin: 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
 }
 
+/* Composición específica para móvil: no es la de escritorio reducida.
+   Márgenes más ajustados, H1 más compacto, los temas se repiten
+   después de la foto (se ocultan aquí y se muestran los de abajo) con
+   la foto recortada a una relación más corta para no alargar el
+   scroll. */
 @media (max-width: 640px) {
-  .hero__topics-grid { grid-template-columns: repeat(2, 1fr); }
+  .section--hero { padding-left: 22px; padding-right: 22px; }
+
+  .hero__content h1 { font-size: clamp(38px, 10vw, 44px); }
+
+  .hero__topics--desktop { display: none; }
+  .hero__topics--mobile { display: block; margin-top: 0; }
+
+  .hero__image {
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: 50% 15%;
+  }
 }
 
 .hero__actions {
@@ -451,6 +458,14 @@ button:focus-visible {
 .button:active {
   background: color-mix(in srgb, var(--ink) 8%, transparent);
   color: var(--ink);
+}
+
+/* El CTA de WhatsApp es la única acción de conversión real del sitio;
+   mismo diseño en reposo que el resto, pero un hover más marcado para
+   que llame algo más la atención justo cuando se va a pulsar. */
+.button[data-whatsapp-link]:hover,
+.button[data-whatsapp-link]:active {
+  background: color-mix(in srgb, var(--ink) 18%, transparent);
 }
 
 /* Focus (teclado): solo el anillo heredado de la regla global de abajo,
@@ -802,7 +817,7 @@ button:focus-visible {
 @media (hover: hover) and (pointer: fine) {
   .whatsapp-fab:hover,
   .whatsapp-fab:focus-visible {
-    background: color-mix(in srgb, var(--ink) 8%, var(--bg));
+    background: color-mix(in srgb, var(--ink) 18%, var(--bg));
     color: var(--ink);
   }
 }
