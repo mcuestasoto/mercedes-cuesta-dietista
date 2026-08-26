@@ -5,7 +5,6 @@
   --line: #D9D4C7;
   --accent: #8B9A76;
   --accent-text: #697557;
-  --on-accent: #1E1E1B;
   --card: #F3EFE7;
   --hdr-bg: #F1ECE0;
   --footer-bg: #1E1E1B;
@@ -493,35 +492,6 @@ button:focus-visible {
   background: color-mix(in srgb, var(--ink) 18%, transparent);
 }
 
-/* Fila de contacto (WhatsApp / Email / Instagram): mismo botón base,
-   pero con jerarquía visual — WhatsApp con relleno de marca casi sólido,
-   Email/Instagram con un tinte suave de la misma marca y borde bien
-   visible, para que sigan leyéndose inequívocamente como botones. */
-.contact__actions .button--brand {
-  background: color-mix(in srgb, var(--accent) 94%, black 6%);
-  border-color: transparent;
-  color: var(--on-accent);
-}
-
-.contact__actions .button--brand:hover,
-.contact__actions .button--brand:active {
-  background: color-mix(in srgb, var(--accent) 90%, black 10%);
-  border-color: transparent;
-  color: var(--on-accent);
-}
-
-.contact__actions .button--tinted {
-  background: color-mix(in srgb, var(--accent) 16%, transparent);
-  border-color: var(--accent-text);
-  color: var(--ink);
-}
-
-.contact__actions .button--tinted:hover,
-.contact__actions .button--tinted:active {
-  background: color-mix(in srgb, var(--accent) 26%, transparent);
-  border-color: var(--accent-text);
-  color: var(--ink);
-}
 
 /* Focus (teclado): solo el anillo heredado de la regla global de abajo,
    sin tinte de fondo — así no se confunde con un hover. */
