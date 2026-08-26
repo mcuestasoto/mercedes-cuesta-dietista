@@ -770,6 +770,17 @@ button:focus-visible {
   .contact__actions .button { width: 100%; }
 }
 
+.contact__alt {
+  font-size: 15px;
+  color: var(--muted);
+  margin: 20px 0 0;
+}
+
+.contact__alt a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 .collab {
   margin-top: 12px;
 }
