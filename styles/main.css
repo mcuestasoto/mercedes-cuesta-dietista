@@ -748,6 +748,7 @@ button:focus-visible {
   color: var(--muted);
   line-height: 1.65;
   margin: 0 0 20px;
+  max-width: var(--prose-width);
   text-wrap: pretty;
   display: none;
 }
@@ -863,6 +864,12 @@ button:focus-visible {
   gap: 24px;
 }
 
+.footer__identity {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
 .footer__logo {
   height: 40px;
   flex: 0 0 auto;
@@ -876,6 +883,12 @@ button:focus-visible {
   height: 100%;
   width: auto;
   object-fit: contain;
+}
+
+.footer__credential {
+  font-size: 13px;
+  color: var(--footer-ink);
+  margin: 0;
 }
 
 .footer__links {

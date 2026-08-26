@@ -97,7 +97,7 @@
           "name": "¿Cuánto cuesta el Programa?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Escríbeme por WhatsApp y te mando la información completa del Programa junto con el precio."
+            "text": "Escríbeme por WhatsApp y te enviaré la información completa del programa, incluido el precio."
           }
         },
         {
@@ -110,10 +110,58 @@
         },
         {
           "@type": "Question",
+          "name": "¿Voy a recibir un menú cerrado?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Trabajamos con pautas y estructura, no con un menú rígido de platos concretos, para que puedas adaptar las comidas a lo que tengas, te apetezca o encaje con tu rutina."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Tengo que pesar los alimentos?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No es imprescindible. Podemos trabajar con medidas caseras y raciones orientativas; si en algún momento pesar te ayuda a entender mejor las cantidades, lo vemos juntas, pero no es un requisito del programa."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué pasa si como fuera de casa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nada que no se pueda ajustar. Comer fuera, en casa de otros o de viaje forma parte de la vida real, así que lo tenemos en cuenta desde el principio para que sepas cómo moverte sin descuadrar tus hábitos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Puedo cambiar alimentos que no me gustan?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. El plan se adapta a tus gustos, alergias o intolerancias y a los alimentos que tengas más a mano, siempre buscando alternativas que cumplan el mismo objetivo nutricional."
+          }
+        },
+        {
+          "@type": "Question",
           "name": "¿Necesito experiencia previa o estar ya en forma?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "No. El programa se adapta tanto si empiezas de cero como si ya entrenas y quieres mejorar tu alimentación."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué objetivos puedo trabajar contigo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Alimentación general, hábitos, composición corporal y rendimiento deportivo, entre otros. En la consulta inicial concretamos cuál es tu objetivo real y el plan se diseña en torno a él."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué puedo consultarte durante el seguimiento?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cualquier duda sobre tu alimentación, tus hábitos o cómo te está sentando el plan: ajustes, sustituciones, cómo actuar en una situación concreta o cómo va tu progreso."
           }
         },
         {
@@ -323,24 +371,19 @@
       <div class="carousel-viewport" tabindex="0" role="group" aria-label="Opiniones, usa las flechas del teclado" data-carousel-viewport>
         <div class="carousel-track" data-carousel-track>
           <article class="testimonial-card">
-            <p class="testimonial-card__topic">Hábitos</p>
-            <p>Aprendí a comer mejor sin pasar hambre ni tener que renunciar a los alimentos que me gustan. Para mí, lo más importante fue entender que no se trata de hacer una dieta durante un tiempo, sino de aprender a mantener unos hábitos saludables.</p>
-            <p class="testimonial-card__author">— Cliente anónima</p>
-          </article>
-          <article class="testimonial-card">
             <p class="testimonial-card__topic">Acompañamiento</p>
             <p>Me ayudó mucho entender el porqué de las cosas, saber que no estaba sola y que podía preguntarle lo que necesitaba. Lo que más destacaría es la cercanía, la naturalidad y la flexibilidad.</p>
             <p class="testimonial-card__author">— Marta</p>
           </article>
           <article class="testimonial-card">
-            <p class="testimonial-card__topic">Entrenamiento</p>
-            <p>Me ayudó a entender cómo prepararme para comer según mis entrenamientos diarios y entendí un poco más de nutrición.</p>
-            <p class="testimonial-card__author">— David</p>
-          </article>
-          <article class="testimonial-card">
             <p class="testimonial-card__topic">Relación con la comida</p>
             <p>Me llegó mucho el hecho de hacer consciencia antes, durante y después de comer y quitar etiquetas para poder disfrutar de la comida cuando así lo decida.</p>
             <p class="testimonial-card__author">— Cliente anónimo</p>
+          </article>
+          <article class="testimonial-card">
+            <p class="testimonial-card__topic">Hábitos</p>
+            <p>Aprendí a comer mejor sin pasar hambre ni tener que renunciar a los alimentos que me gustan. Para mí, lo más importante fue entender que no se trata de hacer una dieta durante un tiempo, sino de aprender a mantener unos hábitos saludables.</p>
+            <p class="testimonial-card__author">— Cliente anónima</p>
           </article>
           <article class="testimonial-card">
             <p class="testimonial-card__topic">Variedad y adaptación</p>
@@ -351,6 +394,11 @@
             <p class="testimonial-card__topic">Motivación y adherencia</p>
             <p>Empecé con el objetivo de perder peso y poco a poco aprender a comer sano y bien. Estuve súper a gusto contigo. Lo que más me ayudó fue que estaba todo rico y la motivación que transmitías.</p>
             <p class="testimonial-card__author">— Raquel</p>
+          </article>
+          <article class="testimonial-card">
+            <p class="testimonial-card__topic">Entrenamiento</p>
+            <p>Me ayudó a entender cómo prepararme para comer según mis entrenamientos diarios y entendí un poco más de nutrición.</p>
+            <p class="testimonial-card__author">— David</p>
           </article>
         </div>
       </div>
@@ -378,7 +426,7 @@
                 <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" /></svg>
               </button>
             </h3>
-            <p class="faq-item__answer" id="faq-1">Escríbeme por WhatsApp y te mando la información completa del Programa junto con el precio.</p>
+            <p class="faq-item__answer" id="faq-1">Escríbeme por WhatsApp y te enviaré la información completa del programa, incluido el precio.</p>
           </div>
           <div class="faq-item" data-faq-item>
             <h3 class="faq-item__heading">
@@ -392,29 +440,83 @@
           <div class="faq-item" data-faq-item>
             <h3 class="faq-item__heading">
               <button class="faq-item__question" data-faq-question aria-expanded="false" aria-controls="faq-3">
-                ¿Necesito experiencia previa o estar ya en forma?
+                ¿Voy a recibir un menú cerrado?
                 <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" /></svg>
               </button>
             </h3>
-            <p class="faq-item__answer" id="faq-3">No. El programa se adapta tanto si empiezas de cero como si ya entrenas y quieres mejorar tu alimentación.</p>
+            <p class="faq-item__answer" id="faq-3">No. Trabajamos con pautas y estructura, no con un menú rígido de platos concretos, para que puedas adaptar las comidas a lo que tengas, te apetezca o encaje con tu rutina.</p>
           </div>
           <div class="faq-item" data-faq-item>
             <h3 class="faq-item__heading">
               <button class="faq-item__question" data-faq-question aria-expanded="false" aria-controls="faq-4">
-                ¿Este servicio sustituye una valoración médica?
+                ¿Tengo que pesar los alimentos?
                 <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" /></svg>
               </button>
             </h3>
-            <p class="faq-item__answer" id="faq-4">No. Es un servicio de orientación en alimentación y hábitos, no sustituye la valoración o el tratamiento de un profesional médico. Si durante la valoración inicial detecto que necesitas atención especializada, te lo comunico y te derivo.</p>
+            <p class="faq-item__answer" id="faq-4">No es imprescindible. Podemos trabajar con medidas caseras y raciones orientativas; si en algún momento pesar te ayuda a entender mejor las cantidades, lo vemos juntas, pero no es un requisito del programa.</p>
           </div>
           <div class="faq-item" data-faq-item>
             <h3 class="faq-item__heading">
               <button class="faq-item__question" data-faq-question aria-expanded="false" aria-controls="faq-5">
+                ¿Qué pasa si como fuera de casa?
+                <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" /></svg>
+              </button>
+            </h3>
+            <p class="faq-item__answer" id="faq-5">Nada que no se pueda ajustar. Comer fuera, en casa de otros o de viaje forma parte de la vida real, así que lo tenemos en cuenta desde el principio para que sepas cómo moverte sin descuadrar tus hábitos.</p>
+          </div>
+          <div class="faq-item" data-faq-item>
+            <h3 class="faq-item__heading">
+              <button class="faq-item__question" data-faq-question aria-expanded="false" aria-controls="faq-6">
+                ¿Puedo cambiar alimentos que no me gustan?
+                <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" /></svg>
+              </button>
+            </h3>
+            <p class="faq-item__answer" id="faq-6">Sí. El plan se adapta a tus gustos, alergias o intolerancias y a los alimentos que tengas más a mano, siempre buscando alternativas que cumplan el mismo objetivo nutricional.</p>
+          </div>
+          <div class="faq-item" data-faq-item>
+            <h3 class="faq-item__heading">
+              <button class="faq-item__question" data-faq-question aria-expanded="false" aria-controls="faq-7">
+                ¿Necesito experiencia previa o estar ya en forma?
+                <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" /></svg>
+              </button>
+            </h3>
+            <p class="faq-item__answer" id="faq-7">No. El programa se adapta tanto si empiezas de cero como si ya entrenas y quieres mejorar tu alimentación.</p>
+          </div>
+          <div class="faq-item" data-faq-item>
+            <h3 class="faq-item__heading">
+              <button class="faq-item__question" data-faq-question aria-expanded="false" aria-controls="faq-8">
+                ¿Qué objetivos puedo trabajar contigo?
+                <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" /></svg>
+              </button>
+            </h3>
+            <p class="faq-item__answer" id="faq-8">Alimentación general, hábitos, composición corporal y rendimiento deportivo, entre otros. En la consulta inicial concretamos cuál es tu objetivo real y el plan se diseña en torno a él.</p>
+          </div>
+          <div class="faq-item" data-faq-item>
+            <h3 class="faq-item__heading">
+              <button class="faq-item__question" data-faq-question aria-expanded="false" aria-controls="faq-9">
+                ¿Qué puedo consultarte durante el seguimiento?
+                <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" /></svg>
+              </button>
+            </h3>
+            <p class="faq-item__answer" id="faq-9">Cualquier duda sobre tu alimentación, tus hábitos o cómo te está sentando el plan: ajustes, sustituciones, cómo actuar en una situación concreta o cómo va tu progreso.</p>
+          </div>
+          <div class="faq-item" data-faq-item>
+            <h3 class="faq-item__heading">
+              <button class="faq-item__question" data-faq-question aria-expanded="false" aria-controls="faq-10">
+                ¿Este servicio sustituye una valoración médica?
+                <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" /></svg>
+              </button>
+            </h3>
+            <p class="faq-item__answer" id="faq-10">No. Es un servicio de orientación en alimentación y hábitos, no sustituye la valoración o el tratamiento de un profesional médico. Si durante la valoración inicial detecto que necesitas atención especializada, te lo comunico y te derivo.</p>
+          </div>
+          <div class="faq-item" data-faq-item>
+            <h3 class="faq-item__heading">
+              <button class="faq-item__question" data-faq-question aria-expanded="false" aria-controls="faq-11">
                 ¿Las consultas y el seguimiento son online?
                 <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" /></svg>
               </button>
             </h3>
-            <p class="faq-item__answer" id="faq-5">Sí, todo el servicio es 100% online: las consultas son por videollamada y el resto de comunicación por WhatsApp, de lunes a viernes. El tiempo de respuesta es de un máximo de 48 horas laborables.</p>
+            <p class="faq-item__answer" id="faq-11">Sí, todo el servicio es 100% online: las consultas son por videollamada y el resto de comunicación por WhatsApp, de lunes a viernes. El tiempo de respuesta es de un máximo de 48 horas laborables.</p>
           </div>
         </div>
       </div>
@@ -451,9 +553,12 @@
   <footer class="footer">
     <div class="container">
       <div class="footer__top">
-        <span class="footer__logo">
-          <img src="./assets/logo/monogram-footer.png" alt="Mercedes Cuesta" width="1144" height="786" />
-        </span>
+        <div class="footer__identity">
+          <span class="footer__logo">
+            <img src="./assets/logo/monogram-footer.png" alt="Mercedes Cuesta" width="1144" height="786" />
+          </span>
+          <p class="footer__credential">Mercedes Cuesta · Técnico Superior en Dietética</p>
+        </div>
         <ul class="footer__links">
           <li><a data-whatsapp-link href="https://api.whatsapp.com/send?phone=34614821010&amp;text=Hola%20Mercedes%20%F0%9F%99%82%20he%20visto%20tu%20web%20y%20me%20gustar%C3%ADa%20empezar" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
           <li><a href="https://instagram.com/mcuestasoto" target="_blank" rel="noopener noreferrer">Instagram</a></li>
