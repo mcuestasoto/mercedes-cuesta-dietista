@@ -7,41 +7,28 @@
   <meta name="description" content="Política de privacidad de la web de Mercedes Cuesta, dietista." />
   <meta name="robots" content="noindex, follow" />
   <link rel="canonical" href="https://mercedes-cuesta-dietista.vercel.app/pages/privacidad.html" />
-  <link rel="icon" href="../assets/logo/favicon.ico" sizes="any" />
-  <link rel="icon" href="../assets/logo/favicon.png" type="image/png" />
-  <link rel="apple-touch-icon" href="../assets/logo/apple-touch-icon.png" />
+  <link rel="icon" href="/assets/logo/favicon.ico" sizes="any" />
+  <link rel="icon" href="/assets/logo/favicon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/assets/logo/apple-touch-icon.png" />
   <meta name="theme-color" content="#FAF8F4" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#1E1E1B" media="(prefers-color-scheme: dark)" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&amp;display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../styles/main.css" />
+  <link rel="stylesheet" href="/styles/main.css" />
+  <script defer src="/scripts/include.js"></script>
+  <script defer src="/scripts/main.js"></script>
 </head>
 <body>
 <div class="page-shell">
-  <header class="simple-header">
-    <div class="container nav">
-      <a href="../index.html" class="nav__brand" aria-label="Mercedes Cuesta, volver al inicio">
-        <img src="../assets/logo/wordmark-light.png" alt="Mercedes Cuesta" class="nav__logo nav__logo--light" width="1615" height="162" />
-        <img src="../assets/logo/wordmark-dark.png" alt="Mercedes Cuesta" class="nav__logo nav__logo--dark" width="1615" height="162" />
-      </a>
-      <nav class="simple-nav simple-nav--full" aria-label="Principal">
-        <a href="../index.html#sobre-mi">Sobre mí</a>
-        <a href="../index.html#como-trabajo">Cómo trabajo</a>
-        <a href="../index.html#programa">Programa</a>
-        <a href="../index.html#testimonios">Opiniones</a>
-        <a href="../index.html#faq">FAQ</a>
-        <a href="../index.html#contacto">Contacto</a>
-      </nav>
-      <a class="simple-nav simple-nav--back" href="../index.html">
-        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" /></svg>
-        Inicio
-      </a>
-    </div>
-  </header>
+  <a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
 
-  <main class="legal-main">
+  <div data-include="/partials/header.html"></div>
+
+  <main id="contenido-principal" class="legal-main">
     <div class="container">
+      <div data-include="/partials/back-to-home.html"></div>
+
       <h1>Política de privacidad</h1>
 
       <div class="card-block">
@@ -77,32 +64,7 @@
     </div>
   </main>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__top">
-        <div class="footer__identity">
-          <span class="footer__logo">
-            <img src="../assets/logo/monogram-footer.png" alt="Mercedes Cuesta" width="1144" height="786" />
-          </span>
-          <p class="footer__credential">Mercedes Cuesta · Dietista</p>
-        </div>
-        <ul class="footer__links">
-          <li><a data-whatsapp-link href="https://api.whatsapp.com/send?phone=34614821010&amp;text=Hola%20Mercedes%20%F0%9F%99%82%20he%20visto%20tu%20web%20y%20me%20gustar%C3%ADa%20empezar" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
-          <li><a href="https://instagram.com/mcuestasoto" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-          <li><a href="mailto:mcuesta.dietista@gmail.com">Email</a></li>
-        </ul>
-      </div>
-      <div class="footer__divider"></div>
-      <div class="footer__bottom">
-        <ul class="footer__legal">
-          <li><a href="./aviso-legal.html">Aviso legal</a></li>
-          <li><a href="./privacidad.html">Privacidad</a></li>
-          <li><a href="./cookies.html">Cookies</a></li>
-        </ul>
-        <p class="footer__copy">© 2026 Mercedes Cuesta</p>
-      </div>
-    </div>
-  </footer>
+  <div data-include="/partials/footer.html"></div>
 </div>
 </body>
 </html>

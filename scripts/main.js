@@ -1,3 +1,7 @@
+/* Header/Footer are loaded asynchronously by include.js; wait for them
+   before querying anything that lives inside those partials. */
+(window.partialsReady || Promise.resolve()).then(() => {
+
 /* Header height, kept in sync so sticky-scroll offsets stay accurate on wrap */
 const header = document.querySelector('[data-header]');
 const syncHeaderHeight = () => {
@@ -246,3 +250,5 @@ if (viewport && track) {
   measure();
   window.addEventListener('resize', measure);
 }
+
+});
