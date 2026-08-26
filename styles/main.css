@@ -779,14 +779,13 @@ button:focus-visible {
   height: 53px;
   border-radius: var(--radius);
   /* Mismo diseño exacto que el resto de botones (fondo transparente,
-     borde y texto var(--ink)). Como flota sobre fotos, "transparente"
-     no puede ser literal (el icono se vuelve ilegible sobre fondos
-     oscuros, comprobado) — usa var(--bg) sólido, que es exactamente
-     el color que se ve "a través" de un botón normal en el resto de
-     la página, así que el efecto visual es el mismo. */
+     borde y texto var(--ink), sin sombra). Como flota sobre fotos,
+     "transparente" no puede ser literal (el icono se vuelve ilegible
+     sobre fondos oscuros, comprobado) — usa var(--bg) sólido, que es
+     exactamente el color que se ve "a través" de un botón normal en
+     el resto de la página, así que el efecto visual es el mismo. */
   background: var(--bg);
   border: 1px solid var(--ink);
-  box-shadow: 0 4px 16px rgba(30, 30, 27, 0.28);
   display: flex;
   align-items: center;
   justify-content: center;
