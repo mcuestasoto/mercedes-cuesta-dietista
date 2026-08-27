@@ -399,14 +399,6 @@ button:focus-visible {
   margin: 0;
 }
 
-.hero__text {
-  font-weight: 400;
-  font-size: 17px;
-  line-height: 1.65;
-  margin: 0;
-  text-wrap: pretty;
-}
-
 .hero__topics {
   width: 100%;
   margin-top: 4px;
@@ -431,6 +423,28 @@ button:focus-visible {
   margin: 0;
   padding-top: 16px;
   border-top: 1px solid var(--line);
+}
+
+/* Grid 2×2 para móvil: columnas de igual anchura, y cada fila con la
+   misma altura para sus dos celdas (la más alta de las dos), sin
+   puntos separadores ni saltos de línea imprevistos. */
+.hero__topics-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 20px;
+  margin: 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.hero__topics-grid span {
+  display: block;
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.4;
+  color: var(--muted);
 }
 
 /* Composición específica para móvil: no es la de escritorio reducida.
@@ -1107,7 +1121,6 @@ button:focus-visible {
 @media (max-width: 700px) {
   .prose p,
   .text-body,
-  .hero__text,
   .card p:last-child,
   .card--step .card__body p:last-child,
   .testimonial-card p:not(.testimonial-card__topic):not(.testimonial-card__author),
