@@ -69,19 +69,7 @@
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #1E1E1B;
-    --ink: #F0EDE6;
-    --muted: #B4AFA3;
-    --line: #33332E;
-    --accent-text: #8B9A76;
-    --card: #24241F;
-    --hdr-bg: #232320;
-  }
-}
-
-:root { color-scheme: light dark; }
+:root { color-scheme: light; }
 
 * { box-sizing: border-box; }
 
@@ -118,7 +106,11 @@ a:hover { color: var(--accent-text); }
 
 a:focus-visible,
 button:focus-visible {
-  outline: 2px solid var(--accent);
+  /* --accent (verde oliva de marca) da 2.55-2.84:1 sobre los fondos
+     claros de la web, por debajo del 3:1 que exige WCAG 2.2 para
+     indicadores de foco. --accent-text (mismo verde, oscurecido) sí
+     cumple: 5.00-5.55:1 sobre esos mismos fondos. */
+  outline: 2px solid var(--accent-text);
   outline-offset: 3px;
   border-radius: 4px;
 }
@@ -143,6 +135,10 @@ button:focus-visible {
 }
 
 .skip-link:focus { transform: translateY(0); }
+
+/* Mismo motivo que en el footer: fondo oscuro (--ink), --accent-text
+   no llega a 3:1 aquí. */
+.skip-link:focus-visible { outline-color: var(--accent); }
 
 /* Header */
 .site-header {
@@ -177,13 +173,6 @@ button:focus-visible {
   width: auto;
   flex: 0 0 auto;
   object-fit: contain;
-}
-
-.nav__logo--dark { display: none; }
-
-@media (prefers-color-scheme: dark) {
-  .nav__logo--light { display: none; }
-  .nav__logo--dark { display: block; }
 }
 
 .nav__menu-wrap {
@@ -1138,6 +1127,11 @@ button:focus-visible {
 
 .footer__links a:hover,
 .footer__legal a:hover { color: var(--accent); }
+
+/* El foco global usa --accent-text (2.84:1 sobre el footer oscuro, por
+   debajo del 3:1 exigido); aquí --accent sí cumple, 5.56:1. */
+.footer__links a:focus-visible,
+.footer__legal a:focus-visible { outline-color: var(--accent); }
 
 .footer__divider { height: 1px; background: var(--footer-line); }
 
