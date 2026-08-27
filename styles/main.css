@@ -176,8 +176,6 @@ button:focus-visible {
 
 .nav__cta {
   margin-left: 20px;
-  padding: 10px 20px;
-  font-size: 14px;
   flex-shrink: 0;
 }
 
@@ -262,7 +260,8 @@ button:focus-visible {
 .nav__mobile-menu a.nav__mobile-cta {
   margin-top: 12px;
   font-size: 15px;
-  font-weight: 500;
+  font-weight: 400;
+  transition: background 150ms ease, border-color 150ms ease, color 150ms ease;
 }
 
 @media (max-width: 940px) {
