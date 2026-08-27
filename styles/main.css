@@ -207,8 +207,11 @@ button:focus-visible {
   background: transparent;
   border: none;
   cursor: pointer;
-  width: 38px;
-  height: 23px;
+  /* 44x44 en vez de 38x23: el icono (22x16) queda igual, pero el área
+     pulsable real cumple el tamaño mínimo de objetivo de WCAG 2.2
+     (24x24 CSS px), acercandose a los ~44px recomendados. */
+  width: 44px;
+  height: 44px;
   padding: 0;
   align-items: center;
   justify-content: center;
@@ -675,7 +678,7 @@ button:focus-visible {
 
 @media (min-width: 1025px) {
   .sobre-mi-row {
-    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
     gap: 64px;
   }
 
@@ -845,7 +848,21 @@ button:focus-visible {
   margin: 0;
 }
 
-/* FAQ */
+/* FAQ: titulo en columna propia (28-32% en escritorio) y acordeon en
+   la suya (68-72%), en vez de una sola columna centrada que desperdicia
+   el ancho del contenedor. align-items: start para que el titulo no
+   se estire a la altura del acordeon completo. */
+.faq-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: start;
+  gap: 32px;
+}
+
+@media (min-width: 1025px) {
+  .faq-row { grid-template-columns: minmax(0, 3fr) minmax(0, 7fr); gap: 64px; }
+}
+
 .faq-list { display: flex; flex-direction: column; }
 
 .faq-item { border-top: 1px solid var(--line); }
@@ -952,7 +969,7 @@ button:focus-visible {
 
 @media (min-width: 1025px) {
   .closing-row {
-    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
     gap: 64px;
     align-items: start;
   }

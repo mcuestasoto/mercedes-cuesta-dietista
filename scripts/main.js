@@ -67,7 +67,7 @@ if (spySections.length) {
       if (section.getBoundingClientRect().top <= line) current = section.id;
     });
     allNavLinks.forEach((link) => {
-      const isActive = link.getAttribute('href') === `#${current}`;
+      const isActive = link.getAttribute('href') === `/#${current}`;
       link.classList.toggle('is-active', isActive);
       if (isActive) link.setAttribute('aria-current', 'true');
       else link.removeAttribute('aria-current');
