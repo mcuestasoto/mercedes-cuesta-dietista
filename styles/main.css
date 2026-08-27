@@ -12,9 +12,9 @@
   --footer-line: #3A3A35;
 
   --secpad: 64px;
-  --container: 1200px;
-  --prose-width: 600px;
-  --gutter: 28px;
+  --container: 1280px;
+  --prose-width: 70ch;
+  --gutter: 32px;
   --radius: 4px;
   --header-height: 72px;
 
@@ -32,10 +32,14 @@
   --font-sans: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
 }
 
+@media (max-width: 1024px) {
+  :root { --gutter: 28px; }
+}
+
 @media (max-width: 640px) {
   :root {
     --secpad: 34px;
-    --gutter: 22px;
+    --gutter: 20px;
   }
 }
 
@@ -307,6 +311,11 @@ button:focus-visible {
   flex-direction: column;
   gap: 18px;
   max-width: var(--prose-width);
+  /* font-size fijo (igual al de .prose p): así "ch" se calcula sobre
+     un valor conocido y no sobre lo que el div herede del document
+     root — si el usuario aumenta el tamaño de texto del navegador,
+     este contenedor no debe doblar su ancho máximo por accidente. */
+  font-size: 17px;
 }
 
 .prose p {
