@@ -348,40 +348,6 @@ button:focus-visible {
 
 .prose p.lede { font-weight: 500; }
 
-/* Bloques con texto a la izquierda y contenido de apoyo a la derecha
-   (Sobre mí + Formación, Programa + Proceso): rellenan el hueco lateral
-   del texto con contenido real, no decorativo, cuando hay sitio; por
-   debajo de 1025px se apilan como cualquier otra sección, sin tocar el
-   resto del layout. */
-.text-split {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
-
-@media (min-width: 1025px) {
-  .text-split {
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 48px;
-  }
-
-  .text-split .prose {
-    flex: 0 0 var(--prose-width);
-  }
-
-  .text-split .card-block {
-    flex: 1;
-    min-width: 0;
-    border-top: none;
-    padding-top: 0;
-  }
-
-  .text-split .card-block .card-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
 /* Hero: dos columnas a ancho completo del contenedor (texto+CTA a la
    izquierda, foto a la derecha, ambas ocupando el espacio real, sin
    una columna de texto pequeña flotando con hueco vacío al lado) y,
@@ -633,7 +599,7 @@ button:focus-visible {
   letter-spacing: 0.01em;
 }
 
-.card--step .card__body p:last-child {
+.card--step .card__body p:not(:first-child) {
   font-weight: 400;
   font-size: 17px;
   color: var(--muted);
@@ -642,25 +608,109 @@ button:focus-visible {
   text-wrap: pretty;
 }
 
-/* Testimonials */
-.carousel-viewport {
-  overflow: hidden;
-  max-width: var(--container);
-  margin: 32px auto 0;
-  width: 100%;
-  outline-offset: 6px;
-  touch-action: pan-y;
+/* Programa: dos bloques de texto (Qué/Por qué) uno junto al otro en
+   escritorio para que se lean como un vistazo, no como un único
+   párrafo largo y estrecho. */
+.programa__grid-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
 }
 
-.carousel-track {
-  display: flex;
-  gap: 16px;
+@media (min-width: 1025px) {
+  .programa__grid-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 48px;
+  }
+}
+
+/* Proceso dentro de Programa: 4 columnas reales en escritorio (no la
+   cuadrícula genérica de 2) y una secuencia vertical en móvil, sin
+   paso intermedio de 2 columnas que lo comprima. */
+.process-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 1025px) {
+  .process-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+  .process-grid .card--step {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
+
+.programa__highlight {
+  border-top: 1px solid var(--line);
+  padding-top: 24px;
+}
+
+.programa__highlight p {
+  margin: 0;
+  font-weight: 500;
+  font-size: clamp(19px, 1.4vw + 15px, 22px);
+  line-height: 1.5;
+  max-width: 62ch;
+}
+
+.programa__actions { display: flex; }
+
+/* Sobre mí: texto + fotografía en dos columnas reales (como el hero),
+   con Formación como bloque aparte a ancho completo debajo — así queda
+   subordinada a la presentación en vez de ocupar toda una columna al
+   lado del texto, como si fuera el bloque principal de la sección. */
+.sobre-mi__row {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: start;
+  gap: 32px;
+}
+
+@media (min-width: 1025px) {
+  .sobre-mi__row {
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+  }
+}
+
+.sobre-mi__media { min-width: 0; }
+
+.sobre-mi__media picture { display: block; width: 100%; }
+
+.sobre-mi__image {
   width: 100%;
-  transition: transform 200ms cubic-bezier(0.3, 0.7, 0.4, 1);
+  height: auto;
+  display: block;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: 50% 20%;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+/* Testimonials */
+/* Opiniones: cuadrícula estática (sin carrusel ni autoplay) para que
+   todos los testimonios estén disponibles sin interacción — 3 columnas
+   en escritorio, 2 en tablet, 1 en móvil, siempre con texto alineado a
+   la izquierda como el resto de la web. */
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 701px) {
+  .testimonial-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (min-width: 1025px) {
+  .testimonial-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
 .testimonial-card {
-  flex: 0 0 100%;
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -668,10 +718,8 @@ button:focus-visible {
   display: flex;
   flex-direction: column;
   gap: 14px;
-  transition: border-color 200ms ease;
+  text-align: start;
 }
-
-.testimonial-card:hover { border-color: var(--accent); }
 
 .testimonial-card__topic {
   font-weight: 500;
@@ -696,75 +744,6 @@ button:focus-visible {
   color: var(--muted);
   margin: 0;
 }
-
-@media (min-width: 620px) {
-  .testimonial-card { flex-basis: calc(50% - 8px); }
-}
-
-@media (min-width: 900px) {
-  .testimonial-card { flex-basis: calc((100% - 32px) / 3); }
-}
-
-.carousel-controls {
-  max-width: var(--container);
-  margin: 32px auto 0;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-}
-
-.carousel-dots {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.carousel-dots button {
-  width: 34px;
-  height: 34px;
-  padding: 0;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.carousel-dots span {
-  width: 12px;
-  height: 1px;
-  background: var(--ink);
-  display: block;
-  transition: background 200ms ease, width 200ms ease;
-}
-
-.carousel-dots button.is-current span { width: 20px; }
-.carousel-dots button:hover span { background: var(--accent-text); }
-
-.carousel-arrows { display: flex; align-items: center; gap: 6px; }
-
-.carousel-arrows button {
-  background: transparent;
-  border: none;
-  padding: 0;
-  width: 34px;
-  height: 34px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--ink);
-  cursor: pointer;
-  transition: opacity 200ms ease, color 200ms ease;
-}
-
-.carousel-arrows button:hover { color: var(--accent-text); }
-.carousel-arrows button:disabled { opacity: 0.3; cursor: default; }
-.carousel-arrows button:disabled:hover { color: var(--ink); }
-
-.carousel-arrows svg { width: 18px; height: 18px; fill: currentColor; }
 
 /* FAQ */
 .faq-list { display: flex; flex-direction: column; }
