@@ -622,6 +622,47 @@ button:focus-visible {
   letter-spacing: 0.01em;
 }
 
+/* Sobre mí: mismo patrón que Programa (texto ~58% / contenido de
+   apoyo ~42%, sin igualar alturas) — sin esto, al no haber una
+   fotografía, el texto se quedaba solo en la mitad izquierda del
+   contenedor con toda la derecha vacía, lo que además hacía que la
+   sección se sintiera más larga de lo necesario. Formación se queda
+   en una sola columna dentro de su mitad (dos cards lado a lado no
+   caben con comodidad ahí), y sigue leyéndose después del texto. */
+.sobre-mi-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: start;
+  gap: 40px;
+}
+
+@media (min-width: 1025px) {
+  .sobre-mi-row {
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: 64px;
+  }
+
+  .sobre-mi-row__formacion .card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sobre-mi-row__formacion {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.sobre-mi-row__formacion h3 {
+  font-weight: 500;
+  font-size: 20px;
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
 /* Secuencia vertical con una línea que une los pasos — fácil de
    escanear de un vistazo, sin cuatro cards horizontales comprimidas. */
 .process-steps {
@@ -701,10 +742,12 @@ button:focus-visible {
 /* Opiniones: carrusel manual (sin autoplay), con scroll nativo +
    scroll-snap para que el arrastre/swipe sea fluido y el teclado y los
    lectores de pantalla sigan viendo todos los testimonios (ninguno se
-   quita del DOM, solo quedan fuera de la vista horizontal). El número
-   de testimonios visibles no depende de un breakpoint fijo: cada
-   slide tiene un ancho con clamp(), así que 1, 2 o 3 caben según el
-   espacio real disponible. */
+   quita del DOM, solo quedan fuera de la vista horizontal). Visibles
+   a la vez: 1 en móvil (con un asomo del siguiente, para que se note
+   que hay más sin necesidad de puntos), 2 en tablet, 3 en escritorio
+   — cada flecha desplaza siempre un solo testimonio, nunca un grupo
+   entero. Las cards no fuerzan una altura común: cada una crece con
+   su propio contenido. */
 .testimonial-carousel {
   margin-top: 32px;
 }
@@ -725,19 +768,27 @@ button:focus-visible {
 
 .testimonial-carousel__track {
   display: flex;
+  align-items: flex-start;
   gap: 24px;
   list-style: none;
   margin: 0;
   padding: 0 0 4px;
+  width: 100%;
 }
 
 .testimonial-carousel__slide {
   flex: 0 0 auto;
-  width: clamp(270px, 34vw, 400px);
+  width: calc(100% - 40px);
   scroll-snap-align: start;
 }
 
-.testimonial-carousel__slide .testimonial-card { height: 100%; }
+@media (min-width: 701px) {
+  .testimonial-carousel__slide { width: calc((100% - 24px) / 2); }
+}
+
+@media (min-width: 1025px) {
+  .testimonial-carousel__slide { width: calc((100% - 48px) / 3); }
+}
 
 .testimonial-carousel__controls {
   display: flex;
@@ -770,12 +821,19 @@ button:focus-visible {
 .testimonial-carousel__arrow:disabled:hover { background: transparent; }
 .testimonial-carousel__arrow svg { width: 16px; height: 16px; fill: currentColor; }
 
-.testimonial-carousel__status {
-  font-size: 13px;
-  color: var(--muted);
-  margin: 0;
-  min-width: 110px;
-  text-align: center;
+/* Sin contador visible (confunde cuando hay varios testimonios a la
+   vez): la posición se sigue anunciando a lectores de pantalla vía
+   aria-live, pero fuera de la pantalla. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .testimonial-card {
