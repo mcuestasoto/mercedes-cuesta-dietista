@@ -583,43 +583,91 @@ button:focus-visible {
   text-wrap: pretty;
 }
 
-/* Programa: dos columnas (texto ~58% / Proceso ~42%) sin forzar la
-   misma altura — el contenido decide, no la cuadrícula. */
-.programa-row {
+/* Programa: filas independientes a ancho completo (título+intro,
+   Qué/Por qué 50/50, Proceso horizontal, frase final) en vez de dos
+   grandes columnas ocupando toda la sección — así ninguna fila queda
+   con contenido puesto solo para rellenar espacio. */
+.programa-questions {
   display: grid;
   grid-template-columns: 1fr;
   align-items: start;
-  gap: 40px;
+  gap: 32px;
 }
 
 @media (min-width: 1025px) {
-  .programa-row {
-    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-    gap: 64px;
+  .programa-questions {
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
   }
 }
 
-.programa-row__main {
+.programa-process {
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  min-width: 0;
+  gap: 24px;
 }
 
-.programa-row__process {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  min-width: 0;
-  padding-top: 12px;
-  border-top: 1px solid var(--line);
-}
-
-.programa-row__process h3 {
+.programa-process h3 {
   font-weight: 500;
   font-size: 20px;
   margin: 0;
   letter-spacing: 0.01em;
+}
+
+/* Proceso: horizontal y editorial en escritorio (4 columnas, una
+   línea superior a modo de separador en vez de cards pesadas),
+   vertical en móvil/tablet — nunca comprimido a costa de legibilidad.
+   align-items: start para que un paso más largo (Seguimiento) no
+   fuerce la misma altura en el resto. */
+.process-horizontal {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: start;
+  gap: 28px;
+}
+
+@media (min-width: 1025px) {
+  .process-horizontal {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 32px;
+  }
+}
+
+.process-horizontal__step {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.process-horizontal__number {
+  font-weight: 400;
+  font-size: 22px;
+  color: var(--accent-text);
+  line-height: 1.3;
+}
+
+.process-horizontal__body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.process-horizontal__body p:first-child {
+  font-weight: 500;
+  font-size: 17px;
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
+.process-horizontal__body p:not(:first-child) {
+  font-weight: 400;
+  font-size: 17px;
+  color: var(--muted);
+  line-height: 1.65;
+  margin: 0;
+  text-wrap: pretty;
 }
 
 /* Sobre mí: mismo patrón que Programa (texto ~58% / contenido de
@@ -663,67 +711,6 @@ button:focus-visible {
   letter-spacing: 0.01em;
 }
 
-/* Secuencia vertical con una línea que une los pasos — fácil de
-   escanear de un vistazo, sin cuatro cards horizontales comprimidas. */
-.process-steps {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-}
-
-.process-steps__item {
-  position: relative;
-  display: flex;
-  gap: 20px;
-  padding-bottom: 28px;
-}
-
-.process-steps__item:last-child { padding-bottom: 0; }
-
-.process-steps__item:not(:last-child)::before {
-  content: '';
-  position: absolute;
-  left: 15px;
-  top: 30px;
-  bottom: 4px;
-  width: 1px;
-  background: var(--line);
-}
-
-.process-steps__number {
-  flex: 0 0 auto;
-  width: 32px;
-  font-weight: 400;
-  font-size: 22px;
-  color: var(--accent-text);
-  line-height: 1.3;
-}
-
-.process-steps__body {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  min-width: 0;
-}
-
-.process-steps__body p:first-child {
-  font-weight: 500;
-  font-size: 17px;
-  margin: 0;
-  letter-spacing: 0.01em;
-}
-
-.process-steps__body p:not(:first-child) {
-  font-weight: 400;
-  font-size: 17px;
-  color: var(--muted);
-  line-height: 1.65;
-  margin: 0;
-  text-wrap: pretty;
-}
-
 .programa__highlight {
   border-top: 1px solid var(--line);
   padding-top: 24px;
@@ -736,8 +723,6 @@ button:focus-visible {
   line-height: 1.5;
   max-width: 62ch;
 }
-
-.programa__actions { display: flex; }
 
 /* Opiniones: carrusel manual (sin autoplay), con scroll nativo +
    scroll-snap para que el arrastre/swipe sea fluido y el teclado y los
@@ -1306,7 +1291,7 @@ button:focus-visible {
   .prose p,
   .text-body,
   .card p:last-child,
-  .process-steps__body p:not(:first-child),
+  .process-horizontal__body p:not(:first-child),
   .testimonial-card p:not(.testimonial-card__topic):not(.testimonial-card__author),
   .faq-item__answer p,
   .legal-main .card-block p {
