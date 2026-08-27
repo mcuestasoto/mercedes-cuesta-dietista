@@ -1063,8 +1063,19 @@ button:focus-visible {
   .whatsapp-fab { transition: opacity 200ms ease, background 150ms ease; transform: none; }
 }
 
+/* El icono usa currentColor, así que sin fijar "color" aquí la regla
+   global "a:hover { color: var(--accent-text) }" (pensada para
+   enlaces de texto normales) gana por especificidad sobre el color
+   base del flotante y el icono se funde con el fondo en hover — este
+   es justo el bug reportado ("se pone entero verde, no se ve el
+   icono"). El CTA normal no lo sufre porque su selector
+   ".button[data-whatsapp-link]" ya tiene más especificidad que
+   "a:hover"; ".whatsapp-fab" por sí sola no. */
 .whatsapp-fab:hover,
-.whatsapp-fab:active { background: var(--cta-hover-bg); }
+.whatsapp-fab:active {
+  background: var(--cta-hover-bg);
+  color: var(--cta-text);
+}
 .whatsapp-fab:active { background: var(--cta-active-bg); }
 
 .whatsapp-fab svg { width: 22px; height: 22px; fill: currentColor; }
