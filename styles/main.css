@@ -4,7 +4,10 @@
   --muted: #5E5E56;
   --line: #D9D4C7;
   --accent: #8B9A76;
-  --accent-text: #697557;
+  /* Verde oliva oscurecido lo justo para leer como texto/borde sobre
+     --bg Y sobre --card (contra --card, el tono de marca original,
+     #697557, se quedaba en 4.28:1 — por debajo del 4.5:1 exigido). */
+  --accent-text: #5E684E;
   --card: #F3EFE7;
   --hdr-bg: #F1ECE0;
   --footer-bg: #1E1E1B;
@@ -18,15 +21,28 @@
   --radius: 4px;
   --header-height: 72px;
 
-  /* Sistema único de botón/CTA: toda superficie pulsable (enlaces con
-     aspecto de botón, el botón real de copiar código y el flotante de
-     WhatsApp) lee estos mismos tokens, así no puede haber una variante
-     que se quede desincronizada del resto. */
-  --button-bg: var(--ink);
-  --button-text: var(--bg);
-  --button-border: var(--ink);
-  --button-hover-bg: color-mix(in srgb, var(--ink) 82%, var(--accent) 18%);
-  --button-active-bg: color-mix(in srgb, var(--ink) 68%, var(--accent) 32%);
+  /* CTA principal ("Quiero empezar", en header/hero/Programa/Contacto
+     y el flotante): un verde oscuro fijo, igual en claro y oscuro,
+     como identidad de marca — no el --ink neutro que llevaba antes.
+     El borde usa --accent: no aporta nada en claro (el propio relleno
+     ya da 7.14:1 contra la página), pero es lo que mantiene el botón
+     identificable en oscuro, donde el relleno por sí solo cae a
+     2.21:1 contra --bg oscuro. */
+  --cta-bg: #4F5742;
+  --cta-text: #FAF8F4;
+  --cta-border: var(--accent);
+  --cta-hover-bg: color-mix(in srgb, var(--cta-bg) 80%, var(--accent) 20%);
+  --cta-active-bg: color-mix(in srgb, var(--cta-bg) 65%, var(--accent) 35%);
+
+  /* Acciones secundarias (Email, Instagram, Ir a FullGas, Copiar
+     código): misma altura/radio/tipografía/padding que el CTA, pero
+     sin competir con él — fondo claro, texto y borde en el verde de
+     marca ya usado para texto en el resto de la web. */
+  --btn-secondary-bg: var(--card);
+  --btn-secondary-text: var(--accent-text);
+  --btn-secondary-border: var(--accent-text);
+  --btn-secondary-hover-bg: color-mix(in srgb, var(--card) 88%, var(--accent-text) 12%);
+  --btn-secondary-active-bg: color-mix(in srgb, var(--card) 76%, var(--accent-text) 24%);
 
   /* Escala de espaciado: todo margen/gap/padding de más de un valor
      suelto debería salir de aquí, no inventarse por sección. */
@@ -457,6 +473,14 @@ button:focus-visible {
    Mismo fondo, texto, borde, radio, tipografía, peso, padding, altura
    y estados en todos los sitios donde aparece (nav, hero, contacto,
    colaboraciones y el flotante de WhatsApp). */
+/* Dos variantes, misma forma: altura, radio, tipografía y padding
+   idénticos en las dos, para que solo cambie el color y nunca el
+   tamaño o la forma. Por defecto .button es la variante secundaria
+   (Email, Instagram, Ir a FullGas...); [data-whatsapp-link] la
+   convierte en el CTA principal — así cualquier "Quiero empezar"
+   (header, hero, Programa, Contacto) lo hereda automáticamente, sin
+   depender de una clase extra que se pueda olvidar al añadir uno
+   nuevo. */
 .button {
   font-weight: 500;
   font-size: 15px;
@@ -469,25 +493,36 @@ button:focus-visible {
   justify-content: center;
   gap: 10px;
   text-align: center;
-  background: var(--button-bg);
-  color: var(--button-text);
-  border: 1px solid var(--button-border);
+  background: var(--btn-secondary-bg);
+  color: var(--btn-secondary-text);
+  border: 1px solid var(--btn-secondary-border);
   cursor: pointer;
   transition: background 150ms ease;
   flex: 0 0 auto;
 }
 
-/* Hover y active: mismo botón, mismo borde, mismo texto — solo el
-   fondo se desplaza hacia el verde de marca (un cambio de color real,
-   no de opacidad) para confirmar que se puede pulsar. Active va un
-   paso más lejos que hover, misma lógica en los dos estados. */
 .button:hover,
 .button:active {
-  background: var(--button-hover-bg);
+  background: var(--btn-secondary-hover-bg);
 }
 
 .button:active {
-  background: var(--button-active-bg);
+  background: var(--btn-secondary-active-bg);
+}
+
+.button[data-whatsapp-link] {
+  background: var(--cta-bg);
+  color: var(--cta-text);
+  border-color: var(--cta-border);
+}
+
+.button[data-whatsapp-link]:hover,
+.button[data-whatsapp-link]:active {
+  background: var(--cta-hover-bg);
+}
+
+.button[data-whatsapp-link]:active {
+  background: var(--cta-active-bg);
 }
 
 /* Focus (teclado): anillo de foco heredado de la regla global de abajo
@@ -905,19 +940,18 @@ button:focus-visible {
   align-items: center;
 }
 
-/* Mismo sistema que .button (mismo fondo, texto, borde, radio,
-   tipografía, peso, padding, altura y estados) — es un <button> real
-   porque ejecuta una acción, no navega, así que necesita su propia
-   clase para el enganche de JS, pero visualmente es indistinguible. */
+/* Botón de utilidad (copia un código, no navega ni convierte): usa la
+   variante secundaria, misma forma que .button pero sin competir
+   visualmente con el CTA. */
 .collab__code {
   font-family: var(--font-sans);
   font-weight: 500;
   font-size: 15px;
   line-height: 1.5;
   min-height: 44px;
-  background: var(--button-bg);
-  color: var(--button-text);
-  border: 1px solid var(--button-border);
+  background: var(--btn-secondary-bg);
+  color: var(--btn-secondary-text);
+  border: 1px solid var(--btn-secondary-border);
   padding: 14px 24px;
   border-radius: var(--radius);
   display: inline-flex;
@@ -931,8 +965,8 @@ button:focus-visible {
 }
 
 .collab__code:hover,
-.collab__code:active { background: var(--button-hover-bg); }
-.collab__code:active { background: var(--button-active-bg); }
+.collab__code:active { background: var(--btn-secondary-hover-bg); }
+.collab__code:active { background: var(--btn-secondary-active-bg); }
 
 /* WhatsApp FAB: aparece/desaparece según el contexto de scroll (ver
    main.js), nunca por un número de píxeles fijo. Respeta el área
@@ -946,15 +980,16 @@ button:focus-visible {
   width: 53px;
   height: 53px;
   border-radius: var(--radius);
-  /* Mismo lenguaje visual exacto que el resto de botones: mismo fondo,
-     texto, borde, radio y sin sombra. Solo cambian las dimensiones
-     (formato compacto y cuadrado) para no tapar contenido al flotar. */
-  background: var(--button-bg);
-  border: 1px solid var(--button-border);
+  /* Mismo lenguaje visual exacto que "Quiero empezar" (mismo CTA:
+     fondo, texto, borde, radio y sin sombra). Solo cambian las
+     dimensiones (formato compacto y cuadrado) para no tapar
+     contenido al flotar. */
+  background: var(--cta-bg);
+  border: 1px solid var(--cta-border);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--button-text);
+  color: var(--cta-text);
   opacity: 0;
   transform: translateY(8px);
   pointer-events: none;
@@ -968,8 +1003,8 @@ button:focus-visible {
 }
 
 .whatsapp-fab:hover,
-.whatsapp-fab:active { background: var(--button-hover-bg); }
-.whatsapp-fab:active { background: var(--button-active-bg); }
+.whatsapp-fab:active { background: var(--cta-hover-bg); }
+.whatsapp-fab:active { background: var(--cta-active-bg); }
 
 .whatsapp-fab svg { width: 22px; height: 22px; fill: currentColor; }
 
