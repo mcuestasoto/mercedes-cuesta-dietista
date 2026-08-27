@@ -1,3 +1,23 @@
+/* Montserrat autoalojada (antes vía Google Fonts). Solo se declaran los
+   pesos y el subset realmente usados en el proyecto: 400 y 500, normal
+   (nunca 300/600 ni italic, y solo el subset "latin" de Google Fonts,
+   que ya cubre todos los caracteres del español: áéíóúñü¿¡). */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/fonts/montserrat-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/assets/fonts/montserrat-500.woff2') format('woff2');
+}
+
 :root {
   --bg: #FAF8F4;
   --ink: #1E1E1B;
