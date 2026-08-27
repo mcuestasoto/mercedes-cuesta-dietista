@@ -382,24 +382,29 @@ button:focus-visible {
   }
 }
 
-/* Hero */
-.hero .container {
+/* Hero: dos columnas a ancho completo del contenedor (texto+CTA a la
+   izquierda, foto a la derecha, ambas ocupando el espacio real, sin
+   una columna de texto pequeña flotando con hueco vacío al lado) y,
+   debajo, un bloque de ámbitos que también usa todo el ancho. */
+.hero__container {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 40px 64px;
+  flex-direction: column;
+  gap: 56px;
+}
+
+.hero__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  gap: 64px;
 }
 
 .hero__content {
-  flex: 1 1 340px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 20px;
-  min-width: 280px;
-  max-width: 600px;
+  min-width: 0;
 }
 
 .hero__content h1 {
@@ -419,12 +424,43 @@ button:focus-visible {
   margin: 0;
 }
 
-.hero__topics {
-  width: 100%;
+.hero__lede {
+  font-weight: 400;
+  font-size: clamp(16px, 1.4vw + 12px, 18px);
+  line-height: 1.6;
+  color: var(--ink);
+  max-width: 48ch;
+  margin: 0;
+}
+
+.hero__actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 22px;
   margin-top: 4px;
 }
 
-.hero__topics--mobile { display: none; }
+.hero__media { min-width: 0; }
+
+.hero__media picture { display: block; width: 100%; }
+
+.hero__image {
+  width: 100%;
+  height: auto;
+  display: block;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+/* Ámbitos: un único bloque (no hay versión de escritorio y otra de
+   móvil por separado) que usa todo el ancho del contenedor en una
+   fila de 4 columnas, y pasa a una cuadrícula 2×2 en móvil. Al ser
+   una cuadrícula real, cada fila comparte altura aunque una celda
+   ("Composición corporal") ocupe dos líneas. */
+.hero__topics { width: 100%; }
 
 .hero__topics-label {
   font-weight: 500;
@@ -433,25 +469,10 @@ button:focus-visible {
   margin: 0 0 10px;
 }
 
-.hero__topics-text {
-  font-weight: 500;
-  font-size: 13px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  line-height: 1.9;
-  color: var(--muted);
-  margin: 0;
-  padding-top: 16px;
-  border-top: 1px solid var(--line);
-}
-
-/* Grid 2×2 para móvil: columnas de igual anchura, y cada fila con la
-   misma altura para sus dos celdas (la más alta de las dos), sin
-   puntos separadores ni saltos de línea imprevistos. */
 .hero__topics-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px 20px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px 24px;
   margin: 0;
   padding-top: 16px;
   border-top: 1px solid var(--line);
@@ -467,55 +488,24 @@ button:focus-visible {
   color: var(--muted);
 }
 
-/* Composición específica para móvil: no es la de escritorio reducida.
-   Márgenes más ajustados, H1 más compacto, los temas se repiten
-   después de la foto (se ocultan aquí y se muestran los de abajo) con
-   la foto recortada a una relación más corta para no alargar el
-   scroll. */
+@media (max-width: 940px) {
+  .hero__row { grid-template-columns: 1fr; gap: 32px; }
+  .hero__content { max-width: 100%; }
+  .hero__lede { max-width: 60ch; }
+  .hero__actions { width: 100%; }
+  .hero__actions .button { width: 100%; }
+  .hero__topics-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* Composición específica para móvil: márgenes más ajustados y H1 más
+   compacto; el recorte 4:5 de la foto ya viene del estilo base, aquí
+   solo se ajusta el encuadre para que la cara quede centrada. */
 @media (max-width: 640px) {
   .section--hero { padding-left: 22px; padding-right: 22px; }
 
   .hero__content h1 { font-size: clamp(38px, 10vw, 44px); }
 
-  .hero__topics--desktop { display: none; }
-  .hero__topics--mobile { display: block; margin-top: 0; }
-
-  .hero__image {
-    aspect-ratio: 4 / 5;
-    object-fit: cover;
-    object-position: 50% 15%;
-  }
-}
-
-.hero__actions {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 22px;
-  margin-top: 16px;
-}
-
-.hero__media {
-  flex: 0 1 320px;
-  min-width: 240px;
-  max-width: 360px;
-}
-
-.hero__media picture { display: block; width: 100%; }
-
-.hero__image {
-  width: 100%;
-  height: auto;
-  display: block;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-}
-
-@media (max-width: 940px) {
-  .hero__content { align-items: stretch; max-width: 100%; }
-  .hero__actions { width: 100%; gap: 16px; }
-  .hero__actions .button { width: 100%; }
-  .hero__media { flex: 1 1 100%; max-width: 390px; margin: 0 auto; }
+  .hero__image { object-position: 50% 15%; }
 }
 
 /* Buttons: un único sistema visual (relleno sólido) para toda la web.
