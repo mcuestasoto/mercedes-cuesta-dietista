@@ -2,6 +2,16 @@
    before querying anything that lives inside those partials. */
 (window.partialsReady || Promise.resolve()).then(() => {
 
+/* Fuente única para el enlace de WhatsApp: header, hero, flotante,
+   Contacto y footer generaban la misma URL por separado en el HTML,
+   con riesgo de que alguna copia se desincronizase (mensaje distinto,
+   emoji mal codificado...). Aquí se construye una sola vez y se aplica
+   a todos los [data-whatsapp-link], sea cual sea su href estático. */
+const WHATSAPP_PHONE = '34614821010';
+const WHATSAPP_MESSAGE = 'Hola Mercedes 🙂 he visto tu web y me gustaría empezar';
+const WHATSAPP_URL = `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
+document.querySelectorAll('[data-whatsapp-link]').forEach((el) => el.setAttribute('href', WHATSAPP_URL));
+
 /* Header height, kept in sync so sticky-scroll offsets stay accurate on wrap */
 const header = document.querySelector('[data-header]');
 const syncHeaderHeight = () => {
@@ -99,6 +109,7 @@ if (carouselViewport && carouselTrack) {
   const prevButton = document.querySelector('[data-carousel-prev]');
   const nextButton = document.querySelector('[data-carousel-next]');
   const status = document.querySelector('[data-carousel-status]');
+  const progress = document.querySelector('[data-carousel-progress]');
 
   const step = () => {
     const slideWidth = slides[0].getBoundingClientRect().width;
@@ -106,9 +117,34 @@ if (carouselViewport && carouselTrack) {
     return slideWidth + gap;
   };
 
+  /* Mismos breakpoints que .testimonial-carousel__slide en main.css
+     (1/2/3 visibles): de ahi sale cuantas "posiciones" reales tiene el
+     carrusel (total - visibles + 1), no el numero de testimonios. */
+  const mqTablet = window.matchMedia('(min-width: 701px)');
+  const mqDesktop = window.matchMedia('(min-width: 1025px)');
+  const visibleItems = () => (mqDesktop.matches ? 3 : mqTablet.matches ? 2 : 1);
+  const positionCount = () => Math.max(1, slides.length - visibleItems() + 1);
+
+  let lines = [];
+  let builtFor = 0;
+  const buildProgress = () => {
+    if (!progress) return;
+    const count = positionCount();
+    if (count === builtFor) return;
+    builtFor = count;
+    progress.innerHTML = '';
+    lines = Array.from({ length: count }, () => {
+      const span = document.createElement('span');
+      progress.appendChild(span);
+      return span;
+    });
+  };
+
   const update = () => {
-    const index = Math.min(slides.length - 1, Math.max(0, Math.round(carouselViewport.scrollLeft / step())));
+    buildProgress();
+    const index = Math.min(positionCount() - 1, Math.max(0, Math.round(carouselViewport.scrollLeft / step())));
     if (status) status.textContent = `Testimonio ${index + 1} de ${slides.length}`;
+    lines.forEach((line, i) => line.classList.toggle('is-active', i === index));
     if (prevButton) prevButton.disabled = carouselViewport.scrollLeft <= 1;
     if (nextButton) {
       const maxScroll = carouselViewport.scrollWidth - carouselViewport.clientWidth;

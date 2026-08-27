@@ -284,7 +284,7 @@ button:focus-visible {
   overflow-y: auto;
   background: var(--bg);
   border-top: 1px solid var(--line);
-  box-shadow: 0 16px 24px -8px rgba(30, 30, 27, 0.16);
+  box-shadow: 0 8px 16px -6px rgba(30, 30, 27, 0.12);
   z-index: 45;
   display: none;
   flex-direction: column;
@@ -293,7 +293,19 @@ button:focus-visible {
   padding: 40px var(--gutter);
 }
 
-.nav__mobile-menu.is-open { display: flex; }
+/* Entrada breve y sutil (nunca deslizamientos grandes ni rebotes). Se
+   usa animation, no transition: al partir de display:none no habría
+   valor "antes" del que interpolar. prefers-reduced-motion ya la
+   neutraliza vía la regla global de animation-duration. */
+@keyframes nav-mobile-menu-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.nav__mobile-menu.is-open {
+  display: flex;
+  animation: nav-mobile-menu-in 180ms ease;
+}
 
 .nav__mobile-menu a {
   font-size: 20px;
@@ -818,6 +830,35 @@ button:focus-visible {
 .testimonial-carousel__arrow:disabled:hover { background: transparent; }
 .testimonial-carousel__arrow svg { width: 16px; height: 16px; fill: currentColor; }
 
+/* Líneas de posición: sustituyen a un contador "X de Y", que confunde
+   cuando hay varios testimonios visibles a la vez. Puramente
+   indicativas (aria-hidden): la posición real se sigue anunciando a
+   lectores de pantalla vía el aria-live de más abajo, fuera de
+   pantalla. Número de líneas = huecos de scroll reales
+   (total - visibles + 1), calculado en JS según el breakpoint. */
+.testimonial-carousel__progress {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.testimonial-carousel__progress span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  border-radius: 1px;
+  /* --line (#D9D4C7) da ~1.4:1 sobre el fondo: casi invisible. Este
+     tono intermedio entre --muted y --bg queda perceptible sin
+     competir con la línea activa. */
+  background: #95948D;
+  transition: background 180ms ease, width 180ms ease;
+}
+
+.testimonial-carousel__progress span.is-active {
+  width: 32px;
+  background: var(--ink);
+}
+
 /* Sin contador visible (confunde cuando hay varios testimonios a la
    vez): la posición se sigue anunciando a lectores de pantalla vía
    aria-live, pero fuera de la pantalla. */
@@ -1125,7 +1166,15 @@ button:focus-visible {
   align-items: center;
   justify-content: flex-start;
   opacity: 0.85;
+  transition: opacity 180ms ease;
 }
+
+.footer__logo:hover { opacity: 1; }
+.footer__logo:active { opacity: 0.7; }
+
+/* Mismo motivo que en .footer__links/.footer__legal: fondo oscuro,
+   --accent-text no llega a 3:1 aquí. */
+.footer__logo:focus-visible { outline-color: var(--accent); }
 
 .footer__logo img {
   height: 100%;
