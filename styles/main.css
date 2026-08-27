@@ -1051,13 +1051,16 @@ button:focus-visible {
   opacity: 0;
   transform: translateY(8px);
   pointer-events: none;
-  transition: opacity 200ms ease, transform 200ms ease, background 200ms ease;
+  /* El fondo usa la misma duración que .button (150ms): el hover debe
+     sentirse idéntico. Opacidad/transform son solo para la aparición
+     del flotante en sí, algo que el CTA normal no necesita. */
+  transition: opacity 200ms ease, transform 200ms ease, background 150ms ease;
 }
 
 .whatsapp-fab.is-visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
 
 @media (prefers-reduced-motion: reduce) {
-  .whatsapp-fab { transition: opacity 200ms ease, background 200ms ease; transform: none; }
+  .whatsapp-fab { transition: opacity 200ms ease, background 150ms ease; transform: none; }
 }
 
 .whatsapp-fab:hover,

@@ -134,22 +134,31 @@ if (carouselViewport && carouselTrack) {
 /* WhatsApp floating button visibility: nunca en páginas legales/404
    (ya usan el mismo main.js, así que se detectan por su <main
    class="legal-main"> compartido, en vez de duplicar lógica por
-   página). En la Home, aparece cuando el CTA del hero deja de verse y
-   se oculta de nuevo al llegar a Contacto — y se queda oculto el
-   resto de la página (footer incluido), no solo mientras Contacto
-   está en pantalla. Basado en IntersectionObserver, no en un scroll
-   fijo, para que el punto de aparición/ocultación se adapte a
-   cualquier alto de sección. */
+   página). En la Home: oculto mientras el CTA del hero está visible;
+   visible en el resto, incluida Contacto (que tiene su propio "Quiero
+   empezar", pero eso no debe apagar el flotante); oculto de nuevo en
+   cuanto el footer entra en el viewport.
+
+   Contacto es más corto que la mayoría de pantallas, así que en
+   muchas resoluciones de escritorio el footer ya asoma por debajo
+   mientras Contacto sigue siendo el contenido principal en pantalla
+   — si solo mirásemos "¿el footer intersecta?" el flotante se
+   apagaría antes de tiempo. Por eso se observan los tres puntos
+   (hero, Contacto y footer): mientras Contacto siga total o
+   parcialmente visible, el footer asomando no cuenta todavía. */
 const fab = document.querySelector('[data-whatsapp-fab]');
 const heroCta = document.querySelector('.hero__actions [data-whatsapp-link]');
-const contactoSection = document.getElementById('contacto');
+const contactoEl = document.getElementById('contacto');
+const footerEl = document.querySelector('.footer');
 
-if (fab && !document.querySelector('.legal-main') && heroCta && contactoSection && 'IntersectionObserver' in window) {
+if (fab && !document.querySelector('.legal-main') && heroCta && contactoEl && footerEl && 'IntersectionObserver' in window) {
   let heroVisible = true;
-  let pastContacto = false;
+  let contactoVisible = false;
+  let footerVisible = false;
 
   const render = () => {
-    fab.classList.toggle('is-visible', !heroVisible && !pastContacto);
+    const shouldShow = !heroVisible && (contactoVisible || !footerVisible);
+    fab.classList.toggle('is-visible', shouldShow);
   };
 
   new IntersectionObserver((entries) => {
@@ -159,9 +168,19 @@ if (fab && !document.querySelector('.legal-main') && heroCta && contactoSection 
 
   new IntersectionObserver((entries) => {
     const entry = entries[0];
-    pastContacto = entry.isIntersecting || entry.boundingClientRect.top < 0;
+    /* No basta con "intersecta": en páginas altas, el final de
+       Contacto queda a la vista junto al footer entero (footer más
+       corto que la pantalla), y eso no debe contarse como "seguimos
+       en Contacto" — solo cuenta si su borde superior sigue cerca de
+       la parte de arriba de la pantalla. */
+    contactoVisible = entry.isIntersecting && entry.boundingClientRect.top > -(window.innerHeight * 0.15);
     render();
-  }, { rootMargin: '0px 0px -40% 0px' }).observe(contactoSection);
+  }).observe(contactoEl);
+
+  new IntersectionObserver((entries) => {
+    footerVisible = entries[0].isIntersecting;
+    render();
+  }).observe(footerEl);
 }
 
 /* Copy promo code */
