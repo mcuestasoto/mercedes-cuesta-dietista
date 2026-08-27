@@ -18,6 +18,16 @@
   --radius: 4px;
   --header-height: 72px;
 
+  /* Sistema único de botón/CTA: toda superficie pulsable (enlaces con
+     aspecto de botón, el botón real de copiar código y el flotante de
+     WhatsApp) lee estos mismos tokens, así no puede haber una variante
+     que se quede desincronizada del resto. */
+  --button-bg: var(--ink);
+  --button-text: var(--bg);
+  --button-border: var(--ink);
+  --button-hover-bg: color-mix(in srgb, var(--ink) 82%, var(--accent) 18%);
+  --button-active-bg: color-mix(in srgb, var(--ink) 68%, var(--accent) 32%);
+
   /* Escala de espaciado: todo margen/gap/padding de más de un valor
      suelto debería salir de aquí, no inventarse por sección. */
   --space-1: 8px;
@@ -267,9 +277,6 @@ button:focus-visible {
 
 .nav__mobile-menu a.nav__mobile-cta {
   margin-top: 12px;
-  font-size: 15px;
-  font-weight: 400;
-  transition: background 150ms ease, border-color 150ms ease, color 150ms ease;
 }
 
 @media (max-width: 1080px) {
@@ -511,13 +518,16 @@ button:focus-visible {
   .hero__media { flex: 1 1 100%; max-width: 390px; margin: 0 auto; }
 }
 
-/* Buttons: un único estilo (contorno, sin relleno) para que todos se
-   lean como la misma familia. El único que debe destacar (Quiero
-   empezar) lo hace con un borde de color, no con un relleno sólido
-   (un botón lleno en reposo se confunde con un estado de hover). */
+/* Buttons: un único sistema visual (relleno sólido) para toda la web.
+   No hay variantes "primaria/secundaria": la jerarquía la da la
+   posición y el contexto, nunca la opacidad ni el color del botón.
+   Mismo fondo, texto, borde, radio, tipografía, peso, padding, altura
+   y estados en todos los sitios donde aparece (nav, hero, contacto,
+   colaboraciones y el flotante de WhatsApp). */
 .button {
-  font-weight: 400;
+  font-weight: 500;
   font-size: 15px;
+  min-height: 44px;
   padding: 14px 24px;
   border-radius: var(--radius);
   text-decoration: none;
@@ -526,35 +536,30 @@ button:focus-visible {
   justify-content: center;
   gap: 10px;
   text-align: center;
-  background: transparent;
-  color: var(--ink);
-  border: 1px solid var(--ink);
+  background: var(--button-bg);
+  color: var(--button-text);
+  border: 1px solid var(--button-border);
   cursor: pointer;
-  transition: background 150ms ease, border-color 150ms ease, color 150ms ease;
+  transition: background 150ms ease;
   flex: 0 0 auto;
 }
 
-/* Hover: mismo botón, sin cambiar borde ni color de texto — solo un
-   tinte neutro (negro traslúcido en claro, blanco traslúcido en
-   oscuro, vía --ink) que confirma que se puede pulsar. Al hacer clic
-   no pasa nada más: mismo tinte, sin relleno sólido ni otro efecto. */
+/* Hover y active: mismo botón, mismo borde, mismo texto — solo el
+   fondo se desplaza hacia el verde de marca (un cambio de color real,
+   no de opacidad) para confirmar que se puede pulsar. Active va un
+   paso más lejos que hover, misma lógica en los dos estados. */
 .button:hover,
 .button:active {
-  background: color-mix(in srgb, var(--ink) 8%, transparent);
-  color: var(--ink);
+  background: var(--button-hover-bg);
 }
 
-/* El CTA de WhatsApp es la única acción de conversión real del sitio;
-   mismo diseño en reposo que el resto, pero un hover más marcado para
-   que llame algo más la atención justo cuando se va a pulsar. */
-.button[data-whatsapp-link]:hover,
-.button[data-whatsapp-link]:active {
-  background: color-mix(in srgb, var(--ink) 18%, transparent);
+.button:active {
+  background: var(--button-active-bg);
 }
 
-
-/* Focus (teclado): solo el anillo heredado de la regla global de abajo,
-   sin tinte de fondo — así no se confunde con un hover. */
+/* Focus (teclado): anillo de foco heredado de la regla global de abajo
+   (outline, no color) — visible sobre el relleno sólido en cualquier
+   tema, y nunca depende solo de un cambio de color. */
 
 /* Card grids */
 .card-block {
@@ -848,29 +853,34 @@ button:focus-visible {
   align-items: center;
 }
 
+/* Mismo sistema que .button (mismo fondo, texto, borde, radio,
+   tipografía, peso, padding, altura y estados) — es un <button> real
+   porque ejecuta una acción, no navega, así que necesita su propia
+   clase para el enganche de JS, pero visualmente es indistinguible. */
 .collab__code {
   font-family: var(--font-sans);
-  font-weight: 400;
+  font-weight: 500;
   font-size: 15px;
   line-height: 1.5;
-  background: transparent;
+  min-height: 44px;
+  background: var(--button-bg);
+  color: var(--button-text);
+  border: 1px solid var(--button-border);
   padding: 14px 24px;
   border-radius: var(--radius);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background 150ms ease, border-color 150ms ease, color 150ms ease;
-  color: var(--ink);
-  border: 1px solid var(--ink);
-  /* Ancho fijo (cabe "Copiar código · MCUESTA"), para que al cambiar
-     a "Código copiado" no encoja y mueva el resto del contenido. */
-  min-width: 230px;
+  transition: background 150ms ease;
+  /* Ancho fijo (cabe "Código copiado"), para que el cambio de texto al
+     copiar no encoja el botón ni mueva el resto del contenido. */
+  min-width: 180px;
 }
 
 .collab__code:hover,
-.collab__code:active { background: color-mix(in srgb, var(--ink) 8%, transparent); }
-.collab__code.is-copied { color: var(--accent-text); border-color: var(--accent); }
+.collab__code:active { background: var(--button-hover-bg); }
+.collab__code:active { background: var(--button-active-bg); }
 
 /* WhatsApp FAB */
 .whatsapp-fab {
@@ -881,32 +891,25 @@ button:focus-visible {
   width: 53px;
   height: 53px;
   border-radius: var(--radius);
-  /* Mismo diseño exacto que el resto de botones (fondo transparente,
-     borde y texto var(--ink), sin sombra). Como flota sobre fotos,
-     "transparente" no puede ser literal (el icono se vuelve ilegible
-     sobre fondos oscuros, comprobado) — usa var(--bg) sólido, que es
-     exactamente el color que se ve "a través" de un botón normal en
-     el resto de la página, así que el efecto visual es el mismo. */
-  background: var(--bg);
-  border: 1px solid var(--ink);
+  /* Mismo lenguaje visual exacto que el resto de botones: mismo fondo,
+     texto, borde, radio y sin sombra. Solo cambian las dimensiones
+     (formato compacto y cuadrado) para no tapar contenido al flotar. */
+  background: var(--button-bg);
+  border: 1px solid var(--button-border);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--ink);
+  color: var(--button-text);
   opacity: 0;
   pointer-events: none;
-  transition: opacity 200ms ease, background 200ms ease, color 200ms ease;
+  transition: opacity 200ms ease, background 200ms ease;
 }
 
 .whatsapp-fab.is-visible { opacity: 1; pointer-events: auto; }
 
-@media (hover: hover) and (pointer: fine) {
-  .whatsapp-fab:hover,
-  .whatsapp-fab:focus-visible {
-    background: color-mix(in srgb, var(--ink) 18%, var(--bg));
-    color: var(--ink);
-  }
-}
+.whatsapp-fab:hover,
+.whatsapp-fab:active { background: var(--button-hover-bg); }
+.whatsapp-fab:active { background: var(--button-active-bg); }
 
 .whatsapp-fab svg { width: 22px; height: 22px; fill: currentColor; }
 
