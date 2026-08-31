@@ -13,9 +13,15 @@ mercedes-cuesta-dietista/
 ├── styles/
 │   └── main.css
 ├── scripts/
+│   ├── include.js      # carga header/footer/back-to-home compartidos
 │   └── main.js
+├── partials/
+│   ├── header.html
+│   ├── footer.html
+│   └── back-to-home.html
 ├── assets/
 │   ├── images/
+│   ├── fonts/
 │   └── logo/
 ├── pages/
 │   ├── aviso-legal.html
@@ -28,25 +34,25 @@ mercedes-cuesta-dietista/
 └── README.md
 ```
 
-## Secciones
+Header y footer viven una sola vez en `partials/` y se inyectan en cada página vía `data-include` + `scripts/include.js`, en vez de duplicarse por archivo.
+
+## Secciones (Home)
 
 - Inicio
-- Sobre mí
-- Formación
-- Enfoque
+- Cómo trabajo
 - Programa
-- Testimonios
+- Sobre mí (incluye Formación)
+- Opiniones
 - Preguntas frecuentes
-- Contacto
-- Colaboración FullGas
+- Contacto (incluye colaboración con FullGas)
 
 ## Tecnologías
 
-HTML, CSS y JavaScript sin dependencias ni paso de build. Desplegado en Vercel.
+HTML, CSS y JavaScript sin dependencias ni paso de build. Tipografía Montserrat alojada localmente (sin Google Fonts). Desplegado en Vercel.
 
 ## Desarrollo local
 
-No requiere instalación. Basta con abrir `index.html` en el navegador, o servir la carpeta con cualquier servidor estático, por ejemplo:
+No requiere instalación. Al usar `fetch()` para cargar los partials, hace falta servir la carpeta con un servidor estático (abrir `index.html` directamente con `file://` no cargará el header/footer):
 
 ```sh
 python3 -m http.server 8000

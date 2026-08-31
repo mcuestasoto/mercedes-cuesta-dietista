@@ -175,7 +175,7 @@ button:focus-visible {
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  min-height: 72px;
+  min-height: var(--header-height);
 }
 
 .nav__brand {
