@@ -30,12 +30,11 @@
   <meta name="twitter:image" content="https://mercedes-cuesta-dietista.vercel.app/assets/images/og-image.png" />
   <meta name="twitter:image:alt" content="Mercedes Cuesta, dietista" />
 
-  <link rel="icon" href="./assets/logo/favicon.ico" sizes="any" />
-  <link rel="icon" href="./assets/logo/favicon.png" type="image/png" />
-  <link rel="apple-touch-icon" href="./assets/logo/apple-touch-icon.png" />
-  <link rel="manifest" href="./site.webmanifest" />
-  <meta name="theme-color" content="#FAF8F4" media="(prefers-color-scheme: light)" />
-  <meta name="theme-color" content="#1E1E1B" media="(prefers-color-scheme: dark)" />
+  <link rel="icon" href="/assets/logo/favicon.ico" sizes="any" />
+  <link rel="icon" href="/assets/logo/favicon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/assets/logo/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#FAF8F4" />
 
   <script type="application/ld+json">{
   "@context": "https://schema.org",
@@ -94,10 +93,10 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "¿Cuánto cuesta el Programa?",
+          "name": "¿Cuánto cuesta el programa?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Escríbeme por WhatsApp y te mando la información completa del Programa junto con el precio."
+            "text": "Escríbeme por WhatsApp y te enviaré la información completa del programa, incluido el precio."
           }
         },
         {
@@ -105,15 +104,47 @@
           "name": "¿Cómo se paga?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Pago único previo por Bizum."
+            "text": "El pago se hace por Bizum antes de empezar, en un único pago."
           }
         },
         {
           "@type": "Question",
-          "name": "¿Necesito experiencia previa o estar ya en forma?",
+          "name": "¿Cómo funciona el acompañamiento online?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No. El programa se adapta tanto si empiezas de cero como si ya entrenas y quieres mejorar tu alimentación."
+            "text": "Todo el proceso es online. La consulta inicial es por videollamada y, durante las 12 semanas, mantendremos el seguimiento por WhatsApp de lunes a viernes. El tiempo máximo de respuesta es de 48 horas laborables.\n\nAsí podremos resolver dudas y situaciones que vayan surgiendo en el día a día, hacer los ajustes necesarios durante el proceso y mantener el seguimiento sin desplazamientos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Voy a recibir un menú cerrado?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Trabajaremos con una estructura flexible y te iré dando herramientas para que puedas adaptar tu alimentación a tu rutina, en lugar de tener que adaptar tu rutina a un menú."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Tengo que pesar los alimentos?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No es imprescindible. Podemos trabajar con medidas caseras y raciones orientativas.\n\nSi en algún momento pesar algunos alimentos puede ayudarte a entender mejor las cantidades, lo valoraremos, pero no es un requisito del programa."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué pasa si como fuera o necesito cambiar algún alimento?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Comer fuera, viajar o compartir comidas forma parte de la vida cotidiana, así que lo tendremos en cuenta desde el principio.\n\nTambién podremos adaptar el plan a tus gustos, alergias, intolerancias y a los alimentos que tengas disponibles, buscando alternativas adecuadas cuando sea necesario."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué objetivos puedo trabajar contigo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Podemos trabajar la organización de tu alimentación y tus hábitos, así como objetivos relacionados con composición corporal o rendimiento deportivo, siempre dentro de mi ámbito profesional.\n\nEn la consulta inicial concretaremos qué quieres trabajar y cuál es el enfoque más adecuado."
           }
         },
         {
@@ -121,15 +152,7 @@
           "name": "¿Este servicio sustituye una valoración médica?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No. Es un servicio de orientación en alimentación y hábitos, no sustituye la valoración o el tratamiento de un profesional médico. Si durante la valoración inicial detecto que necesitas atención especializada, te lo comunico y te derivo."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "¿Las consultas y el seguimiento son online?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Sí, todo el servicio es 100% online: las consultas son por videollamada y el resto de comunicación por WhatsApp, de lunes a viernes. El tiempo de respuesta es de un máximo de 48 horas laborables."
+            "text": "No. El programa es un servicio de dietética y educación alimentaria y no sustituye una valoración médica ni otros tratamientos sanitarios cuando sean necesarios.\n\nSi detecto una situación que requiere otro tipo de atención, te lo comunicaré y te recomendaré consultar con el profesional correspondiente."
           }
         }
       ]
@@ -137,81 +160,164 @@
   ]
 }</script>
 
-  <link rel="preload" as="image" href="./assets/images/mercedes-hero-724.webp" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&amp;display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./styles/main.css" />
-  <script defer src="./scripts/main.js"></script>
+  <link rel="preload" as="image" fetchpriority="high" type="image/avif" imagesrcset="/assets/images/mercedes-hero-400.avif 400w, /assets/images/mercedes-hero-800.avif 800w, /assets/images/mercedes-hero-1200.avif 1200w, /assets/images/mercedes-hero-1586.avif 1586w" imagesizes="(max-width: 640px) 100vw, 540px" />
+  <link rel="stylesheet" href="/styles/main.css" />
+  <script defer src="/scripts/include.js"></script>
+  <script defer src="/scripts/main.js"></script>
 </head>
 
 <body>
+<div class="page-shell">
   <a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
 
-  <header class="site-header" data-header>
-    <div class="container nav">
-      <a href="#inicio" class="nav__brand" aria-label="Mercedes Cuesta, volver al inicio">
-        <img src="./assets/logo/wordmark-light.png" alt="Mercedes Cuesta" class="nav__logo nav__logo--light" width="1615" height="162" />
-        <img src="./assets/logo/wordmark-dark.png" alt="Mercedes Cuesta" class="nav__logo nav__logo--dark" width="1615" height="162" />
-      </a>
-
-      <ul class="nav__menu">
-        <li><a href="#sobre-mi" data-nav-link>Sobre mí</a></li>
-        <li><a href="#programa" data-nav-link>Programa</a></li>
-        <li><a href="#testimonios" data-nav-link>Testimonios</a></li>
-        <li><a href="#faq" data-nav-link>Preguntas frecuentes</a></li>
-        <li><a href="#contacto" data-nav-link>Contacto</a></li>
-      </ul>
-
-      <button class="nav__toggle" type="button" aria-label="Abrir menú" aria-controls="menu-movil" aria-expanded="false" data-nav-toggle>
-        <span class="nav__toggle-bars"><span></span><span></span></span>
-      </button>
-    </div>
-  </header>
-
-  <nav id="menu-movil" class="nav__mobile-menu" aria-label="Principal" data-mobile-menu>
-    <button class="nav__mobile-close" type="button" aria-label="Cerrar menú" data-mobile-close>
-      <span class="nav__mobile-close-icon"><span></span><span></span></span>
-    </button>
-    <a href="#inicio" data-nav-link>Inicio</a>
-    <a href="#sobre-mi" data-nav-link>Sobre mí</a>
-    <a href="#programa" data-nav-link>Programa</a>
-    <a href="#testimonios" data-nav-link>Testimonios</a>
-    <a href="#faq" data-nav-link>Preguntas frecuentes</a>
-    <a href="#contacto" data-nav-link>Contacto</a>
-  </nav>
+  <div data-include="/partials/header.html"></div>
 
   <main id="contenido-principal">
     <section id="inicio" class="section section--hero hero">
+      <div class="container hero__container">
+        <div class="hero__row">
+          <div class="hero__content">
+            <p class="hero__role">Dietista online</p>
+            <h1>Mejora tu alimentación de una forma que encaje en tu vida.</h1>
+            <p class="hero__lede">Te acompaño a trabajar tu alimentación con una propuesta adaptada a tu rutina, tus necesidades y tus objetivos, con seguimiento durante todo el proceso.</p>
+            <div class="hero__actions">
+              <a class="button" data-whatsapp-link href="https://api.whatsapp.com/send?phone=34614821010&amp;text=Hola%20Mercedes%20%F0%9F%99%82%20he%20visto%20tu%20web%20y%20me%20gustar%C3%ADa%20empezar" target="_blank" rel="noopener noreferrer" aria-label="Quiero empezar: escríbeme por WhatsApp (se abre en una pestaña nueva)">Quiero empezar</a>
+            </div>
+          </div>
+
+          <div class="hero__media">
+            <picture>
+              <source
+                type="image/avif"
+                srcset="/assets/images/mercedes-hero-400.avif 400w, /assets/images/mercedes-hero-800.avif 800w, /assets/images/mercedes-hero-1200.avif 1200w, /assets/images/mercedes-hero-1586.avif 1586w"
+                sizes="(max-width: 640px) 100vw, 540px" />
+              <source
+                type="image/webp"
+                srcset="/assets/images/mercedes-hero-400.webp 400w, /assets/images/mercedes-hero-800.webp 800w, /assets/images/mercedes-hero-1200.webp 1200w, /assets/images/mercedes-hero-1586.webp 1586w"
+                sizes="(max-width: 640px) 100vw, 540px" />
+              <img
+                src="/assets/images/mercedes-hero-800.jpg"
+                srcset="/assets/images/mercedes-hero-400.jpg 400w, /assets/images/mercedes-hero-800.jpg 800w, /assets/images/mercedes-hero-1200.jpg 1200w, /assets/images/mercedes-hero-1586.jpg 1586w"
+                sizes="(max-width: 640px) 100vw, 540px"
+                alt="Mercedes Cuesta" class="hero__image" width="800" height="1000" fetchpriority="high" decoding="async" />
+            </picture>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="como-trabajo" class="section">
       <div class="container">
-        <div class="hero__content">
-          <h1>Mercedes Cuesta</h1>
-          <p class="hero__role">Dietista</p>
-          <p class="hero__text">Te ayudo a mejorar tu alimentación y tus hábitos, con un enfoque personalizado y sostenible.</p>
-          <ul class="hero__topics">
-            <li><span class="hero__topics-word">Alimentación</span><span class="hero__topics-dot" aria-hidden="true">·</span></li>
-            <li><span class="hero__topics-word">Hábitos</span><span class="hero__topics-dot" aria-hidden="true">·</span></li>
-            <li><span class="hero__topics-word">Composición corporal</span><span class="hero__topics-dot" aria-hidden="true">·</span></li>
-            <li><span class="hero__topics-word">Rendimiento</span></li>
-          </ul>
-          <div class="hero__actions">
-            <a class="button button--primary" data-whatsapp-link href="https://api.whatsapp.com/send?phone=34614821010&amp;text=Hola%20Mercedes%20%F0%9F%99%82%20he%20visto%20tu%20web%20y%20me%20gustar%C3%ADa%20saber%20m%C3%A1s%20sobre%20el%20Programa" target="_blank" rel="noopener noreferrer" aria-label="Escribir a Mercedes por WhatsApp">
-              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558 .064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.473.205.842.326 1.129.418.475.152.904.13 1.246.079.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232" /></svg>
-              WhatsApp
-            </a>
-            <a class="button button--secondary" href="https://instagram.com/mcuestasoto" target="_blank" rel="noopener noreferrer" aria-label="Ver el Instagram de Mercedes Cuesta">
-              <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.318.92.598s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.598.92 2.5 2.5 0 0 1-.92.598c-.282.11-.705.24-1.485.275-.843.039-1.096.047-3.232.047s-2.39-.008-3.233-.047c-.78-.035-1.203-.165-1.485-.275a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.598-.92c-.11-.282-.24-.705-.275-1.485-.039-.843-.046-1.096-.046-3.232s.007-2.388.046-3.231c.035-.78.165-1.204.275-1.486.145-.373.318-.64.598-.92s.547-.453.92-.598c.282-.11.705-.24 1.485-.275.738-.034 1.024-.044 2.515-.046zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334" /></svg>
-              Instagram
-            </a>
+        <div class="section-heading"><h2>Cómo trabajo</h2></div>
+
+        <p class="text-body">El acompañamiento se adapta a tu punto de partida, tus objetivos y tu contexto. Durante el proceso iremos revisando qué funciona, qué necesita ajustarse y qué herramientas pueden ayudarte a ganar autonomía.</p>
+        <div class="card-grid" id="enfoque">
+          <article class="card">
+            <p>Adaptación a tu contexto</p>
+            <p>Partiremos de tus horarios, preferencias, rutina y necesidades para que la propuesta tenga sentido en tu día a día.</p>
+          </article>
+          <article class="card">
+            <p>Educación alimentaria</p>
+            <p>No solo veremos qué hacer, sino también por qué y cómo adaptarlo cuando cambie tu rutina.</p>
+          </article>
+          <article class="card">
+            <p>Cambios progresivos</p>
+            <p>No hace falta modificarlo todo de golpe. Priorizaremos los cambios que puedan aportar más y los iremos integrando de forma progresiva.</p>
+          </article>
+          <article class="card">
+            <p>Seguimiento y ajustes</p>
+            <p>Durante las 12 semanas iremos revisando cómo funciona la propuesta en tu día a día y haremos los ajustes necesarios a medida que avance el proceso.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="programa" class="section">
+      <div class="container">
+        <div class="programa-intro-row">
+          <div class="programa-intro-row__main">
+            <div class="section-heading"><h2>Programa nutricional de 12 semanas</h2></div>
+
+            <div class="prose">
+              <p>Un acompañamiento online de 12 semanas para trabajar tu alimentación de forma adaptada a tu situación, con seguimiento durante todo el proceso.</p>
+              <p>Puede encajar tanto si quieres organizar mejor tu alimentación como si ya entrenas y buscas adaptarla a objetivos de composición corporal o rendimiento.</p>
+            </div>
+          </div>
+
+          <div class="programa-summary card-block">
+            <h3>En resumen</h3>
+            <div class="programa-summary__list">
+              <div class="programa-summary__item">
+                <p>12 semanas</p>
+                <p>de acompañamiento</p>
+              </div>
+              <div class="programa-summary__item">
+                <p>100 % online</p>
+              </div>
+              <div class="programa-summary__item">
+                <p>Consulta inicial</p>
+                <p>por videollamada</p>
+              </div>
+              <div class="programa-summary__item">
+                <p>Seguimiento</p>
+                <p>por WhatsApp de lunes a viernes</p>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="hero__media">
-          <picture>
-            <source media="(max-width: 640px)" srcset="./assets/images/mercedes-hero-480.webp 480w, ./assets/images/mercedes-hero-724.webp 724w" sizes="100vw" type="image/webp" />
-            <source srcset="./assets/images/mercedes-hero-724.webp" type="image/webp" />
-            <img src="./assets/images/mercedes-hero.jpg" alt="Mercedes Cuesta, dietista" class="hero__image" width="724" height="1086" loading="eager" decoding="async" />
-          </picture>
+        <div class="programa-questions">
+          <div class="card-block">
+            <h3>¿Qué podremos trabajar?</h3>
+            <p class="text-body">Según tu situación, podremos trabajar la organización de las comidas, la planificación de la compra y la cocina, las señales de hambre y saciedad y otros hábitos relacionados con tu alimentación.</p>
+            <p class="text-body">Si entrenas, también podremos adaptar la alimentación a tu actividad para apoyar el rendimiento, la recuperación y tus objetivos.</p>
+          </div>
+
+          <div class="card-block">
+            <h3>¿Por qué 12 semanas?</h3>
+            <p class="text-body">Porque necesitamos tiempo para pasar de la teoría a la práctica.</p>
+            <p class="text-body">Durante esas semanas podremos aplicar cambios, comprobar cómo encajan en tu rutina, detectar dificultades y ajustar la propuesta cuando sea necesario.</p>
+            <p class="text-body">La idea no es seguir una pauta perfecta, sino ir desarrollando herramientas que te permitan manejar tu alimentación con cada vez más autonomía.</p>
+          </div>
+        </div>
+
+        <div class="programa-process">
+          <h3>Proceso</h3>
+          <div class="process-horizontal">
+            <div class="process-horizontal__step">
+              <span class="process-horizontal__number">01</span>
+              <div class="process-horizontal__body">
+                <p>Formulario inicial</p>
+                <p>Antes de la consulta completarás un formulario para que pueda conocer tu rutina, horarios, hábitos, preferencias y objetivos.</p>
+              </div>
+            </div>
+            <div class="process-horizontal__step">
+              <span class="process-horizontal__number">02</span>
+              <div class="process-horizontal__body">
+                <p>Consulta inicial</p>
+                <p>Tendremos una videollamada para profundizar en la información del formulario, conocer mejor tu situación y concretar qué trabajaremos durante el proceso.</p>
+              </div>
+            </div>
+            <div class="process-horizontal__step">
+              <span class="process-horizontal__number">03</span>
+              <div class="process-horizontal__body">
+                <p>Plan personalizado</p>
+                <p>Prepararé una propuesta adaptada a tu día a día, acompañada de educación alimentaria, recursos y herramientas que te ayuden a aplicarla.</p>
+              </div>
+            </div>
+            <div class="process-horizontal__step">
+              <span class="process-horizontal__number">04</span>
+              <div class="process-horizontal__body">
+                <p>Seguimiento</p>
+                <p>Durante las 12 semanas mantendremos contacto por WhatsApp de lunes a viernes. Iremos resolviendo dudas, revisando cómo funciona la propuesta en la práctica y haciendo los ajustes que sean necesarios.</p>
+                <p>El tiempo máximo de respuesta será de 48 horas laborables.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="programa__highlight">
+          <p>El objetivo no es que dependas de un plan para siempre, sino que tengas cada vez más herramientas para tomar decisiones que encajen en tu vida.</p>
         </div>
       </div>
     </section>
@@ -219,199 +325,199 @@
     <section id="sobre-mi" class="section">
       <div class="container">
         <div class="section-heading"><h2>Sobre mí</h2></div>
-        <div class="prose">
-          <p>¡Hola! Soy Mercedes Cuesta, dietista.</p>
-          <p>Trabajo de forma online, acompañando a personas que quieren mejorar su alimentación, sus hábitos, su composición corporal o su rendimiento, con un enfoque personalizado y flexible.</p>
-          <p>Yo también pasé por ese cambio. Durante la pandemia dejé atrás una vida sedentaria y de malos hábitos, empezando a entrenar y a cuidar mi alimentación. Así que sé lo que cuesta el proceso, y por eso te acompaño con una estructura clara y sostenible, basada en evidencia y no solo en lo que a mí me funcionó.</p>
-          <p>Mi objetivo es ayudarte a organizar mejor tus comidas, tomar decisiones con más seguridad y sin culpa, y construir hábitos que puedas mantener en el tiempo, sin extremos y sin que tu vida gire alrededor de una dieta.</p>
-        </div>
 
-        <div class="card-block">
-          <h3>Formación</h3>
-          <div class="card-grid">
-            <article class="card">
-              <p>Técnico Superior en Dietética</p>
-              <p>Título oficial de Formación Profesional de Grado Superior de la rama sanitaria, centrado en dietética, alimentación y educación alimentaria.</p>
-            </article>
-            <article class="card">
-              <p>Antropometrista ISAK nivel 1</p>
-              <p>Acreditación en antropometría básica según el protocolo ISAK, para realizar mediciones corporales estandarizadas como perímetros y pliegues.</p>
-            </article>
+        <div class="sobre-mi-row">
+          <div class="prose">
+            <p class="lede">Soy Mercedes, dietista.</p>
+            <p>Trabajo de forma online y acompaño a personas que quieren mejorar su alimentación, organizar mejor sus hábitos o adaptar su nutrición a objetivos de composición corporal y rendimiento.</p>
+            <p>Mi interés por la alimentación también nació de mi propia experiencia. Durante la pandemia empecé a prestar más atención a mi actividad física y a mi alimentación, y ese proceso despertó mi interés por entender mejor cómo influyen nuestros hábitos en el día a día.</p>
+            <p>Con el tiempo, ese interés se convirtió en formación y en mi profesión.</p>
+            <p>Hoy mi forma de trabajar parte de la evidencia científica, la individualización y el contexto de cada persona. No se trata de aplicar lo que funcionó en mi caso, sino de encontrar herramientas que tengan sentido para cada situación.</p>
+            <p>Mi objetivo es ayudarte a entender mejor tu alimentación, tener más recursos para tomar decisiones con seguridad y avanzar sin sentir que tu vida tiene que girar alrededor de una dieta.</p>
+          </div>
+
+          <div class="sobre-mi-row__formacion">
+            <h3>Formación</h3>
+            <div class="card-grid">
+              <article class="card">
+                <p>Técnico Superior en Dietética</p>
+                <p>Titulación oficial de Formación Profesional de Grado Superior de la rama sanitaria.</p>
+              </article>
+              <article class="card">
+                <p>Antropometrista ISAK nivel 1</p>
+                <p>Acreditación en antropometría según el protocolo ISAK.</p>
+              </article>
+            </div>
           </div>
         </div>
-
-        <div class="card-block" id="enfoque">
-          <h3>Enfoque</h3>
-          <p class="text-body">Así es como planteo el acompañamiento, sea cual sea tu punto de partida:</p>
-          <div class="card-grid">
-            <article class="card">
-              <p>Alimentación personalizada</p>
-              <p>Adaptada a tus objetivos, rutina, horarios, preferencias y necesidades reales.</p>
-            </article>
-            <article class="card">
-              <p>Educación alimentaria</p>
-              <p>Para entender qué hacer, por qué hacerlo y cómo aplicarlo en el día a día.</p>
-            </article>
-            <article class="card">
-              <p>Hábitos sostenibles</p>
-              <p>Trabajamos tus hábitos de forma progresiva y realista, sin extremos.</p>
-            </article>
-            <article class="card">
-              <p>Composición corporal y rendimiento</p>
-              <p>Ajustamos tu alimentación para apoyar tu rendimiento, tu energía y tu recuperación según tu objetivo.</p>
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="programa" class="section">
-      <div class="container">
-        <div class="section-heading"><h2>Programa</h2></div>
-        <div class="prose">
-          <p>Programa Nutricional de 12 semanas. Es el punto de partida, tanto si empiezas de cero como si ya entrenas y quieres afinar tu alimentación para rendir mejor o mejorar tu composición corporal.</p>
-          <p>Trabajamos tu alimentación y los hábitos que la rodean: el sueño, el estrés, cómo organizas la compra y la cocina, el hambre y la saciedad. Si además ya entrenas, ajustamos tu alimentación a tu actividad para que rindas mejor y recuperes bien.</p>
-          <p class="lede">¿Por qué 12 semanas y no una dieta cerrada?</p>
-          <p>Una dieta cerrada suele pedir un cambio radical desde el primer día, sin margen para ajustarse a tu rutina real — y por eso, aunque funcione las primeras semanas, es difícil de sostener. Los cambios que de verdad se quedan (en tu alimentación, pero también en cómo te relacionas con la comida y en la confianza con la que tomas decisiones) necesitan tiempo para probarse, ajustarse y convertirse en costumbre.</p>
-          <p>Los cambios reales llevan tiempo. Por eso, en lugar de mandarte un menú rígido, trabajamos mejorando tus hábitos y tu alimentación, avanzando hacia tus objetivos con seguimiento y los ajustes que sean necesarios, para que el resultado sea algo que puedas mantener en el tiempo.</p>
-        </div>
-
-        <div class="card-grid">
-          <article class="card card--step">
-            <span class="card__number">1</span>
-            <div class="card__body">
-              <p>Formulario inicial</p>
-              <p>Te mando un formulario para conocer tu rutina, horarios, hábitos, preferencias y objetivos.</p>
-            </div>
-          </article>
-          <article class="card card--step">
-            <span class="card__number">2</span>
-            <div class="card__body">
-              <p>Consulta inicial</p>
-              <p>Por videollamada, profundizamos en la información del formulario y analizamos tu situación actual y tus objetivos.</p>
-            </div>
-          </article>
-          <article class="card card--step">
-            <span class="card__number">3</span>
-            <div class="card__body">
-              <p>Plan personalizado</p>
-              <p>Diseño tu plan de alimentación, adaptado a tu día a día, con educación alimentaria, recursos y herramientas para la mejora de hábitos.</p>
-            </div>
-          </article>
-          <article class="card card--step">
-            <span class="card__number">4</span>
-            <div class="card__body">
-              <p>Seguimiento</p>
-              <p>Contacto por WhatsApp y los ajustes que necesites, hasta completar las 12 semanas.</p>
-            </div>
-          </article>
-        </div>
-
-        <p class="text-body">No buscamos una dieta perfecta para ti — buscamos una forma de comer que puedas mantener en el tiempo, sin que comer bien se convierta en otro problema más.</p>
       </div>
     </section>
 
     <section id="testimonios" class="section">
       <div class="container">
-        <div class="section-heading"><h2>Testimonios</h2></div>
-        <p class="text-body">Esto es lo que algunas personas se han llevado del proceso, más allá de los resultados.</p>
+        <div class="section-heading"><h2>Opiniones</h2></div>
+        <p class="text-body">Algunas experiencias de personas a las que he acompañado durante el proceso.</p>
       </div>
 
-      <div class="carousel-viewport" tabindex="0" role="group" aria-label="Testimonios, usa las flechas del teclado" data-carousel-viewport>
-        <div class="carousel-track" data-carousel-track>
-          <article class="testimonial-card">
-            <p class="testimonial-card__topic">Hábitos</p>
-            <p>Aprendí a comer mejor sin pasar hambre ni tener que renunciar a los alimentos que me gustan. Para mí, lo más importante fue entender que no se trata de hacer una dieta durante un tiempo, sino de aprender a mantener unos hábitos saludables.</p>
-            <p class="testimonial-card__author">— Cliente anónima</p>
-          </article>
-          <article class="testimonial-card">
-            <p class="testimonial-card__topic">Acompañamiento</p>
-            <p>Me ayudó mucho entender el porqué de las cosas, saber que no estaba sola y que podía preguntarle lo que necesitaba. Lo que más destacaría es la cercanía, la naturalidad y la flexibilidad.</p>
-            <p class="testimonial-card__author">— Marta</p>
-          </article>
-          <article class="testimonial-card">
-            <p class="testimonial-card__topic">Entrenamiento</p>
-            <p>Me ayudó a entender cómo prepararme para comer según mis entrenamientos diarios y entendí un poco más de nutrición.</p>
-            <p class="testimonial-card__author">— David</p>
-          </article>
-          <article class="testimonial-card">
-            <p class="testimonial-card__topic">Relación con la comida</p>
-            <p>Me llegó mucho el hecho de hacer consciencia antes, durante y después de comer y quitar etiquetas para poder disfrutar de la comida cuando así lo decida.</p>
-            <p class="testimonial-card__author">— Cliente anónimo</p>
-          </article>
-          <article class="testimonial-card">
-            <p class="testimonial-card__topic">Variedad y adaptación</p>
-            <p>Me diste muchas opciones de alimentos y eso hizo que no fuera nada aburrido seguir el plan. También estuviste atenta todo el tiempo a cómo iba el proceso y mostraste gran interés para que progresara.</p>
-            <p class="testimonial-card__author">— Michelle</p>
-          </article>
-          <article class="testimonial-card">
-            <p class="testimonial-card__topic">Motivación y adherencia</p>
-            <p>Empecé con el objetivo de perder peso y poco a poco aprender a comer sano y bien. Estuve súper a gusto contigo. Lo que más me ayudó fue que estaba todo rico y la motivación que transmitías.</p>
-            <p class="testimonial-card__author">— Raquel</p>
-          </article>
+      <div class="container testimonial-carousel">
+        <div class="testimonial-carousel__viewport" data-carousel-viewport>
+          <ul class="testimonial-carousel__track" data-carousel-track>
+            <li class="testimonial-carousel__slide">
+              <article class="testimonial-card">
+                <p class="testimonial-card__topic">Acompañamiento</p>
+                <p>Me ayudó mucho entender el porqué de las cosas, saber que no estaba sola y que podía preguntarle lo que necesitaba. Lo que más destacaría es la cercanía, la naturalidad y la flexibilidad.</p>
+                <p class="testimonial-card__author">— Marta</p>
+              </article>
+            </li>
+            <li class="testimonial-carousel__slide">
+              <article class="testimonial-card">
+                <p class="testimonial-card__topic">Relación con la comida</p>
+                <p>Me llegó mucho el hecho de hacer consciencia antes, durante y después de comer y quitar etiquetas para poder disfrutar de la comida cuando así lo decida.</p>
+                <p class="testimonial-card__author">— Cliente</p>
+              </article>
+            </li>
+            <li class="testimonial-carousel__slide">
+              <article class="testimonial-card">
+                <p class="testimonial-card__topic">Hábitos</p>
+                <p>Aprendí a comer mejor sin pasar hambre ni tener que renunciar a los alimentos que me gustan. Para mí, lo más importante fue entender que no se trata de hacer una dieta durante un tiempo, sino de aprender a mantener unos hábitos saludables.</p>
+                <p class="testimonial-card__author">— Cliente</p>
+              </article>
+            </li>
+            <li class="testimonial-carousel__slide">
+              <article class="testimonial-card">
+                <p class="testimonial-card__topic">Variedad y adaptación</p>
+                <p>Me diste muchas opciones de alimentos y eso hizo que no fuera nada aburrido seguir el plan. También estuviste atenta todo el tiempo a cómo iba el proceso y mostraste gran interés para que progresara.</p>
+                <p class="testimonial-card__author">— Michelle</p>
+              </article>
+            </li>
+            <li class="testimonial-carousel__slide">
+              <article class="testimonial-card">
+                <p class="testimonial-card__topic">Motivación y adherencia</p>
+                <p>Empecé con el objetivo de perder peso y poco a poco aprender a comer sano y bien. Estuve súper a gusto contigo. Lo que más me ayudó fue que estaba todo rico y la motivación que transmitías.</p>
+                <p class="testimonial-card__author">— Raquel</p>
+              </article>
+            </li>
+            <li class="testimonial-carousel__slide">
+              <article class="testimonial-card">
+                <p class="testimonial-card__topic">Entrenamiento</p>
+                <p>Me ayudó a entender cómo prepararme para comer según mis entrenamientos diarios y entendí un poco más de nutrición.</p>
+                <p class="testimonial-card__author">— David</p>
+              </article>
+            </li>
+          </ul>
         </div>
-      </div>
-      <div class="container carousel-controls">
-        <div class="carousel-dots" data-carousel-dots></div>
-        <div class="carousel-arrows">
-          <button type="button" aria-label="Anterior" data-carousel-prev>
-            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0" /></svg>
+
+        <div class="testimonial-carousel__controls">
+          <button type="button" class="testimonial-carousel__arrow" data-carousel-prev aria-label="Testimonio anterior">
+            <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0" /></svg>
           </button>
-          <button type="button" aria-label="Siguiente" data-carousel-next>
-            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708" /></svg>
+          <div class="testimonial-carousel__progress" data-carousel-progress aria-hidden="true"></div>
+          <p class="sr-only" data-carousel-status aria-live="polite">Testimonio 1 de 6</p>
+          <button type="button" class="testimonial-carousel__arrow" data-carousel-next aria-label="Testimonio siguiente">
+            <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708" /></svg>
           </button>
         </div>
       </div>
     </section>
 
-    <section id="faq" class="section">
+    <section id="preguntas-frecuentes" class="section">
       <div class="container">
-        <div class="section-heading"><h2>Preguntas frecuentes</h2></div>
-        <div class="faq-list">
+        <div class="faq-row">
+          <div class="section-heading faq-row__heading"><h2>Preguntas frecuentes</h2></div>
+          <div class="faq-list faq-row__list">
           <div class="faq-item" data-faq-item>
             <h3 class="faq-item__heading">
               <button class="faq-item__question" data-faq-question aria-expanded="false" aria-controls="faq-1">
-                ¿Cuánto cuesta el Programa?
-                <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" /></svg>
+                ¿Cuánto cuesta el programa?
+                <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" /></svg>
               </button>
             </h3>
-            <p class="faq-item__answer" id="faq-1">Escríbeme por WhatsApp y te mando la información completa del Programa junto con el precio.</p>
+            <div class="faq-item__answer" id="faq-1">
+              <p>Escríbeme por WhatsApp y te enviaré la información completa del programa, incluido el precio.</p>
+            </div>
           </div>
           <div class="faq-item" data-faq-item>
             <h3 class="faq-item__heading">
               <button class="faq-item__question" data-faq-question aria-expanded="false" aria-controls="faq-2">
                 ¿Cómo se paga?
-                <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" /></svg>
+                <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" /></svg>
               </button>
             </h3>
-            <p class="faq-item__answer" id="faq-2">Pago único previo por Bizum.</p>
+            <div class="faq-item__answer" id="faq-2">
+              <p>El pago se hace por Bizum antes de empezar, en un único pago.</p>
+            </div>
           </div>
           <div class="faq-item" data-faq-item>
             <h3 class="faq-item__heading">
               <button class="faq-item__question" data-faq-question aria-expanded="false" aria-controls="faq-3">
-                ¿Necesito experiencia previa o estar ya en forma?
-                <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" /></svg>
+                ¿Cómo funciona el acompañamiento online?
+                <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" /></svg>
               </button>
             </h3>
-            <p class="faq-item__answer" id="faq-3">No. El programa se adapta tanto si empiezas de cero como si ya entrenas y quieres mejorar tu alimentación.</p>
+            <div class="faq-item__answer" id="faq-3">
+              <p>Todo el proceso es online. La consulta inicial es por videollamada y, durante las 12 semanas, mantendremos el seguimiento por WhatsApp de lunes a viernes. El tiempo máximo de respuesta es de 48 horas laborables.</p>
+              <p>Así podremos resolver dudas y situaciones que vayan surgiendo en el día a día, hacer los ajustes necesarios durante el proceso y mantener el seguimiento sin desplazamientos.</p>
+            </div>
           </div>
           <div class="faq-item" data-faq-item>
             <h3 class="faq-item__heading">
               <button class="faq-item__question" data-faq-question aria-expanded="false" aria-controls="faq-4">
-                ¿Este servicio sustituye una valoración médica?
-                <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" /></svg>
+                ¿Voy a recibir un menú cerrado?
+                <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" /></svg>
               </button>
             </h3>
-            <p class="faq-item__answer" id="faq-4">No. Es un servicio de orientación en alimentación y hábitos, no sustituye la valoración o el tratamiento de un profesional médico. Si durante la valoración inicial detecto que necesitas atención especializada, te lo comunico y te derivo.</p>
+            <div class="faq-item__answer" id="faq-4">
+              <p>No. Trabajaremos con una estructura flexible y te iré dando herramientas para que puedas adaptar tu alimentación a tu rutina, en lugar de tener que adaptar tu rutina a un menú.</p>
+            </div>
           </div>
           <div class="faq-item" data-faq-item>
             <h3 class="faq-item__heading">
               <button class="faq-item__question" data-faq-question aria-expanded="false" aria-controls="faq-5">
-                ¿Las consultas y el seguimiento son online?
-                <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" /></svg>
+                ¿Tengo que pesar los alimentos?
+                <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" /></svg>
               </button>
             </h3>
-            <p class="faq-item__answer" id="faq-5">Sí, todo el servicio es 100% online: las consultas son por videollamada y el resto de comunicación por WhatsApp, de lunes a viernes. El tiempo de respuesta es de un máximo de 48 horas laborables.</p>
+            <div class="faq-item__answer" id="faq-5">
+              <p>No es imprescindible. Podemos trabajar con medidas caseras y raciones orientativas.</p>
+              <p>Si en algún momento pesar algunos alimentos puede ayudarte a entender mejor las cantidades, lo valoraremos, pero no es un requisito del programa.</p>
+            </div>
+          </div>
+          <div class="faq-item" data-faq-item>
+            <h3 class="faq-item__heading">
+              <button class="faq-item__question" data-faq-question aria-expanded="false" aria-controls="faq-6">
+                ¿Qué pasa si como fuera o necesito cambiar algún alimento?
+                <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" /></svg>
+              </button>
+            </h3>
+            <div class="faq-item__answer" id="faq-6">
+              <p>Comer fuera, viajar o compartir comidas forma parte de la vida cotidiana, así que lo tendremos en cuenta desde el principio.</p>
+              <p>También podremos adaptar el plan a tus gustos, alergias, intolerancias y a los alimentos que tengas disponibles, buscando alternativas adecuadas cuando sea necesario.</p>
+            </div>
+          </div>
+          <div class="faq-item" data-faq-item>
+            <h3 class="faq-item__heading">
+              <button class="faq-item__question" data-faq-question aria-expanded="false" aria-controls="faq-7">
+                ¿Qué objetivos puedo trabajar contigo?
+                <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" /></svg>
+              </button>
+            </h3>
+            <div class="faq-item__answer" id="faq-7">
+              <p>Podemos trabajar la organización de tu alimentación y tus hábitos, así como objetivos relacionados con composición corporal o rendimiento deportivo, siempre dentro de mi ámbito profesional.</p>
+              <p>En la consulta inicial concretaremos qué quieres trabajar y cuál es el enfoque más adecuado.</p>
+            </div>
+          </div>
+          <div class="faq-item" data-faq-item>
+            <h3 class="faq-item__heading">
+              <button class="faq-item__question" data-faq-question aria-expanded="false" aria-controls="faq-8">
+                ¿Este servicio sustituye una valoración médica?
+                <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708" /></svg>
+              </button>
+            </h3>
+            <div class="faq-item__answer" id="faq-8">
+              <p>No. El programa es un servicio de dietética y educación alimentaria y no sustituye una valoración médica ni otros tratamientos sanitarios cuando sean necesarios.</p>
+              <p>Si detecto una situación que requiere otro tipo de atención, te lo comunicaré y te recomendaré consultar con el profesional correspondiente.</p>
+            </div>
+          </div>
           </div>
         </div>
       </div>
@@ -420,62 +526,36 @@
     <section id="contacto" class="section">
       <div class="container">
         <div class="section-heading"><h2>Contacto</h2></div>
-        <p class="text-body">Si quieres mejorar tu alimentación, tus hábitos o tu rendimiento, escríbeme por WhatsApp y te cuento cómo puedo ayudarte.</p>
-        <div class="contact__actions">
-          <a class="button button--primary" data-whatsapp-link href="https://api.whatsapp.com/send?phone=34614821010&amp;text=Hola%20Mercedes%20%F0%9F%99%82%20he%20visto%20tu%20web%20y%20me%20gustar%C3%ADa%20saber%20m%C3%A1s%20sobre%20el%20Programa" target="_blank" rel="noopener noreferrer" aria-label="Escribir a Mercedes por WhatsApp">
-            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558 .064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.473.205.842.326 1.129.418.475.152.904.13 1.246.079.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232" /></svg>
-            WhatsApp
-          </a>
-          <a class="button button--secondary" href="https://instagram.com/mcuestasoto" target="_blank" rel="noopener noreferrer" aria-label="Ver el Instagram de Mercedes Cuesta">
-            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.318.92.598s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.598.92 2.5 2.5 0 0 1-.92.598c-.282.11-.705.24-1.485.275-.843.039-1.096.047-3.232.047s-2.39-.008-3.233-.047c-.78-.035-1.203-.165-1.485-.275a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.598-.92c-.11-.282-.24-.705-.275-1.485-.039-.843-.046-1.096-.046-3.232s.007-2.388.046-3.231c.035-.78.165-1.204.275-1.486.145-.373.318-.64.598-.92s.547-.453.92-.598c.282-.11.705-.24 1.485-.275.738-.034 1.024-.044 2.515-.046zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334" /></svg>
-            Instagram
-          </a>
-          <a class="button button--secondary" href="mailto:mcuesta.dietista@gmail.com" aria-label="Enviar email a Mercedes Cuesta">
-            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z" /></svg>
-            Email
-          </a>
-        </div>
 
-        <div class="card-block collab">
-          <h3>Colaboraciones</h3>
-          <p class="text-body">Con mi código, tienes un 10% de descuento en suplementación deportiva en toda la web de FullGas.</p>
-          <div class="collab__actions">
-            <button type="button" class="collab__code" data-copy-code="MCUESTA" aria-label="Copiar código MCUESTA">
-              <span data-copy-label>Copiar código · MCUESTA</span>
-            </button>
-            <a class="button button--secondary" href="https://fullgas.org/es/?fg=79" target="_blank" rel="sponsored noopener noreferrer" aria-label="Abrir FullGas en una pestaña nueva">Ir a FullGas</a>
+        <div class="closing-row">
+          <div class="closing-row__contact">
+            <div class="prose">
+              <p class="lede">¿Crees que este enfoque puede encajar contigo?</p>
+              <p>Cuéntame tu situación y qué te gustaría trabajar. Te explicaré cómo sería el proceso, resolveré tus dudas y veremos si el programa encaja con lo que necesitas.</p>
+            </div>
+            <div class="contact__actions">
+              <a class="button" data-whatsapp-link href="https://api.whatsapp.com/send?phone=34614821010&amp;text=Hola%20Mercedes%20%F0%9F%99%82%20he%20visto%20tu%20web%20y%20me%20gustar%C3%ADa%20empezar" target="_blank" rel="noopener noreferrer" aria-label="Quiero empezar: escríbeme por WhatsApp (se abre en una pestaña nueva)">Quiero empezar</a>
+              <a class="button" href="mailto:mcuesta.dietista@gmail.com" aria-label="Enviar email a Mercedes Cuesta">Email</a>
+              <a class="button" href="https://instagram.com/mcuestasoto" target="_blank" rel="noopener noreferrer" aria-label="Ver el Instagram de Mercedes Cuesta (se abre en una pestaña nueva)">Instagram</a>
+            </div>
+          </div>
+
+          <div class="closing-row__collab">
+            <h3>Colaboraciones</h3>
+            <p class="text-body">Con mi código MCUESTA tienes un 10 % de descuento en suplementación deportiva en FullGas.</p>
+            <div class="collab__actions">
+              <button type="button" class="collab__code" data-copy-code="MCUESTA" aria-label="Copiar código MCUESTA">
+                <span data-copy-label>Copiar código</span>
+              </button>
+              <a class="button" href="https://fullgas.org/es/?fg=79" target="_blank" rel="sponsored noopener noreferrer" aria-label="Abrir FullGas en una pestaña nueva">Ir a FullGas</a>
+            </div>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <a class="whatsapp-fab" data-whatsapp-link data-whatsapp-fab href="https://api.whatsapp.com/send?phone=34614821010&amp;text=Hola%20Mercedes%20%F0%9F%99%82%20he%20visto%20tu%20web%20y%20me%20gustar%C3%ADa%20saber%20m%C3%A1s%20sobre%20el%20Programa" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
-    <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558 .064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.473.205.842.326 1.129.418.475.152.904.13 1.246.079.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232" /></svg>
-  </a>
-
-  <footer class="footer">
-    <div class="container">
-      <div class="footer__top">
-        <span class="footer__logo">
-          <img src="./assets/logo/monogram-footer.png" alt="Mercedes Cuesta" width="1144" height="786" />
-        </span>
-        <ul class="footer__links">
-          <li><a data-whatsapp-link href="https://api.whatsapp.com/send?phone=34614821010&amp;text=Hola%20Mercedes%20%F0%9F%99%82%20he%20visto%20tu%20web%20y%20me%20gustar%C3%ADa%20saber%20m%C3%A1s%20sobre%20el%20Programa" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
-          <li><a href="https://instagram.com/mcuestasoto" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-          <li><a href="mailto:mcuesta.dietista@gmail.com">Email</a></li>
-        </ul>
-      </div>
-      <div class="footer__divider"></div>
-      <div class="footer__bottom">
-        <ul class="footer__legal">
-          <li><a href="./pages/aviso-legal.html">Aviso legal</a></li>
-          <li><a href="./pages/privacidad.html">Privacidad</a></li>
-          <li><a href="./pages/cookies.html">Cookies</a></li>
-        </ul>
-        <p class="footer__copy">© 2026 Mercedes Cuesta</p>
-      </div>
-    </div>
-  </footer>
+  <div data-include="/partials/footer.html"></div>
+</div>
 </body>
 </html>

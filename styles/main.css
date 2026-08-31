@@ -1,41 +1,95 @@
+/* Montserrat autoalojada (antes vía Google Fonts). Solo se declaran los
+   pesos y el subset realmente usados en el proyecto: 400 y 500, normal
+   (nunca 300/600 ni italic, y solo el subset "latin" de Google Fonts,
+   que ya cubre todos los caracteres del español: áéíóúñü¿¡). */
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/assets/fonts/montserrat-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/assets/fonts/montserrat-500.woff2') format('woff2');
+}
+
 :root {
   --bg: #FAF8F4;
   --ink: #1E1E1B;
   --muted: #5E5E56;
   --line: #D9D4C7;
   --accent: #8B9A76;
-  --accent-text: #697557;
+  /* Verde oliva oscurecido lo justo para leer como texto/borde sobre
+     --bg Y sobre --card (contra --card, el tono de marca original,
+     #697557, se quedaba en 4.28:1 — por debajo del 4.5:1 exigido). */
+  --accent-text: #5E684E;
   --card: #F3EFE7;
-  --hdr-bg: rgba(244, 241, 234, 0.78);
+  --hdr-bg: #F1ECE0;
   --footer-bg: #1E1E1B;
   --footer-ink: #D9D4C7;
   --footer-line: #3A3A35;
 
   --secpad: 64px;
-  --container: 1140px;
+  --container: 1280px;
+  --prose-width: 70ch;
+  --gutter: 32px;
   --radius: 4px;
-  --header-height: 66px;
+  --header-height: 72px;
+
+  /* CTA principal ("Quiero empezar", en header/hero/Programa/Contacto
+     y el flotante): un verde oscuro fijo, igual en claro y oscuro,
+     como identidad de marca — no el --ink neutro que llevaba antes.
+     El borde usa --accent: no aporta nada en claro (el propio relleno
+     ya da 7.14:1 contra la página), pero es lo que mantiene el botón
+     identificable en oscuro, donde el relleno por sí solo cae a
+     2.21:1 contra --bg oscuro. */
+  --cta-bg: #4F5742;
+  --cta-text: #FAF8F4;
+  --cta-border: var(--accent);
+  --cta-hover-bg: color-mix(in srgb, var(--cta-bg) 80%, var(--accent) 20%);
+  --cta-active-bg: color-mix(in srgb, var(--cta-bg) 65%, var(--accent) 35%);
+
+  /* Acciones secundarias (Email, Instagram, Ir a FullGas, Copiar
+     código): misma altura/radio/tipografía/padding que el CTA, pero
+     sin competir con él — fondo claro, texto y borde en el verde de
+     marca ya usado para texto en el resto de la web. */
+  --btn-secondary-bg: var(--card);
+  --btn-secondary-text: var(--accent-text);
+  --btn-secondary-border: var(--accent-text);
+  --btn-secondary-hover-bg: color-mix(in srgb, var(--card) 88%, var(--accent-text) 12%);
+  --btn-secondary-active-bg: color-mix(in srgb, var(--card) 76%, var(--accent-text) 24%);
+
+  /* Escala de espaciado: todo margen/gap/padding de más de un valor
+     suelto debería salir de aquí, no inventarse por sección. */
+  --space-1: 8px;
+  --space-2: 12px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 48px;
+  --space-7: 64px;
+  --space-8: 96px;
 
   --font-sans: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
 }
 
-@media (max-width: 640px) {
-  :root { --secpad: 34px; }
+@media (max-width: 1024px) {
+  :root { --gutter: 28px; }
 }
 
-@media (prefers-color-scheme: dark) {
+@media (max-width: 640px) {
   :root {
-    --bg: #1E1E1B;
-    --ink: #F0EDE6;
-    --muted: #B4AFA3;
-    --line: #33332E;
-    --accent-text: #8B9A76;
-    --card: #24241F;
-    --hdr-bg: rgba(24, 24, 21, 0.78);
+    --secpad: 34px;
+    --gutter: 20px;
   }
 }
 
-:root { color-scheme: light dark; }
+:root { color-scheme: light; }
 
 * { box-sizing: border-box; }
 
@@ -72,7 +126,11 @@ a:hover { color: var(--accent-text); }
 
 a:focus-visible,
 button:focus-visible {
-  outline: 2px solid var(--accent);
+  /* --accent (verde oliva de marca) da 2.55-2.84:1 sobre los fondos
+     claros de la web, por debajo del 3:1 que exige WCAG 2.2 para
+     indicadores de foco. --accent-text (mismo verde, oscurecido) sí
+     cumple: 5.00-5.55:1 sobre esos mismos fondos. */
+  outline: 2px solid var(--accent-text);
   outline-offset: 3px;
   border-radius: 4px;
 }
@@ -98,16 +156,18 @@ button:focus-visible {
 
 .skip-link:focus { transform: translateY(0); }
 
+/* Mismo motivo que en el footer: fondo oscuro (--ink), --accent-text
+   no llega a 3:1 aquí. */
+.skip-link:focus-visible { outline-color: var(--accent); }
+
 /* Header */
 .site-header {
   background: var(--hdr-bg);
-  backdrop-filter: saturate(140%) blur(10px);
-  -webkit-backdrop-filter: saturate(140%) blur(10px);
   position: sticky;
   top: 0;
   z-index: 50;
   border-bottom: 1px solid var(--line);
-  padding: 16px 28px;
+  padding: 0 var(--gutter);
 }
 
 .nav {
@@ -115,6 +175,7 @@ button:focus-visible {
   align-items: center;
   justify-content: space-between;
   gap: 24px;
+  min-height: 72px;
 }
 
 .nav__brand {
@@ -134,17 +195,15 @@ button:focus-visible {
   object-fit: contain;
 }
 
-.nav__logo--dark { display: none; }
-
-@media (prefers-color-scheme: dark) {
-  .nav__logo--light { display: none; }
-  .nav__logo--dark { display: block; }
+.nav__menu-wrap {
+  display: flex;
+  min-width: 0;
 }
 
 .nav__menu {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 24px;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -159,13 +218,20 @@ button:focus-visible {
 
 .nav__menu a.is-active { color: var(--accent-text); }
 
+.nav__cta {
+  flex-shrink: 0;
+}
+
 .nav__toggle {
   display: none;
   background: transparent;
   border: none;
   cursor: pointer;
-  width: 38px;
-  height: 23px;
+  /* 44x44 en vez de 38x23: el icono (22x16) queda igual, pero el área
+     pulsable real cumple el tamaño mínimo de objetivo de WCAG 2.2
+     (24x24 CSS px), acercandose a los ~44px recomendados. */
+  width: 44px;
+  height: 44px;
   padding: 0;
   align-items: center;
   justify-content: center;
@@ -175,71 +241,71 @@ button:focus-visible {
 
 .nav__toggle:hover { color: var(--accent-text); }
 
-.nav__toggle-bars {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+/* Icono único que pasa de ≡ a X: mismo botón, mismo tamaño y grosor
+   de línea, mismo sitio exacto — solo cambia el ángulo de las barras. */
+.nav__toggle-icon {
+  position: relative;
   width: 22px;
+  height: 16px;
 }
 
-.nav__toggle-bars span {
+.nav__toggle-bar {
+  position: absolute;
+  left: 0;
+  top: 50%;
   width: 100%;
   height: 1px;
   background: currentColor;
-  display: block;
+  transition: transform 200ms ease, margin-top 200ms ease;
 }
 
+.nav__toggle-bar:first-child { margin-top: -6px; }
+.nav__toggle-bar:last-child { margin-top: 6px; }
+
+.nav__toggle.is-open .nav__toggle-bar:first-child {
+  margin-top: 0;
+  transform: rotate(45deg);
+}
+
+.nav__toggle.is-open .nav__toggle-bar:last-child {
+  margin-top: 0;
+  transform: rotate(-45deg);
+}
+
+/* Menú móvil: se despliega justo debajo del header (que se queda
+   visible y con el mismo icono, ya convertido en X, para cerrar) en
+   vez de cubrir toda la pantalla — así la marca sigue siendo pulsable. */
 .nav__mobile-menu {
   position: fixed;
-  inset: 0;
+  top: var(--header-height);
+  left: 0;
+  right: 0;
+  max-height: calc(100vh - var(--header-height));
+  overflow-y: auto;
   background: var(--bg);
-  z-index: 100;
+  border-top: 1px solid var(--line);
+  box-shadow: 0 8px 16px -6px rgba(30, 30, 27, 0.12);
+  z-index: 45;
   display: none;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   gap: 24px;
+  padding: 40px var(--gutter);
 }
 
-.nav__mobile-menu.is-open { display: flex; }
+/* Entrada breve y sutil (nunca deslizamientos grandes ni rebotes). Se
+   usa animation, no transition: al partir de display:none no habría
+   valor "antes" del que interpolar. prefers-reduced-motion ya la
+   neutraliza vía la regla global de animation-duration. */
+@keyframes nav-mobile-menu-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-.nav__mobile-close {
-  position: fixed;
-  top: 16px;
-  right: 28px;
-  width: 38px;
-  height: 23px;
-  padding: 0;
+.nav__mobile-menu.is-open {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  background: transparent;
-  border: none;
-  color: var(--ink);
-  cursor: pointer;
-  transition: color 200ms ease;
+  animation: nav-mobile-menu-in 180ms ease;
 }
-
-.nav__mobile-close:hover { color: var(--accent-text); }
-
-.nav__mobile-close-icon {
-  position: relative;
-  display: block;
-  width: 22px;
-  height: 22px;
-}
-
-.nav__mobile-close-icon span {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background: currentColor;
-}
-
-.nav__mobile-close-icon span:first-child { transform: rotate(45deg); }
-.nav__mobile-close-icon span:last-child { transform: rotate(-45deg); }
 
 .nav__mobile-menu a {
   font-size: 20px;
@@ -249,8 +315,13 @@ button:focus-visible {
 
 .nav__mobile-menu a.is-active { color: var(--accent-text); }
 
-@media (max-width: 940px) {
-  .nav__menu { display: none; }
+.nav__mobile-menu a.nav__mobile-cta {
+  margin-top: 12px;
+}
+
+@media (max-width: 1080px) {
+  .nav__menu-wrap { display: none; }
+  .site-header .nav__cta { display: none; }
   .nav__toggle { display: flex; }
 }
 
@@ -258,7 +329,7 @@ button:focus-visible {
 .section {
   background: var(--bg);
   border-top: 1px solid var(--line);
-  padding: var(--secpad) 28px;
+  padding: var(--secpad) var(--gutter);
   scroll-margin-top: var(--header-height);
 }
 
@@ -290,39 +361,54 @@ button:focus-visible {
   display: flex;
   flex-direction: column;
   gap: 18px;
+  max-width: var(--prose-width);
+  /* font-size fijo (igual al de .prose p): así "ch" se calcula sobre
+     un valor conocido y no sobre lo que el div herede del document
+     root — si el usuario aumenta el tamaño de texto del navegador,
+     este contenedor no debe doblar su ancho máximo por accidente. */
+  font-size: 17px;
 }
 
-.prose p,
+.prose p {
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1.65;
+  margin: 0;
+  text-wrap: pretty;
+}
+
 .text-body {
   font-weight: 400;
   font-size: 17px;
-  line-height: 1.7;
-  margin: 0;
-  text-align: justify;
-  text-align-last: left;
+  line-height: 1.65;
   text-wrap: pretty;
+  max-width: var(--prose-width);
+  margin: 0;
 }
 
 .prose p.lede { font-weight: 500; }
 
-/* Hero */
-.hero .container {
+/* Hero: dos columnas dentro del contenedor global, texto ~58% / foto
+   ~42% (la foto acompaña, no domina la composición). */
+.hero__container {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 40px 64px;
+  flex-direction: column;
+  gap: 56px;
+}
+
+.hero__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 64px;
 }
 
 .hero__content {
-  flex: 1 1 340px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 20px;
-  min-width: 280px;
-  max-width: 600px;
+  min-width: 0;
 }
 
 .hero__content h1 {
@@ -335,94 +421,101 @@ button:focus-visible {
 
 .hero__role {
   font-weight: 500;
-  font-size: 15px;
-  letter-spacing: 0.2em;
+  font-size: 13px;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--accent-text);
   margin: 0;
 }
 
-.hero__text {
+.hero__lede {
   font-weight: 400;
-  font-size: 17px;
-  line-height: 1.7;
+  font-size: clamp(16px, 1.4vw + 12px, 18px);
+  line-height: 1.6;
+  color: var(--ink);
+  max-width: 48ch;
   margin: 0;
-  text-align: justify;
-  text-align-last: left;
-  text-wrap: pretty;
-}
-
-.hero__topics {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  width: 100%;
-  padding-top: 16px;
-  border-top: 1px solid var(--line);
-  margin-top: 4px;
-  list-style: none;
-  padding-left: 0;
-}
-
-.hero__topics li {
-  display: flex;
-  align-items: baseline;
-  flex: 1 1 auto;
-  font-weight: 500;
-  font-size: 13px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.hero__topics li:last-child { flex: 0 0 auto; }
-
-.hero__topics-word { flex: 0 0 auto; white-space: nowrap; }
-
-.hero__topics-dot {
-  flex: 1 1 auto;
-  display: flex;
-  justify-content: center;
-  padding: 0 6px;
-  color: var(--line);
 }
 
 .hero__actions {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 1fr;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
   gap: 22px;
-  margin-top: 16px;
+  margin-top: 4px;
 }
 
 .hero__media {
-  flex: 0 1 320px;
-  min-width: 240px;
-  max-width: 360px;
+  min-width: 0;
+  display: flex;
+  justify-content: flex-end;
 }
 
-.hero__media picture { display: block; width: 100%; }
+.hero__media picture { display: block; width: 100%; max-width: 540px; }
 
+/* La foto ya es 4:5 de origen, igual que esta caja: object-fit:cover
+   no recorta nada real (encuadre intacto), solo evita que el navegador
+   deforme la imagen mientras carga. max-height es necesario (no
+   redundante): sin él, 540px de ancho da 675px de alto, y en portátiles
+   muy comunes (1366x768, 1280x720) la foto sobrepasa el viewport y su
+   parte baja queda cortada bajo el pliegue. Con el tope, en pantallas
+   bajas el ancho se reduce por debajo de 540 para mantener la foto
+   entera visible; en pantallas altas sigue llegando a 540. */
 .hero__image {
   width: 100%;
   height: auto;
   display: block;
+  max-width: 540px;
+  max-height: 600px;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
   border: 1px solid var(--line);
   border-radius: var(--radius);
 }
 
 @media (max-width: 940px) {
-  .hero__content { align-items: stretch; max-width: 100%; }
-  .hero__topics li { font-size: 12px; letter-spacing: 0.06em; }
-  .hero__topics-dot { padding: 0 4px; }
-  .hero__actions { width: 100%; gap: 12px; }
-  .hero__media { flex: 1 1 100%; max-width: 390px; margin: 0 auto; }
+  .hero__row { grid-template-columns: 1fr; gap: 32px; }
+  .hero__content { max-width: 100%; }
+  .hero__lede { max-width: 60ch; }
+  .hero__actions { width: 100%; }
+  .hero__actions .button { width: 100%; }
+  .hero__media { justify-content: flex-start; }
+  .hero__media picture { max-width: 100%; }
 }
 
-/* Buttons */
+/* Composición específica para móvil: márgenes más ajustados, H1 más
+   compacto y una altura visual máxima para la foto (no el mismo
+   recorte alto que en escritorio) para no alargar el scroll. */
+@media (max-width: 640px) {
+  .section--hero { padding-left: 22px; padding-right: 22px; }
+
+  .hero__content h1 { font-size: clamp(38px, 10vw, 44px); }
+
+  /* max-height solo entra en juego por encima de ~430px de ancho (esta
+     franja "móvil" llega hasta 640px): a los anchos de teléfono
+     reales nunca se activa, pero evita una foto excesivamente alta
+     en una tablet estrecha. */
+  .hero__image { max-width: 100%; max-height: 500px; }
+}
+
+/* Buttons: un único sistema visual (relleno sólido) para toda la web.
+   No hay variantes "primaria/secundaria": la jerarquía la da la
+   posición y el contexto, nunca la opacidad ni el color del botón.
+   Mismo fondo, texto, borde, radio, tipografía, peso, padding, altura
+   y estados en todos los sitios donde aparece (nav, hero, contacto,
+   colaboraciones y el flotante de WhatsApp). */
+/* Dos variantes, misma forma: altura, radio, tipografía y padding
+   idénticos en las dos, para que solo cambie el color y nunca el
+   tamaño o la forma. Por defecto .button es la variante secundaria
+   (Email, Instagram, Ir a FullGas...); [data-whatsapp-link] la
+   convierte en el CTA principal — así cualquier "Quiero empezar"
+   (header, hero, Programa, Contacto) lo hereda automáticamente, sin
+   depender de una clase extra que se pueda olvidar al añadir uno
+   nuevo. */
 .button {
   font-weight: 500;
   font-size: 15px;
+  min-height: 44px;
   padding: 14px 24px;
   border-radius: var(--radius);
   text-decoration: none;
@@ -431,39 +524,41 @@ button:focus-visible {
   justify-content: center;
   gap: 10px;
   text-align: center;
-  border: 1px solid transparent;
+  background: var(--btn-secondary-bg);
+  color: var(--btn-secondary-text);
+  border: 1px solid var(--btn-secondary-border);
   cursor: pointer;
-  transition: background 200ms ease, border-color 200ms ease, color 200ms ease;
+  transition: background 150ms ease;
   flex: 0 0 auto;
 }
 
-.button svg { width: 16px; height: 16px; flex-shrink: 0; fill: currentColor; }
-
-.button--primary {
-  background: var(--ink);
-  color: var(--bg);
-  border-color: var(--ink);
+.button:hover,
+.button:active {
+  background: var(--btn-secondary-hover-bg);
 }
 
-.button--primary:hover,
-.button--primary:focus-visible {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: var(--bg);
+.button:active {
+  background: var(--btn-secondary-active-bg);
 }
 
-.button--secondary {
-  background: transparent;
-  color: var(--ink);
-  border-color: var(--line);
-  font-weight: 400;
+.button[data-whatsapp-link] {
+  background: var(--cta-bg);
+  color: var(--cta-text);
+  border-color: var(--cta-border);
 }
 
-.button--secondary:hover,
-.button--secondary:focus-visible {
-  border-color: var(--accent);
-  color: var(--accent-text);
+.button[data-whatsapp-link]:hover,
+.button[data-whatsapp-link]:active {
+  background: var(--cta-hover-bg);
 }
+
+.button[data-whatsapp-link]:active {
+  background: var(--cta-active-bg);
+}
+
+/* Focus (teclado): anillo de foco heredado de la regla global de abajo
+   (outline, no color) — visible sobre el relleno sólido en cualquier
+   tema, y nunca depende solo de un cambio de color. */
 
 /* Card grids */
 .card-block {
@@ -512,73 +607,332 @@ button:focus-visible {
 
 .card p:last-child {
   font-weight: 400;
-  font-size: 16px;
+  font-size: 17px;
   color: var(--muted);
-  line-height: 1.75;
+  line-height: 1.65;
   margin: 0;
-  text-align: justify;
-  text-align-last: left;
   text-wrap: pretty;
 }
 
-.card--step {
-  flex-direction: row;
-  align-items: flex-start;
-  gap: 20px;
+/* Programa: filas independientes a ancho completo (título+intro con
+   "En resumen", Qué/Por qué 50/50, Proceso horizontal, frase final)
+   en vez de dos grandes columnas ocupando toda la sección — así
+   ninguna fila queda con contenido puesto solo para rellenar
+   espacio. */
+.programa-intro-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: start;
+  gap: 32px;
 }
 
-.card--step .card__number {
+@media (min-width: 1025px) {
+  .programa-intro-row { grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 48px; }
+}
+
+.programa-intro-row__main { display: flex; flex-direction: column; gap: 24px; min-width: 0; }
+
+/* Ficha editorial discreta: fondo suave (el mismo --card de las
+   tarjetas de Opiniones) para que se lea como un bloque propio en vez
+   de texto suelto flotando en la columna derecha — sin sombras,
+   iconos ni checks, así que sigue sin parecer una card comercial. */
+.programa-summary {
+  background: var(--card);
+  border-top: none;
+  padding: 28px 28px 8px;
+  border-radius: var(--radius);
+}
+
+.programa-summary__list { display: flex; flex-direction: column; }
+
+.programa-summary__item {
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+}
+
+.programa-summary__item:first-child { border-top: none; padding-top: 0; }
+
+.programa-summary__item p:first-child {
+  font-weight: 500;
+  font-size: 16px;
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
+.programa-summary__item p:last-child:not(:first-child) {
+  font-weight: 400;
+  font-size: 15px;
+  color: var(--muted);
+  margin: 3px 0 0;
+}
+
+.programa-questions {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: start;
+  gap: 32px;
+}
+
+@media (min-width: 1025px) {
+  .programa-questions {
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
+}
+
+.programa-process {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.programa-process h3 {
+  font-weight: 500;
+  font-size: 20px;
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
+/* Proceso: horizontal y editorial en escritorio (4 columnas, una
+   línea superior a modo de separador en vez de cards pesadas),
+   vertical en móvil/tablet — nunca comprimido a costa de legibilidad.
+   align-items: start para que un paso más largo (Seguimiento) no
+   fuerce la misma altura en el resto. */
+.process-horizontal {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: start;
+  gap: 28px;
+}
+
+@media (min-width: 1025px) {
+  .process-horizontal {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 32px;
+  }
+}
+
+.process-horizontal__step {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.process-horizontal__number {
   font-weight: 400;
   font-size: 22px;
   color: var(--accent-text);
   line-height: 1.3;
-  flex: 0 0 auto;
-  min-width: 32px;
 }
 
-.card--step .card__body {
+.process-horizontal__body {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.card--step .card__body p:first-child {
+.process-horizontal__body p:first-child {
   font-weight: 500;
   font-size: 17px;
   margin: 0;
   letter-spacing: 0.01em;
 }
 
-.card--step .card__body p:last-child {
+.process-horizontal__body p:not(:first-child) {
   font-weight: 400;
-  font-size: 16px;
+  font-size: 17px;
   color: var(--muted);
-  line-height: 1.75;
+  line-height: 1.65;
   margin: 0;
-  text-align: justify;
-  text-align-last: left;
   text-wrap: pretty;
 }
 
-/* Testimonials */
-.carousel-viewport {
-  overflow: hidden;
-  max-width: var(--container);
-  margin: 32px auto 0;
-  width: 100%;
-  outline-offset: 6px;
-  touch-action: pan-y;
+/* Sobre mí: mismo patrón que Programa (texto ~58% / contenido de
+   apoyo ~42%, sin igualar alturas) — sin esto, al no haber una
+   fotografía, el texto se quedaba solo en la mitad izquierda del
+   contenedor con toda la derecha vacía, lo que además hacía que la
+   sección se sintiera más larga de lo necesario. Formación se queda
+   en una sola columna dentro de su mitad (dos cards lado a lado no
+   caben con comodidad ahí), y sigue leyéndose después del texto. */
+.sobre-mi-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: start;
+  gap: 40px;
 }
 
-.carousel-track {
+@media (min-width: 1025px) {
+  .sobre-mi-row {
+    grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+    gap: 64px;
+  }
+
+  .sobre-mi-row__formacion .card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sobre-mi-row__formacion {
   display: flex;
-  gap: 16px;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.sobre-mi-row__formacion h3 {
+  font-weight: 500;
+  font-size: 20px;
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
+.programa__highlight {
+  border-top: 1px solid var(--line);
+  padding-top: 24px;
+}
+
+.programa__highlight p {
+  margin: 0;
+  font-weight: 500;
+  font-size: clamp(19px, 1.4vw + 15px, 22px);
+  line-height: 1.5;
+  max-width: 62ch;
+}
+
+/* Opiniones: carrusel manual (sin autoplay), con scroll nativo +
+   scroll-snap para que el arrastre/swipe sea fluido y el teclado y los
+   lectores de pantalla sigan viendo todos los testimonios (ninguno se
+   quita del DOM, solo quedan fuera de la vista horizontal). Visibles
+   a la vez: 1 en móvil (con un asomo del siguiente, para que se note
+   que hay más sin necesidad de puntos), 2 en tablet, 3 en escritorio
+   — cada flecha desplaza siempre un solo testimonio, nunca un grupo
+   entero. Las cards no fuerzan una altura común: cada una crece con
+   su propio contenido. */
+.testimonial-carousel {
+  margin-top: 32px;
+}
+
+.testimonial-carousel__viewport {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.testimonial-carousel__viewport::-webkit-scrollbar { display: none; }
+
+/* Sin scroll-behavior:smooth aquí a propósito: el desplazamiento al
+   pulsar una flecha lo anima main.js con su propia duración/easing
+   (sincronizada con las líneas de posición); esta propiedad seguiría
+   suavizando cada asignación de scrollLeft por encima de esa
+   animación y la volvería más lenta y con doble easing. El swipe
+   táctil no depende de esto: sigue el dedo de forma directa. */
+
+.testimonial-carousel__track {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  list-style: none;
+  margin: 0;
+  padding: 0 0 4px;
   width: 100%;
-  transition: transform 200ms cubic-bezier(0.3, 0.7, 0.4, 1);
+}
+
+.testimonial-carousel__slide {
+  flex: 0 0 auto;
+  width: calc(100% - 40px);
+  scroll-snap-align: start;
+}
+
+@media (min-width: 701px) {
+  .testimonial-carousel__slide { width: calc((100% - 24px) / 2); }
+}
+
+@media (min-width: 1025px) {
+  .testimonial-carousel__slide { width: calc((100% - 48px) / 3); }
+}
+
+.testimonial-carousel__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 24px;
+}
+
+/* Control discreto, deliberadamente distinto del sistema de botones:
+   solo un icono, sin fondo ni borde, para que no compita con "Quiero
+   empezar". Área de toque de 44px aunque el icono sea pequeño. */
+.testimonial-carousel__arrow {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: var(--radius);
+  transition: color 150ms ease, background 150ms ease;
+}
+
+.testimonial-carousel__arrow:hover { background: color-mix(in srgb, var(--ink) 8%, transparent); }
+.testimonial-carousel__arrow:disabled { opacity: 0.35; cursor: default; }
+.testimonial-carousel__arrow:disabled:hover { background: transparent; }
+.testimonial-carousel__arrow svg { width: 16px; height: 16px; fill: currentColor; }
+
+/* Líneas de posición: sustituyen a un contador "X de Y", que confunde
+   cuando hay varios testimonios visibles a la vez. Puramente
+   indicativas (aria-hidden): la posición real se sigue anunciando a
+   lectores de pantalla vía el aria-live de más abajo, fuera de
+   pantalla. Número de líneas = huecos de scroll reales
+   (total - visibles + 1), calculado en JS según el breakpoint. */
+.testimonial-carousel__progress {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.testimonial-carousel__progress span {
+  display: block;
+  width: 16px;
+  height: 1px;
+  border-radius: 1px;
+  /* Misma familia cromática que las flechas (var(--ink)): --line
+     (#D9D4C7) da ~1.4:1 sobre el fondo, casi invisible, y no se
+     introduce ningún color nuevo para arreglarlo. */
+  background: color-mix(in srgb, var(--ink) 45%, var(--bg) 55%);
+  transition: background 180ms ease, width 180ms ease;
+}
+
+.testimonial-carousel__progress span.is-active {
+  width: 26px;
+  background: var(--ink);
+}
+
+/* Sin contador visible (confunde cuando hay varios testimonios a la
+   vez): la posición se sigue anunciando a lectores de pantalla vía
+   aria-live, pero fuera de la pantalla. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .testimonial-card {
-  flex: 0 0 100%;
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -586,10 +940,8 @@ button:focus-visible {
   display: flex;
   flex-direction: column;
   gap: 14px;
-  transition: border-color 200ms ease;
+  text-align: start;
 }
-
-.testimonial-card:hover { border-color: var(--accent); }
 
 .testimonial-card__topic {
   font-weight: 500;
@@ -603,10 +955,8 @@ button:focus-visible {
 .testimonial-card p:not(.testimonial-card__topic):not(.testimonial-card__author) {
   font-weight: 400;
   font-size: 17px;
-  line-height: 1.7;
+  line-height: 1.65;
   margin: 0;
-  text-align: justify;
-  text-align-last: left;
   text-wrap: pretty;
 }
 
@@ -617,77 +967,21 @@ button:focus-visible {
   margin: 0;
 }
 
-@media (min-width: 620px) {
-  .testimonial-card { flex-basis: calc(50% - 8px); }
+/* FAQ: titulo en columna propia (28-32% en escritorio) y acordeon en
+   la suya (68-72%), en vez de una sola columna centrada que desperdicia
+   el ancho del contenedor. align-items: start para que el titulo no
+   se estire a la altura del acordeon completo. */
+.faq-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: start;
+  gap: 32px;
 }
 
-@media (min-width: 900px) {
-  .testimonial-card { flex-basis: calc((100% - 32px) / 3); }
+@media (min-width: 1025px) {
+  .faq-row { grid-template-columns: minmax(0, 3fr) minmax(0, 7fr); gap: 64px; }
 }
 
-.carousel-controls {
-  max-width: var(--container);
-  margin: 32px auto 0;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-}
-
-.carousel-dots {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.carousel-dots button {
-  width: 34px;
-  height: 34px;
-  padding: 0;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.carousel-dots span {
-  width: 14px;
-  height: 3px;
-  background: var(--ink);
-  display: block;
-  border-radius: 2px;
-  transition: background 200ms ease, width 200ms ease;
-}
-
-.carousel-dots button.is-current span { width: 26px; }
-.carousel-dots button:hover span { background: var(--accent-text); }
-
-.carousel-arrows { display: flex; align-items: center; gap: 6px; }
-
-.carousel-arrows button {
-  background: transparent;
-  border: none;
-  padding: 0;
-  width: 34px;
-  height: 34px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--ink);
-  cursor: pointer;
-  transition: opacity 200ms ease, color 200ms ease;
-}
-
-.carousel-arrows button:hover { color: var(--accent-text); }
-.carousel-arrows button:disabled { opacity: 0.3; cursor: default; }
-.carousel-arrows button:disabled:hover { color: var(--ink); }
-
-.carousel-arrows svg { width: 18px; height: 18px; fill: currentColor; }
-
-/* FAQ */
 .faq-list { display: flex; flex-direction: column; }
 
 .faq-item { border-top: 1px solid var(--line); }
@@ -726,38 +1020,85 @@ button:focus-visible {
 .faq-item.is-open .faq-item__question svg { transform: rotate(180deg); }
 
 .faq-item__answer {
-  font-weight: 400;
-  font-size: 16px;
-  color: var(--muted);
-  line-height: 1.75;
   margin: 0 0 20px;
-  text-align: justify;
-  text-align-last: left;
-  text-wrap: pretty;
+  max-width: var(--prose-width);
   display: none;
+  flex-direction: column;
+  gap: 14px;
 }
 
-.faq-item.is-open .faq-item__answer { display: block; }
+.faq-item__answer p {
+  font-weight: 400;
+  font-size: 17px;
+  color: var(--muted);
+  line-height: 1.65;
+  margin: 0;
+  text-wrap: pretty;
+}
+
+.faq-item.is-open .faq-item__answer { display: flex; }
 
 /* Contact */
 .contact__actions {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 1fr;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
   align-self: flex-start;
-  gap: 12px;
+  gap: 16px;
   margin-top: 4px;
 }
 
 @media (max-width: 560px) {
-  .contact__actions {
-    grid-auto-flow: row;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+  .contact__actions { width: 100%; }
+  .contact__actions .button { width: 100%; }
 }
 
-.collab {
-  margin-top: 12px;
+/* Cierre de la Home: Contacto (2/3) y Colaboraciones (1/3) en la misma
+   fila en escritorio, apiladas en móvil, siempre con una separación
+   clara entre ambos bloques — una regla horizontal cuando están
+   apilados, una regla vertical cuando están lado a lado. Contacto
+   nunca pierde peso frente a Colaboraciones: tiene el doble de ancho
+   y va primero en las dos disposiciones. */
+.closing-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+}
+
+.closing-row__contact {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.closing-row__collab {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.closing-row__collab h3 {
+  font-weight: 500;
+  font-size: 20px;
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
+@media (min-width: 1025px) {
+  .closing-row {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: 64px;
+    align-items: start;
+  }
+
+  .closing-row__collab {
+    padding-top: 0;
+    border-top: none;
+    border-left: 1px solid var(--line);
+    padding-left: 48px;
+  }
 }
 
 .collab__actions {
@@ -767,69 +1108,92 @@ button:focus-visible {
   align-items: center;
 }
 
+/* Botón de utilidad (copia un código, no navega ni convierte): usa la
+   variante secundaria, misma forma que .button pero sin competir
+   visualmente con el CTA. */
 .collab__code {
   font-family: var(--font-sans);
-  font-weight: 400;
+  font-weight: 500;
   font-size: 15px;
   line-height: 1.5;
-  background: transparent;
+  min-height: 44px;
+  background: var(--btn-secondary-bg);
+  color: var(--btn-secondary-text);
+  border: 1px solid var(--btn-secondary-border);
   padding: 14px 24px;
   border-radius: var(--radius);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: border-color 200ms ease, color 200ms ease;
-  color: var(--ink);
-  border: 1px solid var(--line);
+  transition: background 150ms ease;
+  /* Ancho fijo (cabe "Código copiado"), para que el cambio de texto al
+     copiar no encoja el botón ni mueva el resto del contenido. */
+  min-width: 180px;
 }
 
 .collab__code:hover,
-.collab__code:focus-visible { border-color: var(--accent); color: var(--accent-text); }
-.collab__code.is-copied { color: var(--accent-text); border-color: var(--accent); }
+.collab__code:active { background: var(--btn-secondary-hover-bg); }
+.collab__code:active { background: var(--btn-secondary-active-bg); }
 
-/* WhatsApp FAB */
+/* WhatsApp FAB: aparece/desaparece según el contexto de scroll (ver
+   main.js), nunca por un número de píxeles fijo. Respeta el área
+   segura en iOS/Android (notch, barra de gestos) sin perder la
+   distancia mínima al borde en dispositivos sin esa necesidad. */
 .whatsapp-fab {
   position: fixed;
-  right: 20px;
-  bottom: 20px;
+  right: max(20px, calc(20px + env(safe-area-inset-right)));
+  bottom: max(20px, calc(20px + env(safe-area-inset-bottom)));
   z-index: 60;
-  width: 46px;
-  height: 46px;
+  width: 53px;
+  height: 53px;
   border-radius: var(--radius);
-  background: var(--ink);
-  border: 1.5px solid var(--line);
-  box-shadow: 0 4px 16px rgba(30, 30, 27, 0.28);
+  /* Mismo lenguaje visual exacto que "Quiero empezar" (mismo CTA:
+     fondo, texto, borde, radio y sin sombra). Solo cambian las
+     dimensiones (formato compacto y cuadrado) para no tapar
+     contenido al flotar. */
+  background: var(--cta-bg);
+  border: 1px solid var(--cta-border);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--bg);
+  color: var(--cta-text);
   opacity: 0;
+  transform: translateY(8px);
   pointer-events: none;
-  transition: opacity 200ms ease, background 200ms ease, border-color 200ms ease;
+  /* El fondo usa la misma duración que .button (150ms): el hover debe
+     sentirse idéntico. Opacidad/transform son solo para la aparición
+     del flotante en sí, algo que el CTA normal no necesita. */
+  transition: opacity 200ms ease, transform 200ms ease, background 150ms ease;
 }
 
-.whatsapp-fab.is-visible { opacity: 1; pointer-events: auto; }
+.whatsapp-fab.is-visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
 
-@media (hover: hover) and (pointer: fine) {
-  .whatsapp-fab:hover,
-  .whatsapp-fab:focus-visible {
-    background: var(--accent);
-    color: var(--bg);
-  }
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp-fab { transition: opacity 200ms ease, background 150ms ease; transform: none; }
 }
+
+/* El icono usa currentColor, así que sin fijar "color" aquí la regla
+   global "a:hover { color: var(--accent-text) }" (pensada para
+   enlaces de texto normales) gana por especificidad sobre el color
+   base del flotante y el icono se funde con el fondo en hover — este
+   es justo el bug reportado ("se pone entero verde, no se ve el
+   icono"). El CTA normal no lo sufre porque su selector
+   ".button[data-whatsapp-link]" ya tiene más especificidad que
+   "a:hover"; ".whatsapp-fab" por sí sola no. */
+.whatsapp-fab:hover,
+.whatsapp-fab:active {
+  background: var(--cta-hover-bg);
+  color: var(--cta-text);
+}
+.whatsapp-fab:active { background: var(--cta-active-bg); }
 
 .whatsapp-fab svg { width: 22px; height: 22px; fill: currentColor; }
-
-@media (max-width: 640px) {
-  .whatsapp-fab { width: 56px; height: 56px; }
-  .whatsapp-fab svg { width: 26px; height: 26px; }
-}
 
 /* Footer */
 .footer {
   background: var(--footer-bg);
-  padding: var(--secpad) 28px;
+  padding: var(--secpad) var(--gutter);
   border-top: 1px solid var(--line);
 }
 
@@ -847,18 +1211,39 @@ button:focus-visible {
   gap: 24px;
 }
 
+.footer__identity {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
 .footer__logo {
-  height: 90px;
+  height: 40px;
   flex: 0 0 auto;
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  opacity: 0.85;
+  transition: opacity 180ms ease;
 }
+
+.footer__logo:hover { opacity: 1; }
+.footer__logo:active { opacity: 0.7; }
+
+/* Mismo motivo que en .footer__links/.footer__legal: fondo oscuro,
+   --accent-text no llega a 3:1 aquí. */
+.footer__logo:focus-visible { outline-color: var(--accent); }
 
 .footer__logo img {
   height: 100%;
   width: auto;
   object-fit: contain;
+}
+
+.footer__credential {
+  font-size: 13px;
+  color: var(--footer-ink);
+  margin: 0;
 }
 
 .footer__links {
@@ -873,7 +1258,7 @@ button:focus-visible {
 @media (max-width: 480px) {
   .footer__top { flex-wrap: wrap; gap: 12px; }
   .footer__links { gap: 12px; }
-  .footer__logo { height: 62px; }
+  .footer__logo { height: 32px; }
 }
 
 .footer__links a,
@@ -886,6 +1271,11 @@ button:focus-visible {
 
 .footer__links a:hover,
 .footer__legal a:hover { color: var(--accent); }
+
+/* El foco global usa --accent-text (2.84:1 sobre el footer oscuro, por
+   debajo del 3:1 exigido); aquí --accent sí cumple, 5.56:1. */
+.footer__links a:focus-visible,
+.footer__legal a:focus-visible { outline-color: var(--accent); }
 
 .footer__divider { height: 1px; background: var(--footer-line); }
 
@@ -915,45 +1305,39 @@ button:focus-visible {
   margin: 0;
 }
 
+/* Back-to-home (internal pages only) */
+.back-to-home {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 4px;
+  margin: 0 0 0 -4px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.back-to-home__arrow {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  fill: currentColor;
+  transition: transform 160ms ease;
+}
+
+.back-to-home:active { opacity: 0.7; }
+
+@media (hover: hover) and (pointer: fine) {
+  .back-to-home:hover { color: var(--muted); }
+  .back-to-home:hover .back-to-home__arrow { transform: translateX(-2px); }
+}
+
 /* Legal / simple content pages */
-.simple-header {
-  background: var(--hdr-bg);
-  backdrop-filter: saturate(140%) blur(10px);
-  -webkit-backdrop-filter: saturate(140%) blur(10px);
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  border-bottom: 1px solid var(--line);
-  padding: 16px 28px;
-}
-
-.simple-header .nav { justify-content: space-between; }
-
-.simple-nav {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.simple-nav a { font-size: 14px; font-weight: 400; white-space: nowrap; transition: color 200ms ease; }
-
-.simple-nav--back {
-  display: none;
-  align-items: center;
-  gap: 8px;
-}
-
-.simple-nav--back svg { width: 14px; height: 14px; fill: currentColor; }
-
-@media (max-width: 900px) {
-  .simple-nav--full { display: none; }
-  .simple-nav--back { display: inline-flex; }
-}
-
 .legal-main {
   flex: 1;
   background: var(--bg);
-  padding: var(--secpad) 28px;
+  padding: 40px var(--gutter) var(--secpad);
 }
 
 .legal-main .container {
@@ -981,10 +1365,9 @@ button:focus-visible {
   font-weight: 400;
   font-size: 17px;
   color: var(--ink);
-  line-height: 1.7;
+  line-height: 1.65;
   margin: 0;
-  text-align: justify;
-  text-align-last: left;
+  max-width: var(--prose-width);
   text-wrap: pretty;
 }
 
@@ -997,71 +1380,59 @@ button:focus-visible {
 }
 
 /* 404 page */
-.error-page .legal-main {
-  display: flex;
-  align-items: center;
-  min-height: 60vh;
-}
-
-.error-page .container {
+.error-page .legal-main .container {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   gap: 24px;
+  min-height: 50vh;
 }
 
-.error-page .error-eyebrow {
+.error-page__block {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 16px;
+  width: 100%;
+  max-width: 480px;
+}
+
+.error-page__block .error-eyebrow {
   font-weight: 500;
   font-size: 13px;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--accent-text);
   margin: 0;
 }
 
-.error-page h1 {
+.error-page__block h1 {
   font-weight: 500;
   font-size: clamp(30px, 5.5vw, 44px);
   margin: 0;
   line-height: 1.15;
   letter-spacing: -0.01em;
-  max-width: 480px;
 }
 
-.error-page p {
+.error-page__block p {
   font-weight: 400;
   font-size: 17px;
   color: var(--ink);
-  line-height: 1.7;
+  line-height: 1.65;
   margin: 0;
-  width: 100%;
-  max-width: 480px;
-  text-align: justify;
-  text-align-last: left;
   text-wrap: pretty;
-}
-
-.error-page .error-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  padding-top: 20px;
-  border-top: 1px solid var(--line);
-  width: 100%;
-  max-width: 480px;
 }
 
 /* Justified body text reads unevenly in narrow columns; left-align on mobile */
 @media (max-width: 700px) {
   .prose p,
   .text-body,
-  .hero__text,
   .card p:last-child,
-  .card--step .card__body p:last-child,
+  .process-horizontal__body p:not(:first-child),
   .testimonial-card p:not(.testimonial-card__topic):not(.testimonial-card__author),
-  .faq-item__answer,
-  .legal-main .card-block p,
-  .error-page p {
+  .faq-item__answer p,
+  .legal-main .card-block p {
     text-align: left;
   }
 }
