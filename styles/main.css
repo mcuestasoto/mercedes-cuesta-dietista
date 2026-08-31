@@ -175,7 +175,12 @@ button:focus-visible {
   align-items: center;
   justify-content: space-between;
   gap: 24px;
-  min-height: var(--header-height);
+  /* Fijo a propósito, NO var(--header-height): esa variable se calcula
+     midiendo la altura de este mismo header por JS (ResizeObserver);
+     si .nav la usara para su propio alto, cada medición agrandaría el
+     header y dispararía otra medición, creando un bucle de crecimiento
+     infinito (comprobado: +1px por frame sin parar). */
+  min-height: 72px;
 }
 
 .nav__brand {

@@ -205,10 +205,17 @@ if (carouselViewport && carouselTrack) {
   if (prevButton) prevButton.addEventListener('click', () => goTo(-1));
   if (nextButton) nextButton.addEventListener('click', () => goTo(1));
 
-  let scrollTimeout;
+  /* rAF en vez de debounce: al deslizar con el dedo, un debounce solo
+     actualiza la línea cuando el scroll se detiene del todo (incluida
+     la inercia nativa), lo que se siente con retraso. Aquí la línea
+     seguía la posición real fotograma a fotograma mientras se arrastra. */
+  let scrollUpdateFrame = null;
   carouselViewport.addEventListener('scroll', () => {
-    window.clearTimeout(scrollTimeout);
-    scrollTimeout = window.setTimeout(update, 120);
+    if (scrollUpdateFrame) return;
+    scrollUpdateFrame = requestAnimationFrame(() => {
+      scrollUpdateFrame = null;
+      update();
+    });
   }, { passive: true });
 
   window.addEventListener('resize', update);
