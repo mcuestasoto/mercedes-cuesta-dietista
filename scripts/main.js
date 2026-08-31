@@ -173,12 +173,25 @@ if (carouselViewport && carouselTrack) {
       carouselViewport.scrollLeft = targetLeft;
       return;
     }
+    /* scroll-snap-type:mandatory (necesario para el swipe táctil) pelea
+       con ir moviendo scrollLeft a mano: el navegador reencaja de golpe
+       al punto de snap más cercano en cada frame, y la animación se ve
+       como un salto instantáneo en vez de un desplazamiento. Se
+       desactiva solo mientras dura esta animación propia y se
+       restaura al terminar, que es cuando ya estamos exactamente sobre
+       un punto de snap de todas formas. */
+    carouselViewport.style.scrollSnapType = 'none';
     const start = performance.now();
     const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
     const tick = (now) => {
       const t = Math.min(1, (now - start) / CAROUSEL_DURATION);
       carouselViewport.scrollLeft = startLeft + delta * easeOutCubic(t);
-      scrollFrame = t < 1 ? requestAnimationFrame(tick) : null;
+      if (t < 1) {
+        scrollFrame = requestAnimationFrame(tick);
+      } else {
+        scrollFrame = null;
+        carouselViewport.style.scrollSnapType = '';
+      }
     };
     scrollFrame = requestAnimationFrame(tick);
   };

@@ -455,12 +455,18 @@ button:focus-visible {
 
 /* La foto ya es 4:5 de origen, igual que esta caja: object-fit:cover
    no recorta nada real (encuadre intacto), solo evita que el navegador
-   deforme la imagen mientras carga. */
+   deforme la imagen mientras carga. max-height es necesario (no
+   redundante): sin él, 540px de ancho da 675px de alto, y en portátiles
+   muy comunes (1366x768, 1280x720) la foto sobrepasa el viewport y su
+   parte baja queda cortada bajo el pliegue. Con el tope, en pantallas
+   bajas el ancho se reduce por debajo de 540 para mantener la foto
+   entera visible; en pantallas altas sigue llegando a 540. */
 .hero__image {
   width: 100%;
   height: auto;
   display: block;
   max-width: 540px;
+  max-height: 600px;
   aspect-ratio: 4 / 5;
   object-fit: cover;
   border: 1px solid var(--line);
@@ -626,9 +632,17 @@ button:focus-visible {
 
 .programa-intro-row__main { display: flex; flex-direction: column; gap: 24px; min-width: 0; }
 
-/* Ficha editorial discreta, no una card comercial: mismo patrón
-   card-block (h3 + línea superior) que ya usan Formación y
-   Colaboraciones, sin sombras/iconos/checks. */
+/* Ficha editorial discreta: fondo suave (el mismo --card de las
+   tarjetas de Opiniones) para que se lea como un bloque propio en vez
+   de texto suelto flotando en la columna derecha — sin sombras,
+   iconos ni checks, así que sigue sin parecer una card comercial. */
+.programa-summary {
+  background: var(--card);
+  border-top: none;
+  padding: 28px 28px 8px;
+  border-radius: var(--radius);
+}
+
 .programa-summary__list { display: flex; flex-direction: column; }
 
 .programa-summary__item {
@@ -636,7 +650,7 @@ button:focus-visible {
   border-top: 1px solid var(--line);
 }
 
-.programa-summary__item:first-child { border-top: none; padding-top: 4px; }
+.programa-summary__item:first-child { border-top: none; padding-top: 0; }
 
 .programa-summary__item p:first-child {
   font-weight: 500;
