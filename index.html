@@ -104,7 +104,7 @@
           "name": "¿Cómo se paga?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "El pago se realiza en un único abono previo por Bizum."
+            "text": "El pago se hace por Bizum antes de empezar, en un único pago."
           }
         },
         {
@@ -112,7 +112,7 @@
           "name": "¿Cómo funciona el acompañamiento online?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Todo el proceso se realiza online. La consulta inicial es por videollamada y durante las 12 semanas mantendremos seguimiento por WhatsApp de lunes a viernes.\n\nEsto permite integrar el seguimiento en el día a día, plantear dudas y situaciones que vayan surgiendo sin necesidad de desplazamientos y hacer los ajustes necesarios durante el proceso.\n\nEl tiempo máximo de respuesta es de 48 horas laborables."
+            "text": "Todo el proceso es online. La consulta inicial es por videollamada y, durante las 12 semanas, mantendremos el seguimiento por WhatsApp de lunes a viernes. El tiempo máximo de respuesta es de 48 horas laborables.\n\nAsí podremos resolver dudas y situaciones que vayan surgiendo en el día a día, hacer los ajustes necesarios durante el proceso y mantener el seguimiento sin desplazamientos."
           }
         },
         {
@@ -120,7 +120,7 @@
           "name": "¿Voy a recibir un menú cerrado?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No. Trabajaremos con pautas y una estructura flexible para que puedas adaptar las comidas a lo que tengas, te apetezca o encaje con tu rutina."
+            "text": "No. Trabajaremos con una estructura flexible y te iré dando herramientas para que puedas adaptar tu alimentación a tu rutina, en lugar de tener que adaptar tu rutina a un menú."
           }
         },
         {
@@ -136,7 +136,7 @@
           "name": "¿Qué pasa si como fuera o necesito cambiar algún alimento?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Comer fuera, viajar o compartir comidas forma parte de la vida cotidiana, así que lo tendremos en cuenta desde el principio.\n\nEl plan también podrá adaptarse a tus gustos, alergias, intolerancias y a los alimentos que tengas disponibles, buscando alternativas adecuadas cuando sea necesario."
+            "text": "Comer fuera, viajar o compartir comidas forma parte de la vida cotidiana, así que lo tendremos en cuenta desde el principio.\n\nTambién podremos adaptar el plan a tus gustos, alergias, intolerancias y a los alimentos que tengas disponibles, buscando alternativas adecuadas cuando sea necesario."
           }
         },
         {
@@ -160,7 +160,7 @@
   ]
 }</script>
 
-  <link rel="preload" as="image" href="/assets/images/mercedes-hero-724.webp" />
+  <link rel="preload" as="image" fetchpriority="high" type="image/avif" imagesrcset="/assets/images/mercedes-hero-400.avif 400w, /assets/images/mercedes-hero-800.avif 800w, /assets/images/mercedes-hero-1200.avif 1200w, /assets/images/mercedes-hero-1586.avif 1586w" imagesizes="(max-width: 640px) 100vw, 540px" />
   <link rel="stylesheet" href="/styles/main.css" />
   <script defer src="/scripts/include.js"></script>
   <script defer src="/scripts/main.js"></script>
@@ -187,9 +187,19 @@
 
           <div class="hero__media">
             <picture>
-              <source media="(max-width: 640px)" srcset="/assets/images/mercedes-hero-480.webp 480w, /assets/images/mercedes-hero-724.webp 724w" sizes="100vw" type="image/webp" />
-              <source srcset="/assets/images/mercedes-hero-724.webp" type="image/webp" />
-              <img src="/assets/images/mercedes-hero.jpg" alt="Mercedes Cuesta, dietista" class="hero__image" width="724" height="1086" loading="eager" decoding="async" />
+              <source
+                type="image/avif"
+                srcset="/assets/images/mercedes-hero-400.avif 400w, /assets/images/mercedes-hero-800.avif 800w, /assets/images/mercedes-hero-1200.avif 1200w, /assets/images/mercedes-hero-1586.avif 1586w"
+                sizes="(max-width: 640px) 100vw, 540px" />
+              <source
+                type="image/webp"
+                srcset="/assets/images/mercedes-hero-400.webp 400w, /assets/images/mercedes-hero-800.webp 800w, /assets/images/mercedes-hero-1200.webp 1200w, /assets/images/mercedes-hero-1586.webp 1586w"
+                sizes="(max-width: 640px) 100vw, 540px" />
+              <img
+                src="/assets/images/mercedes-hero-800.jpg"
+                srcset="/assets/images/mercedes-hero-400.jpg 400w, /assets/images/mercedes-hero-800.jpg 800w, /assets/images/mercedes-hero-1200.jpg 1200w, /assets/images/mercedes-hero-1586.jpg 1586w"
+                sizes="(max-width: 640px) 100vw, 540px"
+                alt="Mercedes Cuesta" class="hero__image" width="800" height="1000" fetchpriority="high" decoding="async" />
             </picture>
           </div>
         </div>
@@ -216,7 +226,7 @@
           </article>
           <article class="card">
             <p>Seguimiento y ajustes</p>
-            <p>Durante las 12 semanas revisaremos cómo evoluciona el proceso y haremos los ajustes necesarios según lo que vaya ocurriendo.</p>
+            <p>Durante las 12 semanas iremos revisando cómo funciona la propuesta en tu día a día y haremos los ajustes necesarios a medida que avance el proceso.</p>
           </article>
         </div>
       </div>
@@ -224,11 +234,36 @@
 
     <section id="programa" class="section">
       <div class="container">
-        <div class="section-heading"><h2>Programa Nutricional de 12 semanas</h2></div>
+        <div class="programa-intro-row">
+          <div class="programa-intro-row__main">
+            <div class="section-heading"><h2>Programa nutricional de 12 semanas</h2></div>
 
-        <div class="prose">
-          <p>Un acompañamiento online para trabajar tu alimentación con una estructura clara, seguimiento y ajustes durante todo el proceso.</p>
-          <p>Puede encajar tanto si quieres empezar a organizar mejor tu alimentación como si ya entrenas y buscas ajustarla a objetivos de composición corporal o rendimiento.</p>
+            <div class="prose">
+              <p>Un acompañamiento online de 12 semanas para trabajar tu alimentación de forma adaptada a tu situación, con seguimiento durante todo el proceso.</p>
+              <p>Puede encajar tanto si quieres organizar mejor tu alimentación como si ya entrenas y buscas adaptarla a objetivos de composición corporal o rendimiento.</p>
+            </div>
+          </div>
+
+          <div class="programa-summary card-block">
+            <h3>En resumen</h3>
+            <div class="programa-summary__list">
+              <div class="programa-summary__item">
+                <p>12 semanas</p>
+                <p>de acompañamiento</p>
+              </div>
+              <div class="programa-summary__item">
+                <p>100 % online</p>
+              </div>
+              <div class="programa-summary__item">
+                <p>Consulta inicial</p>
+                <p>por videollamada</p>
+              </div>
+              <div class="programa-summary__item">
+                <p>Seguimiento</p>
+                <p>por WhatsApp de lunes a viernes</p>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="programa-questions">
@@ -409,7 +444,7 @@
               </button>
             </h3>
             <div class="faq-item__answer" id="faq-2">
-              <p>El pago se realiza en un único abono previo por Bizum.</p>
+              <p>El pago se hace por Bizum antes de empezar, en un único pago.</p>
             </div>
           </div>
           <div class="faq-item" data-faq-item>
@@ -420,9 +455,8 @@
               </button>
             </h3>
             <div class="faq-item__answer" id="faq-3">
-              <p>Todo el proceso se realiza online. La consulta inicial es por videollamada y durante las 12 semanas mantendremos seguimiento por WhatsApp de lunes a viernes.</p>
-              <p>Esto permite integrar el seguimiento en el día a día, plantear dudas y situaciones que vayan surgiendo sin necesidad de desplazamientos y hacer los ajustes necesarios durante el proceso.</p>
-              <p>El tiempo máximo de respuesta es de 48 horas laborables.</p>
+              <p>Todo el proceso es online. La consulta inicial es por videollamada y, durante las 12 semanas, mantendremos el seguimiento por WhatsApp de lunes a viernes. El tiempo máximo de respuesta es de 48 horas laborables.</p>
+              <p>Así podremos resolver dudas y situaciones que vayan surgiendo en el día a día, hacer los ajustes necesarios durante el proceso y mantener el seguimiento sin desplazamientos.</p>
             </div>
           </div>
           <div class="faq-item" data-faq-item>
@@ -433,7 +467,7 @@
               </button>
             </h3>
             <div class="faq-item__answer" id="faq-4">
-              <p>No. Trabajaremos con pautas y una estructura flexible para que puedas adaptar las comidas a lo que tengas, te apetezca o encaje con tu rutina.</p>
+              <p>No. Trabajaremos con una estructura flexible y te iré dando herramientas para que puedas adaptar tu alimentación a tu rutina, en lugar de tener que adaptar tu rutina a un menú.</p>
             </div>
           </div>
           <div class="faq-item" data-faq-item>
@@ -457,7 +491,7 @@
             </h3>
             <div class="faq-item__answer" id="faq-6">
               <p>Comer fuera, viajar o compartir comidas forma parte de la vida cotidiana, así que lo tendremos en cuenta desde el principio.</p>
-              <p>El plan también podrá adaptarse a tus gustos, alergias, intolerancias y a los alimentos que tengas disponibles, buscando alternativas adecuadas cuando sea necesario.</p>
+              <p>También podremos adaptar el plan a tus gustos, alergias, intolerancias y a los alimentos que tengas disponibles, buscando alternativas adecuadas cuando sea necesario.</p>
             </div>
           </div>
           <div class="faq-item" data-faq-item>

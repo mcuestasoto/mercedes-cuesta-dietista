@@ -140,19 +140,54 @@ if (carouselViewport && carouselTrack) {
     });
   };
 
-  const update = () => {
+  const currentIndex = () => Math.min(positionCount() - 1, Math.max(0, Math.round(carouselViewport.scrollLeft / step())));
+
+  /* Pinta tarjeta, líneas y botones a la vez a partir de un índice ya
+     decidido: al pulsar una flecha no esperamos a que el scroll
+     termine para saber qué línea activar, así se siente como una
+     única interacción en vez de "la card llega y luego cambia la
+     línea". El listener de scroll de más abajo llama a esto mismo
+     para mantenerlo sincronizado también con el swipe manual. */
+  const renderState = (index) => {
     buildProgress();
-    const index = Math.min(positionCount() - 1, Math.max(0, Math.round(carouselViewport.scrollLeft / step())));
     if (status) status.textContent = `Testimonio ${index + 1} de ${slides.length}`;
     lines.forEach((line, i) => line.classList.toggle('is-active', i === index));
-    if (prevButton) prevButton.disabled = carouselViewport.scrollLeft <= 1;
-    if (nextButton) {
-      const maxScroll = carouselViewport.scrollWidth - carouselViewport.clientWidth;
-      nextButton.disabled = carouselViewport.scrollLeft >= maxScroll - 1;
-    }
+    if (prevButton) prevButton.disabled = index <= 0;
+    if (nextButton) nextButton.disabled = index >= positionCount() - 1;
   };
 
-  const goTo = (direction) => carouselViewport.scrollBy({ left: direction * step(), behavior: 'smooth' });
+  const update = () => renderState(currentIndex());
+
+  /* Duración/easing propios en vez de scrollBy(behavior:"smooth")
+     (cuya duración real varía por navegador y no se deja fijar):
+     así el desplazamiento dura siempre lo mismo que se tarda en
+     encender la línea siguiente, sin overshoot ni rebote. */
+  const CAROUSEL_DURATION = 220;
+  let scrollFrame = null;
+  const animateScrollTo = (targetLeft) => {
+    if (scrollFrame) cancelAnimationFrame(scrollFrame);
+    const startLeft = carouselViewport.scrollLeft;
+    const delta = targetLeft - startLeft;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion || Math.abs(delta) < 1) {
+      carouselViewport.scrollLeft = targetLeft;
+      return;
+    }
+    const start = performance.now();
+    const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+    const tick = (now) => {
+      const t = Math.min(1, (now - start) / CAROUSEL_DURATION);
+      carouselViewport.scrollLeft = startLeft + delta * easeOutCubic(t);
+      scrollFrame = t < 1 ? requestAnimationFrame(tick) : null;
+    };
+    scrollFrame = requestAnimationFrame(tick);
+  };
+
+  const goTo = (direction) => {
+    const target = Math.min(positionCount() - 1, Math.max(0, currentIndex() + direction));
+    renderState(target);
+    animateScrollTo(target * step());
+  };
 
   if (prevButton) prevButton.addEventListener('click', () => goTo(-1));
   if (nextButton) nextButton.addEventListener('click', () => goTo(1));

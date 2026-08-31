@@ -451,17 +451,18 @@ button:focus-visible {
   justify-content: flex-end;
 }
 
-.hero__media picture { display: block; width: 100%; max-width: 500px; }
+.hero__media picture { display: block; width: 100%; max-width: 540px; }
 
+/* La foto ya es 4:5 de origen, igual que esta caja: object-fit:cover
+   no recorta nada real (encuadre intacto), solo evita que el navegador
+   deforme la imagen mientras carga. */
 .hero__image {
   width: 100%;
   height: auto;
   display: block;
-  max-width: 500px;
-  max-height: 600px;
+  max-width: 540px;
   aspect-ratio: 4 / 5;
   object-fit: cover;
-  object-position: 50% 22%;
   border: 1px solid var(--line);
   border-radius: var(--radius);
 }
@@ -484,11 +485,11 @@ button:focus-visible {
 
   .hero__content h1 { font-size: clamp(38px, 10vw, 44px); }
 
-  .hero__image {
-    max-width: 100%;
-    max-height: 420px;
-    object-position: 50% 15%;
-  }
+  /* max-height solo entra en juego por encima de ~430px de ancho (esta
+     franja "móvil" llega hasta 640px): a los anchos de teléfono
+     reales nunca se activa, pero evita una foto excesivamente alta
+     en una tablet estrecha. */
+  .hero__image { max-width: 100%; max-height: 500px; }
 }
 
 /* Buttons: un único sistema visual (relleno sólido) para toda la web.
@@ -607,10 +608,50 @@ button:focus-visible {
   text-wrap: pretty;
 }
 
-/* Programa: filas independientes a ancho completo (título+intro,
-   Qué/Por qué 50/50, Proceso horizontal, frase final) en vez de dos
-   grandes columnas ocupando toda la sección — así ninguna fila queda
-   con contenido puesto solo para rellenar espacio. */
+/* Programa: filas independientes a ancho completo (título+intro con
+   "En resumen", Qué/Por qué 50/50, Proceso horizontal, frase final)
+   en vez de dos grandes columnas ocupando toda la sección — así
+   ninguna fila queda con contenido puesto solo para rellenar
+   espacio. */
+.programa-intro-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: start;
+  gap: 32px;
+}
+
+@media (min-width: 1025px) {
+  .programa-intro-row { grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 48px; }
+}
+
+.programa-intro-row__main { display: flex; flex-direction: column; gap: 24px; min-width: 0; }
+
+/* Ficha editorial discreta, no una card comercial: mismo patrón
+   card-block (h3 + línea superior) que ya usan Formación y
+   Colaboraciones, sin sombras/iconos/checks. */
+.programa-summary__list { display: flex; flex-direction: column; }
+
+.programa-summary__item {
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+}
+
+.programa-summary__item:first-child { border-top: none; padding-top: 4px; }
+
+.programa-summary__item p:first-child {
+  font-weight: 500;
+  font-size: 16px;
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
+.programa-summary__item p:last-child:not(:first-child) {
+  font-weight: 400;
+  font-size: 15px;
+  color: var(--muted);
+  margin: 3px 0 0;
+}
+
 .programa-questions {
   display: grid;
   grid-template-columns: 1fr;
@@ -771,9 +812,12 @@ button:focus-visible {
 
 .testimonial-carousel__viewport::-webkit-scrollbar { display: none; }
 
-@media (prefers-reduced-motion: no-preference) {
-  .testimonial-carousel__viewport { scroll-behavior: smooth; }
-}
+/* Sin scroll-behavior:smooth aquí a propósito: el desplazamiento al
+   pulsar una flecha lo anima main.js con su propia duración/easing
+   (sincronizada con las líneas de posición); esta propiedad seguiría
+   suavizando cada asignación de scrollLeft por encima de esa
+   animación y la volvería más lenta y con doble easing. El swipe
+   táctil no depende de esto: sigue el dedo de forma directa. */
 
 .testimonial-carousel__track {
   display: flex;
@@ -844,18 +888,18 @@ button:focus-visible {
 
 .testimonial-carousel__progress span {
   display: block;
-  width: 20px;
-  height: 2px;
+  width: 16px;
+  height: 1px;
   border-radius: 1px;
-  /* --line (#D9D4C7) da ~1.4:1 sobre el fondo: casi invisible. Este
-     tono intermedio entre --muted y --bg queda perceptible sin
-     competir con la línea activa. */
-  background: #95948D;
+  /* Misma familia cromática que las flechas (var(--ink)): --line
+     (#D9D4C7) da ~1.4:1 sobre el fondo, casi invisible, y no se
+     introduce ningún color nuevo para arreglarlo. */
+  background: color-mix(in srgb, var(--ink) 45%, var(--bg) 55%);
   transition: background 180ms ease, width 180ms ease;
 }
 
 .testimonial-carousel__progress span.is-active {
-  width: 32px;
+  width: 26px;
   background: var(--ink);
 }
 
