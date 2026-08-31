@@ -1,0 +1,19 @@
+{
+  "name": "mercedes-cuesta-dietista",
+  "private": true,
+  "type": "module",
+  "description": "Landing web personal para Mercedes Cuesta, Dietista online. HTML, CSS y JavaScript sin frameworks ni paso de build.",
+  "scripts": {
+    "lint:js": "eslint scripts/",
+    "lint:css": "stylelint \"styles/**/*.css\"",
+    "lint:html": "html-validate \"*.html\" \"pages/*.html\" \"partials/*.html\"",
+    "lint": "npm run lint:js && npm run lint:css && npm run lint:html",
+    "serve": "python3 -m http.server 8000"
+  },
+  "devDependencies": {
+    "eslint": "^10.9.1",
+    "html-validate": "^11.11.0",
+    "stylelint": "^17.14.1",
+    "stylelint-config-standard": "^40.0.0"
+  }
+}

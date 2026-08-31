@@ -301,7 +301,7 @@ if (copyButton) {
     const code = copyButton.getAttribute('data-copy-code');
     try {
       await copyText(code);
-    } catch (error) {
+    } catch {
       /* clipboard unavailable; label still confirms the code below */
     }
     copyButton.classList.add('is-copied');
