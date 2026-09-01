@@ -35,6 +35,7 @@ const openMenu = () => {
   toggle.classList.add('is-open');
   toggle.setAttribute('aria-expanded', 'true');
   toggle.setAttribute('aria-label', 'Cerrar menú');
+  document.body.style.overflow = 'hidden';
 };
 
 const closeMenu = () => {
@@ -43,6 +44,7 @@ const closeMenu = () => {
   toggle.classList.remove('is-open');
   toggle.setAttribute('aria-expanded', 'false');
   toggle.setAttribute('aria-label', 'Abrir menú');
+  document.body.style.overflow = '';
 };
 
 if (toggle && mobileMenu) {
