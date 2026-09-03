@@ -820,11 +820,11 @@ button:focus-visible {
    scroll-snap para que el arrastre/swipe sea fluido y el teclado y los
    lectores de pantalla sigan viendo todos los testimonios (ninguno se
    quita del DOM, solo quedan fuera de la vista horizontal). Visibles
-   a la vez: 1 en móvil (con un asomo del siguiente, para que se note
-   que hay más sin necesidad de puntos), 2 en tablet, 3 en escritorio
-   — cada flecha desplaza siempre un solo testimonio, nunca un grupo
-   entero. Las cards no fuerzan una altura común: cada una crece con
-   su propio contenido. */
+   a la vez: 1 en móvil (a ancho completo, sin asomo del siguiente: las
+   líneas de posición ya bastan para indicar que hay más), 2 en tablet,
+   3 en escritorio — cada flecha desplaza siempre un solo testimonio,
+   nunca un grupo entero. Las cards no fuerzan una altura común: cada
+   una crece con su propio contenido. */
 .testimonial-carousel {
   margin-top: 32px;
 }
@@ -858,7 +858,7 @@ button:focus-visible {
 
 .testimonial-carousel__slide {
   flex: 0 0 auto;
-  width: calc(100% - 40px);
+  width: 100%;
   scroll-snap-align: start;
 }
 
