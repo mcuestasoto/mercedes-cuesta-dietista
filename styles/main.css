@@ -1121,6 +1121,17 @@ button:focus-visible {
   align-items: center;
 }
 
+/* Mismo criterio que .contact__actions: apiladas a ancho completo en
+   móvil. Sin esto, "Ir a FullGas" cabía en la misma fila que "Copiar
+   código" pegado al borde derecho — justo donde flota el botón de
+   WhatsApp — y quedaba tapado por él al pasar por esa zona al hacer
+   scroll. */
+@media (max-width: 560px) {
+  .collab__actions { width: 100%; }
+  .collab__actions .collab__code,
+  .collab__actions .button { width: 100%; }
+}
+
 /* Botón de utilidad (copia un código, no navega ni convierte): usa la
    variante secundaria, misma forma que .button pero sin competir
    visualmente con el CTA. */
