@@ -28,6 +28,27 @@ if ('ResizeObserver' in window && header) {
 const toggle = document.querySelector('[data-nav-toggle]');
 const mobileMenu = document.querySelector('[data-mobile-menu]');
 const allNavLinks = document.querySelectorAll('[data-nav-link]');
+let scrollLockY = 0;
+
+/* overflow:hidden en el body no basta para bloquear el scroll en Safari
+   de iOS (sigue arrastrando el fondo, incluido el header, por debajo
+   del menú). Fijar el body en su sitio con position:fixed sí funciona
+   de forma fiable ahí y en el resto de navegadores. */
+const lockScroll = () => {
+  scrollLockY = window.scrollY || document.documentElement.scrollTop;
+  document.body.style.position = 'fixed';
+  document.body.style.top = `-${scrollLockY}px`;
+  document.body.style.left = '0';
+  document.body.style.right = '0';
+};
+
+const unlockScroll = () => {
+  document.body.style.position = '';
+  document.body.style.top = '';
+  document.body.style.left = '';
+  document.body.style.right = '';
+  window.scrollTo(0, scrollLockY);
+};
 
 const openMenu = () => {
   if (!toggle || !mobileMenu) return;
@@ -35,7 +56,7 @@ const openMenu = () => {
   toggle.classList.add('is-open');
   toggle.setAttribute('aria-expanded', 'true');
   toggle.setAttribute('aria-label', 'Cerrar menú');
-  document.body.style.overflow = 'hidden';
+  lockScroll();
 };
 
 const closeMenu = () => {
@@ -44,7 +65,7 @@ const closeMenu = () => {
   toggle.classList.remove('is-open');
   toggle.setAttribute('aria-expanded', 'false');
   toggle.setAttribute('aria-label', 'Abrir menú');
-  document.body.style.overflow = '';
+  unlockScroll();
 };
 
 if (toggle && mobileMenu) {
