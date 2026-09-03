@@ -285,14 +285,16 @@ button:focus-visible {
   top: var(--header-height);
   left: 0;
   right: 0;
+  /* bottom: 0 (en vez de min-height con 100vh): un fixed con top+bottom
+     se estira siempre hasta el borde real de la pantalla visible, lo
+     calcule el motor como lo calcule. 100vh en Safari iOS no es fiable
+     mientras la barra de direcciones se muestra/oculta — con ese cálculo
+     el menú se quedaba corto en iPhone y volvía a asomar el botón
+     "Quiero empezar" del hero debajo, aunque en un navegador de
+     escritorio (sin esa barra dinámica) no se notara. */
   bottom: 0;
-  /* min-height (no height fija): el contenido decide el alto real, pero
-     el fondo siempre llega hasta abajo del viewport. Sin esto, cuando el
-     contenido del menú es más bajo que la pantalla, se veía el botón
-     "Quiero empezar" del hero justo debajo, con el mismo estilo que el
-     CTA del menú: parecía un único botón partido en dos. */
-  min-height: calc(100vh - var(--header-height));
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   background: var(--bg);
   border-top: 1px solid var(--line);
   box-shadow: 0 8px 16px -6px rgb(30 30 27 / 12%);
