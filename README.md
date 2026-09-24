@@ -1,25 +1,38 @@
-# Mercedes Cuesta · Dietista online
+# Mercedes Cuesta · Web profesional
 
-Landing page profesional para una dietista online, en producción: **https://mercedes-cuesta-dietista.vercel.app**
+Sitio web profesional en producción para mi actividad como dietista online, desarrollado con HTML, CSS y JavaScript.
 
-Proyecto real para un cliente, construido con HTML, CSS y JavaScript **sin frameworks ni paso de build**, como ejercicio deliberado de ir directo a la plataforma web y cuidar el detalle en rendimiento, accesibilidad y SEO sin la capa de abstracción de una librería.
+🌐 **Demo:** https://mercedes-cuesta-dietista.vercel.app
+
+[![Preview de la web profesional de Mercedes Cuesta](assets/images/og-image.png)](https://mercedes-cuesta-dietista.vercel.app)
 
 ![CI](https://github.com/mcuestasoto/mercedes-cuesta-dietista/actions/workflows/ci.yml/badge.svg)
 
-## Puntos destacados
+## Sobre el proyecto
 
-- **Accesibilidad real, no solo etiquetas.** Navegación completa por teclado, `focus-visible` propio, `aria-expanded`/`aria-controls` en acordeón y menú móvil, `aria-live` en el carrusel, skip link funcional, contraste AA verificado en cada combinación de color (documentado en comentarios junto a cada token en `styles/main.css`).
-- **Rendimiento medido, no asumido.** Imagen del Hero servida en AVIF/WebP/JPEG con `srcset`/`sizes` y `fetchpriority`, tipografía autoalojada en WOFF2 (cero peticiones a Google Fonts), y CLS controlado por debajo de 0.07 comprobado con `PerformanceObserver`.
-- **Interacciones a mano, sin librería de UI.** Carrusel de testimonios con scroll nativo + `scroll-snap`, animación propia por `requestAnimationFrame` con `easeOutCubic` para los botones de flecha (evitando el conflicto entre `scroll-snap-type` y una animación manual de `scrollLeft`), acordeón de FAQ y menú móvil sin dependencias, todo respetando `prefers-reduced-motion`.
-- **SEO y metadata cuidados de verdad.** JSON-LD (`WebSite`, `Person`, `FAQPage`) sincronizado con el contenido visible, Open Graph y Twitter Card completos, `canonical` por página, sitemap y `robots.txt`.
-- **Seguridad a nivel de cabeceras.** CSP con hash SHA-256 para el único script inline permitido, HSTS, `X-Content-Type-Options`, `Referrer-Policy` y `Permissions-Policy` configurados en `vercel.json`.
-- **Arquitectura sin build**, pero no sin estructura: header, footer y el enlace "volver al inicio" viven una sola vez en `partials/` y se inyectan por `fetch()` en cada página (`scripts/include.js`), evitando duplicar HTML entre la Home, las páginas legales y el 404.
+Proyecto frontend real desarrollado sin frameworks ni paso de build, con foco en una implementación ligera, accesible y fácil de mantener.
+
+La web incluye navegación responsive, componentes interactivos, páginas legales, SEO técnico, optimización de recursos y despliegue en Vercel.
+
+## Aspectos técnicos destacados
+
+- **Accesibilidad:** HTML semántico, navegación por teclado, estados `focus-visible`, skip link, soporte de `prefers-reduced-motion` y atributos ARIA en los componentes interactivos.
+- **Responsive:** layouts adaptados a distintos tamaños de pantalla e imágenes responsive mediante `srcset` y `sizes`.
+- **Rendimiento:** imágenes en AVIF, WebP y JPEG, tipografía WOFF2 autoalojada y carga optimizada de recursos.
+- **SEO:** metadatos Open Graph y Twitter Card, datos estructurados JSON-LD, canonical, sitemap y `robots.txt`.
+- **Seguridad:** Content Security Policy, HSTS, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy` y otras cabeceras configuradas en Vercel.
+- **Arquitectura:** partials compartidos para header, footer y navegación auxiliar, cargados mediante JavaScript para evitar duplicación entre páginas.
+- **Calidad de código:** ESLint, Stylelint y html-validate integrados en GitHub Actions.
 
 ## Stack
 
-HTML5 semántico, CSS moderno (custom properties, `grid`, `color-mix()`, `clip-path`) y JavaScript vanilla (ES2022, sin `build step`). Sin React/Vue, sin bundler, sin dependencias en producción — una decisión consciente para un sitio de este tamaño, no una limitación.
+- HTML5
+- CSS3
+- JavaScript
+- Vercel
+- GitHub Actions
 
-Como herramientas de desarrollo sí se usan **ESLint**, **Stylelint** y **html-validate**, con su propio workflow de CI en GitHub Actions (ver badge arriba).
+Sin frameworks ni dependencias de producción.
 
 ## Estructura
 
@@ -30,15 +43,15 @@ mercedes-cuesta-dietista/
 ├── styles/
 │   └── main.css
 ├── scripts/
-│   ├── include.js      # carga header/footer/back-to-home compartidos
+│   ├── include.js
 │   └── main.js
 ├── partials/
 │   ├── header.html
 │   ├── footer.html
 │   └── back-to-home.html
 ├── assets/
-│   ├── images/          # AVIF/WebP/JPEG responsive
-│   ├── fonts/            # Montserrat autoalojada (WOFF2)
+│   ├── images/
+│   ├── fonts/
 │   └── logo/
 ├── pages/
 │   ├── aviso-legal.html
@@ -48,25 +61,22 @@ mercedes-cuesta-dietista/
 ├── robots.txt
 ├── sitemap.xml
 ├── site.webmanifest
-├── vercel.json           # cabeceras de seguridad (CSP, HSTS...)
-└── package.json          # solo devDependencies: eslint, stylelint, html-validate
+├── vercel.json
+└── package.json
 ```
 
 ## Desarrollo local
 
 ```sh
-npm install        # instala eslint, stylelint y html-validate (solo dev)
-npm run lint        # corre los tres linters
-npm run serve       # sirve el proyecto en http://localhost:8000
+npm install
+npm run lint
+npm run serve
 ```
 
-El proyecto usa `fetch()` para cargar header/footer, así que hace falta servirlo con un servidor estático — abrir `index.html` directamente con `file://` no cargará esas partes.
+El proyecto utiliza `fetch()` para cargar elementos compartidos, por lo que debe servirse mediante un servidor local en lugar de abrir `index.html` directamente con `file://`.
 
-## Notas del proyecto
+## Sobre el contenido
 
-- Web estática sin formularios, sin analítica y sin pasarela de pago; el contacto se resuelve por WhatsApp/email/Instagram.
-- No usa cookies propias; el detalle está en [`pages/cookies.html`](pages/cookies.html).
+El repositorio se publica como proyecto de portfolio para mostrar el desarrollo técnico de una web profesional en producción.
 
-## Sobre el código y el contenido
-
-Este repositorio se comparte con fines de portfolio, para mostrar cómo se aborda un proyecto frontend real de principio a fin. El diseño, los textos y las imágenes pertenecen a la titular del negocio (Mercedes Cuesta); no está autorizada su reutilización fuera de este contexto.
+El diseño, los textos y las imágenes pertenecen a Mercedes Cuesta y no están autorizados para su reutilización fuera de este contexto.
