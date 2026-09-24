@@ -2,7 +2,7 @@
   "name": "mercedes-cuesta-dietista",
   "private": true,
   "type": "module",
-  "description": "Landing web personal para Mercedes Cuesta, Dietista online. HTML, CSS y JavaScript sin frameworks ni paso de build.",
+  "description": "Sitio web profesional de Mercedes Cuesta, dietista online. HTML, CSS y JavaScript sin frameworks ni paso de build.",
   "scripts": {
     "lint:js": "eslint scripts/",
     "lint:css": "stylelint \"styles/**/*.css\"",
