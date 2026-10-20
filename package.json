@@ -6,7 +6,7 @@
   "scripts": {
     "lint:js": "eslint scripts/",
     "lint:css": "stylelint \"styles/**/*.css\"",
-    "lint:html": "html-validate \"*.html\" \"pages/*.html\" \"partials/*.html\"",
+    "lint:html": "html-validate \"*.html\" \"pages/*.html\" \"partials/*.html\" \"programa-nutricional/*.html\" \"sobre-mi/*.html\" \"contacto/*.html\"",
     "lint": "npm run lint:js && npm run lint:css && npm run lint:html",
     "serve": "python3 -m http.server 8000"
   },
