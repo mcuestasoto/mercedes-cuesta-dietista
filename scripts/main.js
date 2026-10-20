@@ -8,7 +8,7 @@
    emoji mal codificado...). Aquí se construye una sola vez y se aplica
    a todos los [data-whatsapp-link], sea cual sea su href estático. */
 const WHATSAPP_PHONE = '34614821010';
-const WHATSAPP_MESSAGE = 'Hola Mercedes 🙂 he visto tu web y me gustaría empezar';
+const WHATSAPP_MESSAGE = 'Hola Mercedes. Me gustaría tener información sobre el Programa nutricional · 12 semanas. Quiero trabajar…';
 const WHATSAPP_URL = `https://api.whatsapp.com/send?phone=${WHATSAPP_PHONE}&text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
 document.querySelectorAll('[data-whatsapp-link]').forEach((el) => el.setAttribute('href', WHATSAPP_URL));
 
@@ -87,29 +87,15 @@ allNavLinks.forEach((link) => {
   link.addEventListener('click', () => closeMenu());
 });
 
-/* Active section highlighting */
-const spySections = ['como-trabajo', 'programa', 'sobre-mi', 'testimonios', 'preguntas-frecuentes', 'contacto']
-  .map((id) => document.getElementById(id))
-  .filter(Boolean);
-
-if (spySections.length) {
-  const updateActiveSection = () => {
-    const line = window.innerHeight * 0.3;
-    let current = '';
-    spySections.forEach((section) => {
-      if (section.getBoundingClientRect().top <= line) current = section.id;
-    });
-    allNavLinks.forEach((link) => {
-      const isActive = link.getAttribute('href') === `/#${current}`;
-      link.classList.toggle('is-active', isActive);
-      if (isActive) link.setAttribute('aria-current', 'true');
-      else link.removeAttribute('aria-current');
-    });
-  };
-  updateActiveSection();
-  window.addEventListener('scroll', updateActiveSection, { passive: true });
-  window.addEventListener('resize', updateActiveSection);
-}
+/* Active page highlighting */
+const currentPath = window.location.pathname.replace(/index\.html$/, '');
+allNavLinks.forEach((link) => {
+  const linkPath = link.dataset.navPath;
+  const isActive = linkPath === '/' ? currentPath === '/' : currentPath.startsWith(linkPath);
+  link.classList.toggle('is-active', isActive);
+  if (isActive) link.setAttribute('aria-current', 'page');
+  else link.removeAttribute('aria-current');
+});
 
 /* FAQ accordion */
 document.querySelectorAll('[data-faq-item]').forEach((item) => {
@@ -262,10 +248,10 @@ if (carouselViewport && carouselTrack) {
    parcialmente visible, el footer asomando no cuenta todavía. */
 const fab = document.querySelector('[data-whatsapp-fab]');
 const heroCta = document.querySelector('.hero__actions [data-whatsapp-link]');
-const contactoEl = document.getElementById('contacto');
+const contactoEl = document.getElementById('contacto') || document.querySelector('[data-contact-page]');
 const footerEl = document.querySelector('.footer');
 
-if (fab && !document.querySelector('.legal-main') && heroCta && contactoEl && footerEl && 'IntersectionObserver' in window) {
+if (fab && !document.querySelector('.legal-main') && heroCta && footerEl && 'IntersectionObserver' in window) {
   let heroVisible = true;
   let contactoVisible = false;
   let footerVisible = false;
@@ -280,16 +266,13 @@ if (fab && !document.querySelector('.legal-main') && heroCta && contactoEl && fo
     render();
   }).observe(heroCta);
 
-  new IntersectionObserver((entries) => {
-    const entry = entries[0];
-    /* No basta con "intersecta": en páginas altas, el final de
-       Contacto queda a la vista junto al footer entero (footer más
-       corto que la pantalla), y eso no debe contarse como "seguimos
-       en Contacto" — solo cuenta si su borde superior sigue cerca de
-       la parte de arriba de la pantalla. */
-    contactoVisible = entry.isIntersecting && entry.boundingClientRect.top > -(window.innerHeight * 0.15);
-    render();
-  }).observe(contactoEl);
+  if (contactoEl) {
+    new IntersectionObserver((entries) => {
+      const entry = entries[0];
+      contactoVisible = entry.isIntersecting && entry.boundingClientRect.top > -(window.innerHeight * 0.15);
+      render();
+    }).observe(contactoEl);
+  }
 
   new IntersectionObserver((entries) => {
     footerVisible = entries[0].isIntersecting;
