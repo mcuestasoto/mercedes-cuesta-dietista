@@ -48,7 +48,7 @@
      ya da 7.14:1 contra la página), pero es lo que mantiene el botón
      identificable en oscuro, donde el relleno por sí solo cae a
      2.21:1 contra --bg oscuro. */
-  --cta-bg: #4F5742;
+  --cta-bg: var(--accent-text);
   --cta-text: #FAF8F4;
   --cta-border: var(--accent);
   --cta-hover-bg: color-mix(in srgb, var(--cta-bg) 80%, var(--accent) 20%);
@@ -59,8 +59,8 @@
      sin competir con él — fondo claro, texto y borde en el verde de
      marca ya usado para texto en el resto de la web. */
   --btn-secondary-bg: var(--card);
-  --btn-secondary-text: var(--accent-text);
-  --btn-secondary-border: var(--accent-text);
+  --btn-secondary-text: var(--muted);
+  --btn-secondary-border: var(--muted);
   --btn-secondary-hover-bg: color-mix(in srgb, var(--card) 88%, var(--accent-text) 12%);
   --btn-secondary-active-bg: color-mix(in srgb, var(--card) 76%, var(--accent-text) 24%);
 
