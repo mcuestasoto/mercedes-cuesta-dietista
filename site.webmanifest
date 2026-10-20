@@ -1,7 +1,7 @@
 {
-  "name": "Mercedes Cuesta | Dietista online",
+  "name": "Mercedes Cuesta | Dietista",
   "short_name": "MC Dietista",
-  "description": "Acompañamiento online individual para mejorar tu alimentación, tus hábitos y tu composición corporal con un plan personalizado, seguimiento y ajustes.",
+  "description": "Dietista online. Alimentación, hábitos, composición corporal y rendimiento con un enfoque personalizado y sostenible.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#FAF8F4",
