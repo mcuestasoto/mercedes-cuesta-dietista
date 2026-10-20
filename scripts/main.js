@@ -251,7 +251,7 @@ const heroCta = document.querySelector('.hero__actions [data-whatsapp-link]');
 const contactoEl = document.getElementById('contacto') || document.querySelector('[data-contact-page]');
 const footerEl = document.querySelector('.footer');
 
-if (fab && !document.querySelector('.legal-main') && footerEl && 'IntersectionObserver' in window) {
+if (fab && !document.querySelector('.legal-main') && heroCta && footerEl && 'IntersectionObserver' in window) {
   let heroVisible = true;
   let contactoVisible = false;
   let footerVisible = false;
@@ -261,15 +261,10 @@ if (fab && !document.querySelector('.legal-main') && footerEl && 'IntersectionOb
     fab.classList.toggle('is-visible', shouldShow);
   };
 
-  if (heroCta) {
-    new IntersectionObserver((entries) => {
-      heroVisible = entries[0].isIntersecting;
-      render();
-    }).observe(heroCta);
-  } else {
-    heroVisible = false;
+  new IntersectionObserver((entries) => {
+    heroVisible = entries[0].isIntersecting;
     render();
-  }
+  }).observe(heroCta);
 
   if (contactoEl) {
     new IntersectionObserver((entries) => {
